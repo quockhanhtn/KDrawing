@@ -63,7 +63,6 @@ namespace KDrawing.MyUserControls
         {
             chkIsSelected.Checked = ShapeShow.IsSelected;
             if (FormMain != null && FormMain.ListShapes.Contains(ShapeShow) == false) { this.Dispose(); }
-
         }
     }
 }

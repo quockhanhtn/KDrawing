@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbLayoutPnl = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,7 +36,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDeleteSelected = new KDrawing.KControls.FlatButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkSelectedAll = new System.Windows.Forms.CheckBox();
+            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.tbLayoutPnl.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,7 +102,7 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnDeleteSelected);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Controls.Add(this.chkSelectedAll);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(2, 34);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -141,14 +143,20 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Name";
             // 
-            // checkBox1
+            // chkSelectedAll
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkSelectedAll.AutoSize = true;
+            this.chkSelectedAll.Location = new System.Drawing.Point(5, 4);
+            this.chkSelectedAll.Name = "chkSelectedAll";
+            this.chkSelectedAll.Size = new System.Drawing.Size(18, 17);
+            this.chkSelectedAll.TabIndex = 0;
+            this.chkSelectedAll.UseVisualStyleBackColor = true;
+            this.chkSelectedAll.CheckStateChanged += new System.EventHandler(this.chkSelectedAll_CheckStateChanged);
+            // 
+            // tmrUpdate
+            // 
+            this.tmrUpdate.Interval = 500;
+            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
             // ShapeLayersManager
             // 
@@ -160,6 +168,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ShapeLayersManager";
             this.Size = new System.Drawing.Size(300, 400);
+            this.Load += new System.EventHandler(this.ShapeLayersManager_Load);
             this.tbLayoutPnl.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -178,6 +187,7 @@
         private System.Windows.Forms.Panel panel2;
         private KDrawing.KControls.FlatButton btnDeleteSelected;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkSelectedAll;
+        private System.Windows.Forms.Timer tmrUpdate;
     }
 }

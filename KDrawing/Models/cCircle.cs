@@ -6,7 +6,6 @@ namespace KDrawing.Models
     public class cCircle : cEllipse
     {
         private static int index = 0;
-        public float Diameter { get; set; }
 
         public cCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {

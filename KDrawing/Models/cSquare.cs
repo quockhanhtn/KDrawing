@@ -7,7 +7,6 @@ namespace KDrawing.Models
     public class cSquare : cRectangle
     {
         private static int index = 0;
-        public float Width { get; set; }
 
         public cSquare(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
