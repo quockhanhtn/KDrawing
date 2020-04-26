@@ -423,8 +423,10 @@ namespace KDrawing.Vendors
             {
                 if (_eyedropperCursor == null)
                 {
-                    // ReSharper disable AssignNullToNotNullAttribute
-                    _eyedropperCursor = new Cursor(Application.StartupPath + "\\eye-dropper.cur");
+                    using (var memoryStream = new System.IO.MemoryStream(Properties.Resources.eye_dropper_cur))
+                    {
+                        _eyedropperCursor = new Cursor(memoryStream);
+                    }
                 }
                 // ReSharper restore AssignNullToNotNullAttribute
 

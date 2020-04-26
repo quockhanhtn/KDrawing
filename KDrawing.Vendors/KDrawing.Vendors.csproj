@@ -136,5 +136,8 @@
   <ItemGroup>
     <None Include="Resources\palette-white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-dropper-cur.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
