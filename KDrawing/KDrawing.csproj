@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F9B49253-F815-40DD-A4F5-12DD8047281B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KDrawing</RootNamespace>
+    <AssemblyName>KDrawing</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Boxs\fRotate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Boxs\fRotate.Designer.cs">
+      <DependentUpon>fRotate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Boxs\fScale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Boxs\fScale.Designer.cs">
+      <DependentUpon>fScale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMain_Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\ShapeLayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\ShapeLayer.Designer.cs">
+      <DependentUpon>ShapeLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ShapeLayersManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\ShapeLayersManager.Designer.cs">
+      <DependentUpon>ShapeLayersManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cCircle.cs" />
+    <Compile Include="Models\cCurve.cs" />
+    <Compile Include="Models\cEllipse.cs" />
+    <Compile Include="Models\cFillableShape.cs" />
+    <Compile Include="Models\cFreehand.cs" />
+    <Compile Include="Models\cGroup.cs" />
+    <Compile Include="Models\cLine.cs" />
+    <Compile Include="Models\cPolygon.cs" />
+    <Compile Include="Models\cRectangle.cs" />
+    <Compile Include="Models\cShape.cs" />
+    <Compile Include="Models\cSquare.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\GraphicsExtensions.cs" />
+    <Compile Include="Models\MyCursor.cs" />
+    <Compile Include="Models\Utilities.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Boxs\fRotate.resx">
+      <DependentUpon>fRotate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Boxs\fScale.resx">
+      <DependentUpon>fScale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMain.resx">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\ShapeLayer.resx">
+      <DependentUpon>ShapeLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\ShapeLayersManager.resx">
+      <DependentUpon>ShapeLayersManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor-cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor-size-all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch-off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-off-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-off-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle_off-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-on-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default-color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swap-color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-bezier-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-circle-outline-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-circle-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-curve-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-ellipse-outline-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-ellipse-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-pentagon-outline-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-pentagon-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-rectangle-outline-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-rectangle-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-square-outline-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-square-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-line-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lead-pencil-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor-lead-pencil-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\group-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ungroup-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\percent-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-bezier-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-circle-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-circle-outline-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-curve-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-ellipse-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-ellipse-outline-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-line-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-pentagon-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-pentagon-outline-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-rectangle-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-rectangle-outline-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-square-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-square-outline-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KDrawing.KControls\KDrawing.KControls.csproj">
+      <Project>{2aae1a04-95a0-4116-9c40-905826733386}</Project>
+      <Name>KDrawing.KControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KDrawing.Vendors\KDrawing.Vendors.csproj">
+      <Project>{685e9ea2-4d43-4c5f-8001-32f921a8353c}</Project>
+      <Name>KDrawing.Vendors</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-text-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape-text-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lead-pencil-black.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
