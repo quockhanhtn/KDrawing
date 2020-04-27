@@ -67,6 +67,7 @@
     <Compile Include="fMain_Function.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\cText.cs" />
     <Compile Include="MyUserControls\ShapeLayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
