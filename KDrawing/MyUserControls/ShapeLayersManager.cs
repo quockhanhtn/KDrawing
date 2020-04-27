@@ -23,12 +23,13 @@ namespace KDrawing.MyUserControls
 
         private void ShapeLayersManager_Load(object sender, EventArgs e)
         {
-            tmrUpdate.Start();
+            
         }
 
         public void Add(cShape shape)
         {
             flpShapeLayers.Controls.Add(new ShapeLayer(shape));
+            if (tmrUpdate.Enabled == false) { tmrUpdate.Start(); }
         }
 
         private void btnDeleteSelected_Click(object sender, EventArgs e)

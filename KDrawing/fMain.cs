@@ -68,6 +68,25 @@ namespace KDrawing
             set => selectedRegion = value;
         }
 
+        public ShapeType ShapeType { 
+            get => shapeType;
+            set
+            {
+                shapeType = value;
+                statusBar_ShapeType.Text = "Shape type : " + value.ToString();
+            }
+        }
+
+        public DrawingMode DrawingMode
+        {
+            get => drawingMode;
+            set
+            {
+                drawingMode = value;
+                statusBar_DrawingMode.Text = "Mode : " + value.ToString();
+            }
+        }
+
         public fMain()
         {
             InitializeComponent();
@@ -77,8 +96,8 @@ namespace KDrawing
         {
             mnu.Renderer = new KDrawing.KControls.MenuStripRenderer(Color.FromArgb(28, 151, 234));
 
-            this.drawingMode = DrawingMode.NoFill;
-            this.shapeType = ShapeType.NoDrawing;
+            this.DrawingMode = DrawingMode.NoFill;
+            this.ShapeType = ShapeType.NoDrawing;
             listButton = new List<Button> { btnBezier, btnCurve, btnEllipse, btnLine, btnPolygon, btnRectangle, btnSelect, btnPencil };
             cboDashStyle.SelectedIndex = 0;
         }
@@ -176,9 +195,9 @@ namespace KDrawing
 
         private void btnEnableFill_Click(object sender, EventArgs e)
         {
-            if (drawingMode == DrawingMode.NoFill)
+            if (DrawingMode == DrawingMode.NoFill)
             {
-                drawingMode = DrawingMode.Fill;
+                DrawingMode = DrawingMode.Fill;
                 btnEnableFill.BackgroundImage = Properties.Resources.toggle_switch;
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_white; }
@@ -189,7 +208,7 @@ namespace KDrawing
             }
             else
             {
-                drawingMode = DrawingMode.NoFill;
+                DrawingMode = DrawingMode.NoFill;
                 btnEnableFill.BackgroundImage = Properties.Resources.toggle_switch_off;
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
@@ -202,6 +221,8 @@ namespace KDrawing
 
         private void nudLineWeight_ValueChanged(object sender, EventArgs e)
         {
+            statusBar_LineWeight.Text = "Line weight : " + nudLineWeight.Value.ToString();
+
             this.ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape =>
             {
                 if (shape is cGroup group)
@@ -222,6 +243,8 @@ namespace KDrawing
 
         private void cboDashStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
+            statusBar_DashStyle.Text = "Dash style : " + ((DashStyle)cboDashStyle.SelectedIndex).ToString();
+
             this.ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape =>
             {
                 shape.DashStyle = (DashStyle)cboDashStyle.SelectedIndex;
@@ -255,6 +278,7 @@ namespace KDrawing
             Button btn = sender as Button;
             btn.FlatAppearance.MouseOverBackColor = btn.BackColor;
             btn.FlatAppearance.MouseDownBackColor = btn.BackColor;
+            statusBar_ForeColor.BackColor = btn.BackColor;
 
             ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Color = btn.BackColor; });
             ReDraw();
@@ -265,6 +289,7 @@ namespace KDrawing
             Button btn = sender as Button;
             btn.FlatAppearance.MouseOverBackColor = btn.BackColor;
             btn.FlatAppearance.MouseDownBackColor = btn.BackColor;
+            statusBar_BackColor.BackColor = btn.BackColor;
 
             psfMain.BackColor = btn.BackColor;
         }
@@ -316,13 +341,13 @@ namespace KDrawing
                 }
             }
 
-            if (shapeType != ShapeType.NoDrawing)
+            if (ShapeType != ShapeType.NoDrawing)
             {
                 isMouseDown = true;
                 ListShapes.ForEach(shape => shape.IsSelected = false);
             }
 
-            switch (this.shapeType)
+            switch (this.ShapeType)
             {
                 case ShapeType.NoDrawing:
                     if (isControlKeyPress)
@@ -399,25 +424,25 @@ namespace KDrawing
 
                 case ShapeType.Rectangle:
                     cRectangle rectangle = new cRectangle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    rectangle.Fill = (drawingMode == DrawingMode.Fill);
+                    rectangle.Fill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(rectangle);
                     break;
 
                 case ShapeType.Square:
                     cSquare square = new cSquare(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    square.Fill = (drawingMode == DrawingMode.Fill);
+                    square.Fill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(square);
                     break;
 
                 case ShapeType.Ellipse:
                     cEllipse ellipse = new cEllipse(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    ellipse.Fill = (drawingMode == DrawingMode.Fill);
+                    ellipse.Fill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(ellipse);
                     break;
 
                 case ShapeType.Circle:
                     cCircle circle = new cCircle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    circle.Fill = (drawingMode == DrawingMode.Fill);
+                    circle.Fill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(circle);
                     break;
 
@@ -472,7 +497,7 @@ namespace KDrawing
                     if (!isDrawPolygon)
                     {
                         cPolygon polygon = new cPolygon((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                        polygon.Fill = (drawingMode == DrawingMode.Fill);
+                        polygon.Fill = (DrawingMode == DrawingMode.Fill);
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 
@@ -527,7 +552,7 @@ namespace KDrawing
 
                 ReDraw();
             }
-            else if (shapeType == ShapeType.NoDrawing)
+            else if (ShapeType == ShapeType.NoDrawing)
             {
                 if (isMouseSelect)
                 {
@@ -643,12 +668,12 @@ namespace KDrawing
                     }
                 }
 
-                if (shapeType != ShapeType.NoDrawing)
+                if (ShapeType != ShapeType.NoDrawing)
                 {
                     if (shape is cCurve)
                     {
                         // Chỉ ghi khi đã vẽ xong đường cong đó
-                        if ((shapeType == ShapeType.Curve && !isDrawCurve) || (shapeType == ShapeType.Bezier && !isDrawBezier))
+                        if ((ShapeType == ShapeType.Curve && !isDrawCurve) || (ShapeType == ShapeType.Bezier && !isDrawBezier))
                         {
                             shapeLayers.Add(shape);
                         }
@@ -730,7 +755,7 @@ namespace KDrawing
             if (btn.BackColor == Color.FromArgb(0, 30, 81))
             {
                 UncheckAll();
-                this.shapeType = ShapeType.NoDrawing;
+                this.ShapeType = ShapeType.NoDrawing;
                 this.btnSelect.BackColor = Color.FromArgb(0, 30, 81);
                 this.psfMain.Cursor = Cursors.Default;
             }
@@ -744,31 +769,31 @@ namespace KDrawing
                 switch (btn.Tag)
                 {
                     case "Freehand":
-                        this.shapeType = ShapeType.Freehand;
+                        this.ShapeType = ShapeType.Freehand;
                         break;
                     case "Line":
-                        this.shapeType = ShapeType.Line;
+                        this.ShapeType = ShapeType.Line;
                         break;
                     case "Curve":
-                        this.shapeType = ShapeType.Curve;
+                        this.ShapeType = ShapeType.Curve;
                         break;
                     case "Bezier":
-                        this.shapeType = ShapeType.Bezier;
+                        this.ShapeType = ShapeType.Bezier;
                         break;
                     case "Ellipse":
-                        this.shapeType = ShapeType.Ellipse;
+                        this.ShapeType = ShapeType.Ellipse;
                         break;
                     case "Circle":
-                        this.shapeType = ShapeType.Circle;
+                        this.ShapeType = ShapeType.Circle;
                         break;
                     case "Rectangle":
-                        this.shapeType = ShapeType.Rectangle;
+                        this.ShapeType = ShapeType.Rectangle;
                         break;
                     case "Square":
-                        this.shapeType = ShapeType.Square;
+                        this.ShapeType = ShapeType.Square;
                         break;
                     case "Polygon":
-                        this.shapeType = ShapeType.Polygon;
+                        this.ShapeType = ShapeType.Polygon;
                         break;
                     default:
                         break;
@@ -784,13 +809,13 @@ namespace KDrawing
                 if (btn.Tag.ToString() == "Ellipse")
                 {
                     btn.Tag = "Circle";
-                    if (drawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_circle_outline_white; }
+                    if (DrawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_circle_outline_white; }
                     else { btn.BackgroundImage = Properties.Resources.shape_circle_white; }
                 }
                 else
                 {
                     btn.Tag = "Ellipse";
-                    if (drawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
+                    if (DrawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
                     else { btn.BackgroundImage = Properties.Resources.shape_ellipse_white; }
                 }
             }
@@ -804,13 +829,13 @@ namespace KDrawing
                 if (btn.Tag.ToString() == "Rectangle")
                 {
                     btn.Tag = "Square";
-                    if (drawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_square_outline_white; }
+                    if (DrawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_square_outline_white; }
                     else { btn.BackgroundImage = Properties.Resources.shape_square_white; }
                 }
                 else
                 {
                     btn.Tag = "Rectangle";
-                    if (drawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_rectangle_outline_white; }
+                    if (DrawingMode == DrawingMode.NoFill) { btn.BackgroundImage = Properties.Resources.shape_rectangle_outline_white; }
                     else { btn.BackgroundImage = Properties.Resources.shape_rectangle_white; }
                 }
             }
@@ -819,7 +844,7 @@ namespace KDrawing
         private void btnSelect_Click(object sender, EventArgs e)
         {
             UnselectAllShapes();
-            this.shapeType = ShapeType.NoDrawing;
+            this.ShapeType = ShapeType.NoDrawing;
             UncheckAll();
             (sender as Button).BackColor = Color.FromArgb(0, 30, 81);
             this.psfMain.Cursor = Cursors.Default;
@@ -929,5 +954,11 @@ namespace KDrawing
 
         }
         #endregion
+
+        private void tmrUpdate_Tick(object sender, EventArgs e)
+        {
+            int numShapeSelected = ListShapes.FindAll(shape => shape.IsSelected).Count;
+            statusBar_NumShapesSelected.Text = "Selected " + numShapeSelected.ToString() + "/" + ListShapes.Count.ToString() + " shapes";
+        }
     }
 }

@@ -31,16 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
             this.tblpnlMain = new System.Windows.Forms.TableLayoutPanel();
-            this.titleBar = new KControls.TitleBar();
-            this.dragMovePnl = new KControls.DragMovePanel();
+            this.titleBar = new KDrawing.KControls.TitleBar();
+            this.dragMovePnl = new KDrawing.KControls.DragMovePanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cboDashStyle = new System.Windows.Forms.ComboBox();
             this.nudLineWeight = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnEnableFill = new KDrawing.KControls.FlatButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dragMovePanel1 = new KControls.DragMovePanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dragMovePanel1 = new KDrawing.KControls.DragMovePanel();
+            this.btnCloseLayer = new KDrawing.KControls.FlatButton();
+            this.btnCloseToolbar = new KDrawing.KControls.FlatButton();
             this.mnu = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFile_Open = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +78,15 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSelect_DeleteSelected = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDrawing = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Freehand = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Text = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuDrawing_Line = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Curve = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Bezier = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Ellipse = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Rectangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDrawing_Polygon = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView_Toolbar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView_Layers = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,24 +95,6 @@
             this.pnlToolbar = new System.Windows.Forms.Panel();
             this.btnForeColor = new KDrawing.KControls.FlatButton();
             this.btnBackColor = new KDrawing.KControls.FlatButton();
-            this.btnSelect = new KDrawing.KControls.FlatButton();
-            this.psfMain = new KControls.PaintSurface();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.imgCboDashStyle = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnEnableFill = new KDrawing.KControls.FlatButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCloseLayer = new KDrawing.KControls.FlatButton();
-            this.btnCloseToolbar = new KDrawing.KControls.FlatButton();
-            this.mnuDrawing_Freehand = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Text = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Line = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Curve = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Bezier = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Ellipse = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Rectangle = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDrawing_Polygon = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDefaultColor = new KDrawing.KControls.FlatButton();
             this.btnPolygon = new KDrawing.KControls.FlatButton();
             this.btnRectangle = new KDrawing.KControls.FlatButton();
@@ -111,19 +107,34 @@
             this.btnDelete = new KDrawing.KControls.FlatButton();
             this.btnUngroup = new KDrawing.KControls.FlatButton();
             this.btnGroup = new KDrawing.KControls.FlatButton();
+            this.btnSelect = new KDrawing.KControls.FlatButton();
             this.btnSwapColor = new KDrawing.KControls.FlatButton();
+            this.psfMain = new KDrawing.KControls.PaintSurface();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusBar_DrawingMode = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_LineWeight = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_DashStyle = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_LabelForeColor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_ForeColor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_LabelBackColor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_BackColor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_ShapeType = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_NumShapesSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imgCboDashStyle = new System.Windows.Forms.ImageList(this.components);
+            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.tblpnlMain.SuspendLayout();
             this.dragMovePnl.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.dragMovePanel1.SuspendLayout();
             this.mnu.SuspendLayout();
             this.tblpnlMidArea.SuspendLayout();
             this.pnlToolbar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblpnlMain
@@ -133,7 +144,7 @@
             this.tblpnlMain.Controls.Add(this.titleBar, 0, 0);
             this.tblpnlMain.Controls.Add(this.dragMovePnl, 0, 1);
             this.tblpnlMain.Controls.Add(this.tblpnlMidArea, 0, 2);
-            this.tblpnlMain.Controls.Add(this.statusStrip, 0, 3);
+            this.tblpnlMain.Controls.Add(this.statusBar, 0, 3);
             this.tblpnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpnlMain.Location = new System.Drawing.Point(0, 0);
             this.tblpnlMain.Margin = new System.Windows.Forms.Padding(0);
@@ -149,19 +160,19 @@
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.titleBar.ButtonForeColor = KControls.TitleBar.ButtonColor.White;
+            this.titleBar.ButtonForeColor = KDrawing.KControls.TitleBar.ButtonColor.White;
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titleBar.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleBar.Location = new System.Drawing.Point(2, 2);
             this.titleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
             this.titleBar.Name = "titleBar";
-            this.titleBar.ResizeWindowsBox = KControls.TitleBar.ResizeBox.MinimizeAndMaximize;
+            this.titleBar.ResizeWindowsBox = KDrawing.KControls.TitleBar.ResizeBox.MinimizeAndMaximize;
             this.titleBar.Size = new System.Drawing.Size(1578, 34);
             this.titleBar.TabIndex = 0;
-            this.titleBar.TitleFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleBar.TitleForeColor = System.Drawing.SystemColors.ControlText;
+            this.titleBar.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleBar.TitleForeColor = System.Drawing.Color.White;
             this.titleBar.TitleIcon = null;
-            this.titleBar.TitleText = "TitleText";
+            this.titleBar.TitleText = "KDrawing";
             // 
             // dragMovePnl
             // 
@@ -194,6 +205,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(665, 34);
             this.panel1.TabIndex = 4;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.White;
+            this.pictureBox3.Location = new System.Drawing.Point(16, 7);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(2, 20);
+            this.pictureBox3.TabIndex = 1;
+            this.pictureBox3.TabStop = false;
             // 
             // cboDashStyle
             // 
@@ -258,6 +278,32 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Line weight";
             // 
+            // btnEnableFill
+            // 
+            this.btnEnableFill.BackgroundImage = global::KDrawing.Properties.Resources.toggle_switch_off;
+            this.btnEnableFill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEnableFill.FlatAppearance.BorderSize = 0;
+            this.btnEnableFill.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnEnableFill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.btnEnableFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnableFill.Location = new System.Drawing.Point(66, 5);
+            this.btnEnableFill.Name = "btnEnableFill";
+            this.btnEnableFill.Size = new System.Drawing.Size(48, 24);
+            this.btnEnableFill.TabIndex = 0;
+            this.btnEnableFill.ToolTipActive = true;
+            this.btnEnableFill.ToolTipAutomaticDelay = 500;
+            this.btnEnableFill.ToolTipAutoPopDelay = 5000;
+            this.btnEnableFill.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnEnableFill.ToolTipCaption = "";
+            this.btnEnableFill.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnEnableFill.ToolTipInitialDelay = 200;
+            this.btnEnableFill.ToolTipIsBalloon = false;
+            this.btnEnableFill.ToolTipReshowDelay = 100;
+            this.btnEnableFill.ToolTipShowAlways = true;
+            this.btnEnableFill.ToolTipTitle = "";
+            this.btnEnableFill.UseVisualStyleBackColor = true;
+            this.btnEnableFill.Click += new System.EventHandler(this.btnEnableFill_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -268,6 +314,15 @@
             this.label1.Size = new System.Drawing.Size(29, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Fill";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Location = new System.Drawing.Point(125, 7);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(2, 20);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
             // 
             // label4
             // 
@@ -280,6 +335,15 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "pt";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(355, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(2, 20);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // dragMovePanel1
             // 
             this.dragMovePanel1.Controls.Add(this.btnCloseLayer);
@@ -288,6 +352,56 @@
             this.dragMovePanel1.Name = "dragMovePanel1";
             this.dragMovePanel1.Size = new System.Drawing.Size(300, 34);
             this.dragMovePanel1.TabIndex = 2;
+            // 
+            // btnCloseLayer
+            // 
+            this.btnCloseLayer.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on_flip_x;
+            this.btnCloseLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCloseLayer.FlatAppearance.BorderSize = 0;
+            this.btnCloseLayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseLayer.Location = new System.Drawing.Point(0, 2);
+            this.btnCloseLayer.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCloseLayer.Name = "btnCloseLayer";
+            this.btnCloseLayer.Size = new System.Drawing.Size(56, 30);
+            this.btnCloseLayer.TabIndex = 2;
+            this.btnCloseLayer.ToolTipActive = true;
+            this.btnCloseLayer.ToolTipAutomaticDelay = 500;
+            this.btnCloseLayer.ToolTipAutoPopDelay = 5000;
+            this.btnCloseLayer.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnCloseLayer.ToolTipCaption = "Close tool bar";
+            this.btnCloseLayer.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnCloseLayer.ToolTipInitialDelay = 200;
+            this.btnCloseLayer.ToolTipIsBalloon = false;
+            this.btnCloseLayer.ToolTipReshowDelay = 100;
+            this.btnCloseLayer.ToolTipShowAlways = true;
+            this.btnCloseLayer.ToolTipTitle = "";
+            this.btnCloseLayer.UseVisualStyleBackColor = true;
+            this.btnCloseLayer.Click += new System.EventHandler(this.btnCloseLayer_Click);
+            // 
+            // btnCloseToolbar
+            // 
+            this.btnCloseToolbar.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on;
+            this.btnCloseToolbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCloseToolbar.FlatAppearance.BorderSize = 0;
+            this.btnCloseToolbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseToolbar.Location = new System.Drawing.Point(2, 2);
+            this.btnCloseToolbar.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCloseToolbar.Name = "btnCloseToolbar";
+            this.btnCloseToolbar.Size = new System.Drawing.Size(56, 30);
+            this.btnCloseToolbar.TabIndex = 1;
+            this.btnCloseToolbar.ToolTipActive = true;
+            this.btnCloseToolbar.ToolTipAutomaticDelay = 500;
+            this.btnCloseToolbar.ToolTipAutoPopDelay = 5000;
+            this.btnCloseToolbar.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnCloseToolbar.ToolTipCaption = "Close tool bar";
+            this.btnCloseToolbar.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnCloseToolbar.ToolTipInitialDelay = 200;
+            this.btnCloseToolbar.ToolTipIsBalloon = false;
+            this.btnCloseToolbar.ToolTipReshowDelay = 100;
+            this.btnCloseToolbar.ToolTipShowAlways = true;
+            this.btnCloseToolbar.ToolTipTitle = "";
+            this.btnCloseToolbar.UseVisualStyleBackColor = true;
+            this.btnCloseToolbar.Click += new System.EventHandler(this.btnCloseToolbar_Click);
             // 
             // mnu
             // 
@@ -568,10 +682,74 @@
             this.mnuDrawing.Size = new System.Drawing.Size(88, 27);
             this.mnuDrawing.Text = "Drawing";
             // 
+            // mnuDrawing_Freehand
+            // 
+            this.mnuDrawing_Freehand.Image = global::KDrawing.Properties.Resources.lead_pencil_black;
+            this.mnuDrawing_Freehand.Name = "mnuDrawing_Freehand";
+            this.mnuDrawing_Freehand.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Freehand.Text = "Free hand";
+            this.mnuDrawing_Freehand.Click += new System.EventHandler(this.mnuDrawing_Freehand_Click);
+            // 
+            // mnuDrawing_Text
+            // 
+            this.mnuDrawing_Text.Image = global::KDrawing.Properties.Resources.shape_text_black;
+            this.mnuDrawing_Text.Name = "mnuDrawing_Text";
+            this.mnuDrawing_Text.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Text.Text = "Text";
+            this.mnuDrawing_Text.Click += new System.EventHandler(this.mnuDrawing_Text_Click);
+            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(168, 6);
+            // 
+            // mnuDrawing_Line
+            // 
+            this.mnuDrawing_Line.Image = global::KDrawing.Properties.Resources.shape_line_black;
+            this.mnuDrawing_Line.Name = "mnuDrawing_Line";
+            this.mnuDrawing_Line.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Line.Text = "Line";
+            this.mnuDrawing_Line.Click += new System.EventHandler(this.mnuDrawing_Line_Click);
+            // 
+            // mnuDrawing_Curve
+            // 
+            this.mnuDrawing_Curve.Image = global::KDrawing.Properties.Resources.shape_curve_black;
+            this.mnuDrawing_Curve.Name = "mnuDrawing_Curve";
+            this.mnuDrawing_Curve.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Curve.Text = "Curve";
+            this.mnuDrawing_Curve.Click += new System.EventHandler(this.mnuDrawing_Curve_Click);
+            // 
+            // mnuDrawing_Bezier
+            // 
+            this.mnuDrawing_Bezier.Image = global::KDrawing.Properties.Resources.shape_bezier_black;
+            this.mnuDrawing_Bezier.Name = "mnuDrawing_Bezier";
+            this.mnuDrawing_Bezier.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Bezier.Text = "Bezier";
+            this.mnuDrawing_Bezier.Click += new System.EventHandler(this.mnuDrawing_Bezier_Click);
+            // 
+            // mnuDrawing_Ellipse
+            // 
+            this.mnuDrawing_Ellipse.Image = global::KDrawing.Properties.Resources.shape_ellipse_outline_black;
+            this.mnuDrawing_Ellipse.Name = "mnuDrawing_Ellipse";
+            this.mnuDrawing_Ellipse.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Ellipse.Text = "Ellipse";
+            this.mnuDrawing_Ellipse.Click += new System.EventHandler(this.mnuDrawing_Ellipse_Click);
+            // 
+            // mnuDrawing_Rectangle
+            // 
+            this.mnuDrawing_Rectangle.Image = global::KDrawing.Properties.Resources.shape_rectangle_outline_black;
+            this.mnuDrawing_Rectangle.Name = "mnuDrawing_Rectangle";
+            this.mnuDrawing_Rectangle.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Rectangle.Text = "Rectangle";
+            this.mnuDrawing_Rectangle.Click += new System.EventHandler(this.mnuDrawing_Rectangle_Click);
+            // 
+            // mnuDrawing_Polygon
+            // 
+            this.mnuDrawing_Polygon.Image = global::KDrawing.Properties.Resources.shape_pentagon_outline_black;
+            this.mnuDrawing_Polygon.Name = "mnuDrawing_Polygon";
+            this.mnuDrawing_Polygon.Size = new System.Drawing.Size(171, 28);
+            this.mnuDrawing_Polygon.Text = "Polygon";
+            this.mnuDrawing_Polygon.Click += new System.EventHandler(this.mnuDrawing_Polygon_Click);
             // 
             // mnuView
             // 
@@ -630,8 +808,8 @@
             this.tblpnlMidArea.Name = "tblpnlMidArea";
             this.tblpnlMidArea.RowCount = 1;
             this.tblpnlMidArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblpnlMidArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 755F));
-            this.tblpnlMidArea.Size = new System.Drawing.Size(1582, 755);
+            this.tblpnlMidArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 751F));
+            this.tblpnlMidArea.Size = new System.Drawing.Size(1582, 751);
             this.tblpnlMidArea.TabIndex = 3;
             // 
             // pnlToolbar
@@ -657,7 +835,7 @@
             this.pnlToolbar.Location = new System.Drawing.Point(2, 0);
             this.pnlToolbar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlToolbar.Name = "pnlToolbar";
-            this.pnlToolbar.Size = new System.Drawing.Size(60, 755);
+            this.pnlToolbar.Size = new System.Drawing.Size(60, 751);
             this.pnlToolbar.TabIndex = 0;
             // 
             // btnForeColor
@@ -715,236 +893,6 @@
             this.btnBackColor.UseVisualStyleBackColor = false;
             this.btnBackColor.BackColorChanged += new System.EventHandler(this.btnBackColor_BackColorChanged);
             this.btnBackColor.Click += new System.EventHandler(this.btnColor_Click);
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSelect.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
-            this.btnSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
-            this.btnSelect.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelect.Location = new System.Drawing.Point(5, 5);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(50, 50);
-            this.btnSelect.TabIndex = 0;
-            this.btnSelect.ToolTipActive = true;
-            this.btnSelect.ToolTipAutomaticDelay = 500;
-            this.btnSelect.ToolTipAutoPopDelay = 5000;
-            this.btnSelect.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnSelect.ToolTipCaption = "Select shape by click. Press \"Shift\" to select multi shapes";
-            this.btnSelect.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnSelect.ToolTipInitialDelay = 200;
-            this.btnSelect.ToolTipIsBalloon = false;
-            this.btnSelect.ToolTipReshowDelay = 100;
-            this.btnSelect.ToolTipShowAlways = true;
-            this.btnSelect.ToolTipTitle = "Select";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // psfMain
-            // 
-            this.psfMain.BackColor = System.Drawing.Color.White;
-            this.psfMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.psfMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.psfMain.Location = new System.Drawing.Point(69, 5);
-            this.psfMain.Margin = new System.Windows.Forms.Padding(5);
-            this.psfMain.Name = "psfMain";
-            this.psfMain.Size = new System.Drawing.Size(1204, 745);
-            this.psfMain.TabIndex = 14;
-            this.psfMain.Paint += new System.Windows.Forms.PaintEventHandler(this.psfMain_Paint);
-            this.psfMain.DoubleClick += new System.EventHandler(this.psfMain_DoubleClick);
-            this.psfMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseDown);
-            this.psfMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseMove);
-            this.psfMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseUp);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Location = new System.Drawing.Point(2, 829);
-            this.statusStrip.Margin = new System.Windows.Forms.Padding(2);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1578, 22);
-            this.statusStrip.TabIndex = 4;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // imgCboDashStyle
-            // 
-            this.imgCboDashStyle.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgCboDashStyle.ImageStream")));
-            this.imgCboDashStyle.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgCboDashStyle.Images.SetKeyName(0, "0_Solid.png");
-            this.imgCboDashStyle.Images.SetKeyName(1, "1_Dash.png");
-            this.imgCboDashStyle.Images.SetKeyName(2, "2_Dot.png");
-            this.imgCboDashStyle.Images.SetKeyName(3, "3_DashDot.png");
-            this.imgCboDashStyle.Images.SetKeyName(4, "4_DashDotDot.png");
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Location = new System.Drawing.Point(16, 7);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(2, 20);
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            // 
-            // btnEnableFill
-            // 
-            this.btnEnableFill.BackgroundImage = global::KDrawing.Properties.Resources.toggle_switch_off;
-            this.btnEnableFill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEnableFill.FlatAppearance.BorderSize = 0;
-            this.btnEnableFill.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnEnableFill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.btnEnableFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnableFill.Location = new System.Drawing.Point(66, 5);
-            this.btnEnableFill.Name = "btnEnableFill";
-            this.btnEnableFill.Size = new System.Drawing.Size(48, 24);
-            this.btnEnableFill.TabIndex = 0;
-            this.btnEnableFill.ToolTipActive = true;
-            this.btnEnableFill.ToolTipAutomaticDelay = 500;
-            this.btnEnableFill.ToolTipAutoPopDelay = 5000;
-            this.btnEnableFill.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnEnableFill.ToolTipCaption = "";
-            this.btnEnableFill.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnEnableFill.ToolTipInitialDelay = 200;
-            this.btnEnableFill.ToolTipIsBalloon = false;
-            this.btnEnableFill.ToolTipReshowDelay = 100;
-            this.btnEnableFill.ToolTipShowAlways = true;
-            this.btnEnableFill.ToolTipTitle = "";
-            this.btnEnableFill.UseVisualStyleBackColor = true;
-            this.btnEnableFill.Click += new System.EventHandler(this.btnEnableFill_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(125, 7);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(2, 20);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(355, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2, 20);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnCloseLayer
-            // 
-            this.btnCloseLayer.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on_flip_x;
-            this.btnCloseLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCloseLayer.FlatAppearance.BorderSize = 0;
-            this.btnCloseLayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseLayer.Location = new System.Drawing.Point(0, 2);
-            this.btnCloseLayer.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCloseLayer.Name = "btnCloseLayer";
-            this.btnCloseLayer.Size = new System.Drawing.Size(56, 30);
-            this.btnCloseLayer.TabIndex = 2;
-            this.btnCloseLayer.ToolTipActive = true;
-            this.btnCloseLayer.ToolTipAutomaticDelay = 500;
-            this.btnCloseLayer.ToolTipAutoPopDelay = 5000;
-            this.btnCloseLayer.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnCloseLayer.ToolTipCaption = "Close tool bar";
-            this.btnCloseLayer.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnCloseLayer.ToolTipInitialDelay = 200;
-            this.btnCloseLayer.ToolTipIsBalloon = false;
-            this.btnCloseLayer.ToolTipReshowDelay = 100;
-            this.btnCloseLayer.ToolTipShowAlways = true;
-            this.btnCloseLayer.ToolTipTitle = "";
-            this.btnCloseLayer.UseVisualStyleBackColor = true;
-            this.btnCloseLayer.Click += new System.EventHandler(this.btnCloseLayer_Click);
-            // 
-            // btnCloseToolbar
-            // 
-            this.btnCloseToolbar.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on;
-            this.btnCloseToolbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCloseToolbar.FlatAppearance.BorderSize = 0;
-            this.btnCloseToolbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseToolbar.Location = new System.Drawing.Point(2, 2);
-            this.btnCloseToolbar.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCloseToolbar.Name = "btnCloseToolbar";
-            this.btnCloseToolbar.Size = new System.Drawing.Size(56, 30);
-            this.btnCloseToolbar.TabIndex = 1;
-            this.btnCloseToolbar.ToolTipActive = true;
-            this.btnCloseToolbar.ToolTipAutomaticDelay = 500;
-            this.btnCloseToolbar.ToolTipAutoPopDelay = 5000;
-            this.btnCloseToolbar.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnCloseToolbar.ToolTipCaption = "Close tool bar";
-            this.btnCloseToolbar.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnCloseToolbar.ToolTipInitialDelay = 200;
-            this.btnCloseToolbar.ToolTipIsBalloon = false;
-            this.btnCloseToolbar.ToolTipReshowDelay = 100;
-            this.btnCloseToolbar.ToolTipShowAlways = true;
-            this.btnCloseToolbar.ToolTipTitle = "";
-            this.btnCloseToolbar.UseVisualStyleBackColor = true;
-            this.btnCloseToolbar.Click += new System.EventHandler(this.btnCloseToolbar_Click);
-            // 
-            // mnuDrawing_Freehand
-            // 
-            this.mnuDrawing_Freehand.Image = global::KDrawing.Properties.Resources.lead_pencil_black;
-            this.mnuDrawing_Freehand.Name = "mnuDrawing_Freehand";
-            this.mnuDrawing_Freehand.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Freehand.Text = "Free hand";
-            this.mnuDrawing_Freehand.Click += new System.EventHandler(this.mnuDrawing_Freehand_Click);
-            // 
-            // mnuDrawing_Text
-            // 
-            this.mnuDrawing_Text.Image = global::KDrawing.Properties.Resources.shape_text_black;
-            this.mnuDrawing_Text.Name = "mnuDrawing_Text";
-            this.mnuDrawing_Text.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Text.Text = "Text";
-            this.mnuDrawing_Text.Click += new System.EventHandler(this.mnuDrawing_Text_Click);
-            // 
-            // mnuDrawing_Line
-            // 
-            this.mnuDrawing_Line.Image = global::KDrawing.Properties.Resources.shape_line_black;
-            this.mnuDrawing_Line.Name = "mnuDrawing_Line";
-            this.mnuDrawing_Line.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Line.Text = "Line";
-            this.mnuDrawing_Line.Click += new System.EventHandler(this.mnuDrawing_Line_Click);
-            // 
-            // mnuDrawing_Curve
-            // 
-            this.mnuDrawing_Curve.Image = global::KDrawing.Properties.Resources.shape_curve_black;
-            this.mnuDrawing_Curve.Name = "mnuDrawing_Curve";
-            this.mnuDrawing_Curve.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Curve.Text = "Curve";
-            this.mnuDrawing_Curve.Click += new System.EventHandler(this.mnuDrawing_Curve_Click);
-            // 
-            // mnuDrawing_Bezier
-            // 
-            this.mnuDrawing_Bezier.Image = global::KDrawing.Properties.Resources.shape_bezier_black;
-            this.mnuDrawing_Bezier.Name = "mnuDrawing_Bezier";
-            this.mnuDrawing_Bezier.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Bezier.Text = "Bezier";
-            this.mnuDrawing_Bezier.Click += new System.EventHandler(this.mnuDrawing_Bezier_Click);
-            // 
-            // mnuDrawing_Ellipse
-            // 
-            this.mnuDrawing_Ellipse.Image = global::KDrawing.Properties.Resources.shape_ellipse_outline_black;
-            this.mnuDrawing_Ellipse.Name = "mnuDrawing_Ellipse";
-            this.mnuDrawing_Ellipse.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Ellipse.Text = "Ellipse";
-            this.mnuDrawing_Ellipse.Click += new System.EventHandler(this.mnuDrawing_Ellipse_Click);
-            // 
-            // mnuDrawing_Rectangle
-            // 
-            this.mnuDrawing_Rectangle.Image = global::KDrawing.Properties.Resources.shape_rectangle_outline_black;
-            this.mnuDrawing_Rectangle.Name = "mnuDrawing_Rectangle";
-            this.mnuDrawing_Rectangle.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Rectangle.Text = "Rectangle";
-            this.mnuDrawing_Rectangle.Click += new System.EventHandler(this.mnuDrawing_Rectangle_Click);
-            // 
-            // mnuDrawing_Polygon
-            // 
-            this.mnuDrawing_Polygon.Image = global::KDrawing.Properties.Resources.shape_pentagon_outline_black;
-            this.mnuDrawing_Polygon.Name = "mnuDrawing_Polygon";
-            this.mnuDrawing_Polygon.Size = new System.Drawing.Size(171, 28);
-            this.mnuDrawing_Polygon.Text = "Polygon";
-            this.mnuDrawing_Polygon.Click += new System.EventHandler(this.mnuDrawing_Polygon_Click);
             // 
             // btnDefaultColor
             // 
@@ -1152,7 +1100,7 @@
             this.btnText.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnText.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnText.Location = new System.Drawing.Point(5, 365);
+            this.btnText.Location = new System.Drawing.Point(5, 311);
             this.btnText.Margin = new System.Windows.Forms.Padding(0);
             this.btnText.Name = "btnText";
             this.btnText.Size = new System.Drawing.Size(50, 50);
@@ -1180,7 +1128,7 @@
             this.btnPencil.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnPencil.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnPencil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPencil.Location = new System.Drawing.Point(5, 311);
+            this.btnPencil.Location = new System.Drawing.Point(5, 365);
             this.btnPencil.Margin = new System.Windows.Forms.Padding(0);
             this.btnPencil.Name = "btnPencil";
             this.btnPencil.Size = new System.Drawing.Size(50, 50);
@@ -1281,6 +1229,32 @@
             this.btnGroup.UseVisualStyleBackColor = true;
             this.btnGroup.Click += new System.EventHandler(this.btnGroup_Click);
             // 
+            // btnSelect
+            // 
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSelect.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
+            this.btnSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
+            this.btnSelect.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelect.Location = new System.Drawing.Point(5, 5);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(50, 50);
+            this.btnSelect.TabIndex = 0;
+            this.btnSelect.ToolTipActive = true;
+            this.btnSelect.ToolTipAutomaticDelay = 500;
+            this.btnSelect.ToolTipAutoPopDelay = 5000;
+            this.btnSelect.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnSelect.ToolTipCaption = "Select shape by click. Press \"Shift\" to select multi shapes";
+            this.btnSelect.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnSelect.ToolTipInitialDelay = 200;
+            this.btnSelect.ToolTipIsBalloon = false;
+            this.btnSelect.ToolTipReshowDelay = 100;
+            this.btnSelect.ToolTipShowAlways = true;
+            this.btnSelect.ToolTipTitle = "Select";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // btnSwapColor
             // 
             this.btnSwapColor.BackgroundImage = global::KDrawing.Properties.Resources.swap_color;
@@ -1309,6 +1283,141 @@
             this.btnSwapColor.UseVisualStyleBackColor = true;
             this.btnSwapColor.Click += new System.EventHandler(this.btnSwapColor_Click);
             // 
+            // psfMain
+            // 
+            this.psfMain.BackColor = System.Drawing.Color.White;
+            this.psfMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.psfMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.psfMain.Location = new System.Drawing.Point(69, 5);
+            this.psfMain.Margin = new System.Windows.Forms.Padding(5);
+            this.psfMain.Name = "psfMain";
+            this.psfMain.Size = new System.Drawing.Size(1204, 741);
+            this.psfMain.TabIndex = 14;
+            this.psfMain.Paint += new System.Windows.Forms.PaintEventHandler(this.psfMain_Paint);
+            this.psfMain.DoubleClick += new System.EventHandler(this.psfMain_DoubleClick);
+            this.psfMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseDown);
+            this.psfMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseMove);
+            this.psfMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.psfMain_MouseUp);
+            // 
+            // statusBar
+            // 
+            this.statusBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBar_DrawingMode,
+            this.statusBar_LineWeight,
+            this.statusBar_DashStyle,
+            this.statusBar_LabelForeColor,
+            this.statusBar_ForeColor,
+            this.statusBar_LabelBackColor,
+            this.statusBar_BackColor,
+            this.statusBar_ShapeType,
+            this.statusBar_NumShapesSelected});
+            this.statusBar.Location = new System.Drawing.Point(2, 825);
+            this.statusBar.Margin = new System.Windows.Forms.Padding(2);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1578, 26);
+            this.statusBar.SizingGrip = false;
+            this.statusBar.TabIndex = 4;
+            // 
+            // statusBar_DrawingMode
+            // 
+            this.statusBar_DrawingMode.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_DrawingMode.ForeColor = System.Drawing.Color.White;
+            this.statusBar_DrawingMode.Margin = new System.Windows.Forms.Padding(60, 0, 15, 0);
+            this.statusBar_DrawingMode.Name = "statusBar_DrawingMode";
+            this.statusBar_DrawingMode.Size = new System.Drawing.Size(57, 26);
+            this.statusBar_DrawingMode.Text = "Mode :";
+            // 
+            // statusBar_LineWeight
+            // 
+            this.statusBar_LineWeight.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_LineWeight.ForeColor = System.Drawing.Color.White;
+            this.statusBar_LineWeight.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.statusBar_LineWeight.Name = "statusBar_LineWeight";
+            this.statusBar_LineWeight.Size = new System.Drawing.Size(117, 26);
+            this.statusBar_LineWeight.Text = "Line weight : 1.0";
+            // 
+            // statusBar_DashStyle
+            // 
+            this.statusBar_DashStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_DashStyle.ForeColor = System.Drawing.Color.White;
+            this.statusBar_DashStyle.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.statusBar_DashStyle.Name = "statusBar_DashStyle";
+            this.statusBar_DashStyle.Size = new System.Drawing.Size(86, 26);
+            this.statusBar_DashStyle.Text = "Dash style :";
+            // 
+            // statusBar_LabelForeColor
+            // 
+            this.statusBar_LabelForeColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_LabelForeColor.ForeColor = System.Drawing.Color.White;
+            this.statusBar_LabelForeColor.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.statusBar_LabelForeColor.Name = "statusBar_LabelForeColor";
+            this.statusBar_LabelForeColor.Size = new System.Drawing.Size(87, 26);
+            this.statusBar_LabelForeColor.Text = "Fore color :";
+            // 
+            // statusBar_ForeColor
+            // 
+            this.statusBar_ForeColor.AutoSize = false;
+            this.statusBar_ForeColor.BackColor = System.Drawing.Color.Black;
+            this.statusBar_ForeColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_ForeColor.ForeColor = System.Drawing.Color.Black;
+            this.statusBar_ForeColor.Margin = new System.Windows.Forms.Padding(0, 2, 15, 2);
+            this.statusBar_ForeColor.Name = "statusBar_ForeColor";
+            this.statusBar_ForeColor.Size = new System.Drawing.Size(20, 22);
+            // 
+            // statusBar_LabelBackColor
+            // 
+            this.statusBar_LabelBackColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_LabelBackColor.ForeColor = System.Drawing.Color.White;
+            this.statusBar_LabelBackColor.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.statusBar_LabelBackColor.Name = "statusBar_LabelBackColor";
+            this.statusBar_LabelBackColor.Size = new System.Drawing.Size(88, 26);
+            this.statusBar_LabelBackColor.Text = "Back color :";
+            // 
+            // statusBar_BackColor
+            // 
+            this.statusBar_BackColor.AutoSize = false;
+            this.statusBar_BackColor.BackColor = System.Drawing.Color.White;
+            this.statusBar_BackColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_BackColor.ForeColor = System.Drawing.Color.White;
+            this.statusBar_BackColor.Margin = new System.Windows.Forms.Padding(0, 2, 15, 2);
+            this.statusBar_BackColor.Name = "statusBar_BackColor";
+            this.statusBar_BackColor.Size = new System.Drawing.Size(20, 22);
+            // 
+            // statusBar_ShapeType
+            // 
+            this.statusBar_ShapeType.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_ShapeType.ForeColor = System.Drawing.Color.White;
+            this.statusBar_ShapeType.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.statusBar_ShapeType.Name = "statusBar_ShapeType";
+            this.statusBar_ShapeType.Size = new System.Drawing.Size(93, 26);
+            this.statusBar_ShapeType.Text = "Shape type :";
+            // 
+            // statusBar_NumShapesSelected
+            // 
+            this.statusBar_NumShapesSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar_NumShapesSelected.ForeColor = System.Drawing.Color.White;
+            this.statusBar_NumShapesSelected.Margin = new System.Windows.Forms.Padding(430, 0, 15, 0);
+            this.statusBar_NumShapesSelected.Name = "statusBar_NumShapesSelected";
+            this.statusBar_NumShapesSelected.Size = new System.Drawing.Size(74, 26);
+            this.statusBar_NumShapesSelected.Text = "Selected :";
+            // 
+            // imgCboDashStyle
+            // 
+            this.imgCboDashStyle.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgCboDashStyle.ImageStream")));
+            this.imgCboDashStyle.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgCboDashStyle.Images.SetKeyName(0, "0_Solid.png");
+            this.imgCboDashStyle.Images.SetKeyName(1, "1_Dash.png");
+            this.imgCboDashStyle.Images.SetKeyName(2, "2_Dot.png");
+            this.imgCboDashStyle.Images.SetKeyName(3, "3_DashDot.png");
+            this.imgCboDashStyle.Images.SetKeyName(4, "4_DashDotDot.png");
+            // 
+            // tmrUpdate
+            // 
+            this.tmrUpdate.Enabled = true;
+            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            // 
             // shapeLayers
             // 
             this.shapeLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -1317,7 +1426,7 @@
             this.shapeLayers.Location = new System.Drawing.Point(1280, 0);
             this.shapeLayers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.shapeLayers.Name = "shapeLayers";
-            this.shapeLayers.Size = new System.Drawing.Size(300, 755);
+            this.shapeLayers.Size = new System.Drawing.Size(300, 751);
             this.shapeLayers.TabIndex = 13;
             // 
             // fMain
@@ -1343,15 +1452,17 @@
             this.dragMovePnl.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.dragMovePanel1.ResumeLayout(false);
             this.mnu.ResumeLayout(false);
             this.mnu.PerformLayout();
             this.tblpnlMidArea.ResumeLayout(false);
             this.pnlToolbar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1367,7 +1478,7 @@
         private KControls.TitleBar titleBar;
         private KControls.DragMovePanel dragMovePnl;
         private System.Windows.Forms.TableLayoutPanel tblpnlMidArea;
-        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.Panel pnlToolbar;
         private MyUserControls.ShapeLayersManager shapeLayers;
         private KControls.PaintSurface psfMain;
@@ -1446,5 +1557,15 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDrawing_Rectangle;
         private System.Windows.Forms.ToolStripMenuItem mnuDrawing_Polygon;
         private KDrawing.KControls.FlatButton btnText;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelForeColor;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_LineWeight;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_DashStyle;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_ForeColor;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelBackColor;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_BackColor;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_ShapeType;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_NumShapesSelected;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_DrawingMode;
+        private System.Windows.Forms.Timer tmrUpdate;
     }
 }
