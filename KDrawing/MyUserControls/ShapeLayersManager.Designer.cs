@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tbLayoutPnl = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,7 +36,6 @@
             this.btnDeleteSelected = new KDrawing.KControls.FlatButton();
             this.label2 = new System.Windows.Forms.Label();
             this.chkSelectedAll = new System.Windows.Forms.CheckBox();
-            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.tbLayoutPnl.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -153,11 +151,6 @@
             this.chkSelectedAll.UseVisualStyleBackColor = true;
             this.chkSelectedAll.CheckStateChanged += new System.EventHandler(this.chkSelectedAll_CheckStateChanged);
             // 
-            // tmrUpdate
-            // 
-            this.tmrUpdate.Interval = 500;
-            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
-            // 
             // ShapeLayersManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -168,7 +161,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ShapeLayersManager";
             this.Size = new System.Drawing.Size(300, 400);
-            this.Load += new System.EventHandler(this.ShapeLayersManager_Load);
             this.tbLayoutPnl.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -188,6 +180,5 @@
         private KDrawing.KControls.FlatButton btnDeleteSelected;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkSelectedAll;
-        private System.Windows.Forms.Timer tmrUpdate;
     }
 }

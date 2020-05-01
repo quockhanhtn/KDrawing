@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.titleBar1 = new KControls.TitleBar();
+            this.titleBar1 = new KDrawing.KControls.TitleBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.nudScale = new System.Windows.Forms.NumericUpDown();
@@ -63,13 +63,13 @@
             // titleBar1
             // 
             this.titleBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.titleBar1.ButtonForeColor = KControls.TitleBar.ButtonColor.White;
+            this.titleBar1.ButtonForeColor = KDrawing.KControls.TitleBar.ButtonColor.White;
             this.titleBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titleBar1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleBar1.Location = new System.Drawing.Point(2, 2);
             this.titleBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
             this.titleBar1.Name = "titleBar1";
-            this.titleBar1.ResizeWindowsBox = KControls.TitleBar.ResizeBox.NoneResize;
+            this.titleBar1.ResizeWindowsBox = KDrawing.KControls.TitleBar.ResizeBox.NoneResize;
             this.titleBar1.Size = new System.Drawing.Size(274, 34);
             this.titleBar1.TabIndex = 0;
             this.titleBar1.TitleFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -107,7 +107,7 @@
             // nudScale
             // 
             this.nudScale.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudScale.Location = new System.Drawing.Point(91, 37);
+            this.nudScale.Location = new System.Drawing.Point(105, 37);
             this.nudScale.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -119,7 +119,7 @@
             0,
             0});
             this.nudScale.Name = "nudScale";
-            this.nudScale.Size = new System.Drawing.Size(120, 38);
+            this.nudScale.Size = new System.Drawing.Size(106, 38);
             this.nudScale.TabIndex = 8;
             this.nudScale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudScale.Value = new decimal(new int[] {
@@ -166,12 +166,12 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.FlatAppearance.BorderSize = 0;
             this.btnOk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnOk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
@@ -185,7 +185,6 @@
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // fScale
             // 
@@ -202,6 +201,7 @@
             this.Name = "fScale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fScale";
+            this.Shown += new System.EventHandler(this.fScale_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);

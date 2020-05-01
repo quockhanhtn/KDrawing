@@ -158,7 +158,6 @@ namespace KDrawing.Models
                 }
             }
             return res;
-
         }
 
         public override void Move(PointF distance)

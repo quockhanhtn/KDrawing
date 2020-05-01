@@ -22,10 +22,12 @@ namespace KDrawing
             DashPattern = new float[] { 3, 3, 3, 3 },
             DashStyle = DashStyle.Custom
         };
+
         private cShape selectedShape;
         private PointF selectedPoint1;
         private PointF selectedPoint2;
         private RectangleF selectedRegion;
+
         private bool isMouseDown;
         private bool isControlKeyPress;
         private bool isShiftKeyPress;
@@ -90,28 +92,22 @@ namespace KDrawing
 
         private void fMain_Load(object sender, EventArgs e)
         {
-            mnu.Renderer = new KDrawing.KControls.MenuStripRenderer(Color.FromArgb(28, 151, 234));
+            mnu.Renderer = new KControls.MenuStripRenderer(Color.FromArgb(28, 151, 234));
 
-            this.DrawingMode = DrawingMode.NoFill;
-            this.ShapeType = ShapeType.NoDrawing;
+            DrawingMode = DrawingMode.NoFill;
+            ShapeType = ShapeType.NoDrawing;
             listButton = new List<Button> { btnBezier, btnCurve, btnEllipse, btnLine, btnPolygon, btnRectangle, btnSelect, btnPencil };
             cboDashStyle.SelectedIndex = 0;
         }
 
         private void fMain_KeyDown(object sender, KeyEventArgs e)
         {
-            this.isControlKeyPress = e.Control;
-            this.isShiftKeyPress = e.Shift;
-            this.psfMain.Focus();
+            psfMain.Focus();
+            isControlKeyPress = e.Control;
+            isShiftKeyPress = e.Shift;
 
-            if (e.Control)
-            {
-                movingOffset = 1;
-            }
-            else
-            {
-                movingOffset = 5;
-            }
+            if (e.Control) { movingOffset = 1; }
+            else { movingOffset = 5; }
 
             switch (e.KeyCode)
             {
@@ -153,8 +149,8 @@ namespace KDrawing
 
         private void fMain_KeyUp(object sender, KeyEventArgs e)
         {
-            this.isControlKeyPress = e.Control;
-            this.isShiftKeyPress = e.Shift;
+            isControlKeyPress = e.Control;
+            isShiftKeyPress = e.Shift;
         }
 
         private void btnCloseToolbar_Click(object sender, EventArgs e)
@@ -961,7 +957,9 @@ namespace KDrawing
         private void tmrUpdate_Tick(object sender, EventArgs e)
         {
             int numShapeSelected = ListShapes.FindAll(shape => shape.IsSelected).Count;
-            statusBar_NumShapesSelected.Text = "Selected " + numShapeSelected.ToString() + "/" + ListShapes.Count.ToString() + " shapes";
+            int numShapes = ListShapes.Count;
+            statusBar_NumShapesSelected.Text = "Selected " + numShapeSelected.ToString() + "/" + numShapes.ToString() + " shapes";
+            shapeLayers.Update(numShapeSelected, numShapes);
         }
     }
 }

@@ -201,12 +201,14 @@ namespace KDrawing.Vendors
         #region Khanh's Methods
         public static Color Show(Form form, Color controlColor)
         {
-            ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
-            colorPickerDialog.Color = controlColor;
-            if (colorPickerDialog.ShowDialog(form) == DialogResult.OK)
+            using (ColorPickerDialog colorPickerDialog = new ColorPickerDialog())
             {
-                colorPickerDialog.Dispose();
-                return colorPickerDialog.Color;
+                colorPickerDialog.Color = controlColor;
+                if (colorPickerDialog.ShowDialog(form) == DialogResult.OK)
+                {
+                    colorPickerDialog.Dispose();
+                    return colorPickerDialog.Color;
+                }
             }
             return controlColor;
         }

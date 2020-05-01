@@ -12,26 +12,23 @@ namespace KDrawing.Boxs
             InitializeComponent();
         }
 
+        private void fRotate_Shown(object sender, EventArgs e)
+        {
+            nudDegree.Focus();
+            nudDegree.Select(0, nudDegree.Value.ToString().Length);
+        }
+
         public static int Show(Form form, int degree)
         {
-            fRotate formRotate = new fRotate();
-            if (formRotate.ShowDialog(form) == DialogResult.OK)
+            using (fRotate formRotate = new fRotate())
             {
-                return formRotate.Degree;
+                if (formRotate.ShowDialog(form) == DialogResult.OK)
+                {
+                    return formRotate.Degree;
+                }
             }
             return degree;
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
     }
 }

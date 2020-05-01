@@ -5,43 +5,60 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KDrawing
 {
     public partial class fMain
     {
         #region Public Function
-        public void ReDraw()
-        {
-            this.psfMain.Invalidate();
-        }
 
+        /// <summary>
+        /// Vẽ lại psfMain
+        /// </summary>
+        public void ReDraw() { this.psfMain.Invalidate(); }
+
+        /// <summary>
+        /// Phóng to các hình theo tỉ lệ nhập vào
+        /// </summary>
         public void ScaleShapes()
         {
-            float percent = Boxs.fScale.Show(this, 1f);
-            ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Scale(percent); });
-            ReDraw();
-        }
-        public void RotateShapes()
-        {
-            int degree = Boxs.fRotate.Show(this, 0);
-            ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Rotate(degree); });
-            ReDraw();
+            if (ListShapes.Count(shape => shape.IsSelected) > 0)
+            {
+                float percent = Boxs.fScale.Show(this, 1f);
+                ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Scale(percent); });
+                ReDraw();
+            }
         }
 
+        /// <summary>
+        /// Xoay các hình được chọn theo số độ nhập vào
+        /// </summary>
+        public void RotateShapes()
+        {
+            if (ListShapes.Count(shape => shape.IsSelected) > 0)
+            {
+                int degree = Boxs.fRotate.Show(this, 0);
+                ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Rotate(degree); });
+                ReDraw();
+            }
+        }
+
+        /// <summary>
+        /// Group các hình được chọn
+        /// </summary>
         public void GroupSelectedShape()
         {
             if (ListShapes.Count(shape => shape.IsSelected) > 1)
             {
                 cGroup group = new cGroup();
 
-                for (int i = 0; i < ListShapes.Count; i++)
+                for (int i = ListShapes.Count - 1; i >= 0; i--)
                 {
                     if (ListShapes[i].IsSelected)
                     {
                         group.Add(ListShapes[i]);
                         ListShapes.RemoveAt(i);
-                        i--;
                     }
                 }
 
@@ -54,6 +71,9 @@ namespace KDrawing
             }
         }
 
+        /// <summary>
+        /// Ungroup các group được chọn
+        /// </summary>
         public void UngroupSelectedGroup()
         {
             if (ListShapes.Find(shape => shape.IsSelected) is cGroup selectedGroup)
@@ -68,15 +88,14 @@ namespace KDrawing
             ReDraw();
         }
 
+        /// <summary>
+        /// Xóa các hình được chọn
+        /// </summary>
         public void DeleteSelectedShape()
         {
-            for (int i = 0; i < ListShapes.Count; i++)
+            for (int i = ListShapes.Count - 1; i >= 0; i--)
             {
-                if (ListShapes[i].IsSelected)
-                {
-                    ListShapes.RemoveAt(i);
-                    i--;
-                }
+                if (ListShapes[i].IsSelected) { ListShapes.RemoveAt(i); }
             }
             ReDraw();
         }

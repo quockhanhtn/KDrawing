@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using KDrawing.Models;
-using System.Collections.ObjectModel;
 
 namespace KDrawing.MyUserControls
 {
@@ -21,15 +19,9 @@ namespace KDrawing.MyUserControls
             InitializeComponent();
         }
 
-        private void ShapeLayersManager_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         public void Add(cShape shape)
         {
             flpShapeLayers.Controls.Add(new ShapeLayer(shape));
-            if (tmrUpdate.Enabled == false) { tmrUpdate.Start(); }
         }
 
         private void btnDeleteSelected_Click(object sender, EventArgs e)
@@ -54,10 +46,8 @@ namespace KDrawing.MyUserControls
             }
         }
 
-        private void tmrUpdate_Tick(object sender, EventArgs e)
+        public void Update(int numShapeSelected, int numShape)
         {
-            int numShapeSelected = FormMain.ListShapes.FindAll(shape => shape.IsSelected).Count;
-            int numShape = FormMain.ListShapes.Count;
             if (numShapeSelected == numShape)
             {
                 chkSelectedAll.CheckState = CheckState.Checked;

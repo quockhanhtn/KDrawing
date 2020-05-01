@@ -22,7 +22,6 @@ namespace KDrawing.MyUserControls
             ShapeShow = shape;
             txtShapeName.Text = shape.Name;
             chkIsSelected.Checked = shape.IsSelected;
-            tmrUpdate.Start();
 
             txtShapeName.DataBindings.Add("BackColor", this, "BackColor");
         }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KDrawing.Boxs
@@ -16,29 +9,24 @@ namespace KDrawing.Boxs
         public fScale()
         {
             InitializeComponent();
+        }
+
+        private void fScale_Shown(object sender, EventArgs e)
+        {
             nudScale.Focus();
+            nudScale.Select(0, nudScale.Value.ToString().Length);
         }
 
         public static float Show(Form form, float percent)
         {
-            fScale formScale = new fScale();
-            if (formScale.ShowDialog(form) == DialogResult.OK)
+            using (fScale formScale = new fScale())
             {
-                return formScale.Percent;
+                if (formScale.ShowDialog(form) == DialogResult.OK)
+                {
+                    return formScale.Percent;
+                }
+                return percent;
             }
-            return percent;
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
         }
     }
 }
