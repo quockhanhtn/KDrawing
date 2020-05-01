@@ -39,14 +39,14 @@
             this.nudLineWeight = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnEnableFill = new KDrawing.KControls.FlatButton();
+            this.btnEnableFill = new KDrawing.KControls.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dragMovePanel1 = new KDrawing.KControls.DragMovePanel();
-            this.btnCloseLayer = new KDrawing.KControls.FlatButton();
-            this.btnCloseToolbar = new KDrawing.KControls.FlatButton();
+            this.btnCloseLayer = new KDrawing.KControls.ToggleButton();
+            this.btnCloseToolbar = new KDrawing.KControls.ToggleButton();
             this.mnu = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFile_Open = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +92,7 @@
             this.mnuView_Layers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tblpnlMidArea = new System.Windows.Forms.TableLayoutPanel();
+            this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.pnlToolbar = new System.Windows.Forms.Panel();
             this.btnForeColor = new KDrawing.KControls.FlatButton();
             this.btnBackColor = new KDrawing.KControls.FlatButton();
@@ -122,7 +123,6 @@
             this.statusBar_NumShapesSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.imgCboDashStyle = new System.Windows.Forms.ImageList(this.components);
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
-            this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.tblpnlMain.SuspendLayout();
             this.dragMovePnl.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -280,16 +280,18 @@
             // 
             // btnEnableFill
             // 
-            this.btnEnableFill.BackgroundImage = global::KDrawing.Properties.Resources.toggle_switch_off;
+            this.btnEnableFill.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEnableFill.BackgroundImage")));
             this.btnEnableFill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEnableFill.FlatAppearance.BorderSize = 0;
             this.btnEnableFill.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnEnableFill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.btnEnableFill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnEnableFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnableFill.Location = new System.Drawing.Point(66, 5);
             this.btnEnableFill.Name = "btnEnableFill";
             this.btnEnableFill.Size = new System.Drawing.Size(48, 24);
             this.btnEnableFill.TabIndex = 0;
+            this.btnEnableFill.ToggleButtonStyle = KDrawing.KControls.ToggleButton.Style.ToggleButtonStyle3;
+            this.btnEnableFill.ToggleStage = false;
             this.btnEnableFill.ToolTipActive = true;
             this.btnEnableFill.ToolTipAutomaticDelay = 500;
             this.btnEnableFill.ToolTipAutoPopDelay = 5000;
@@ -355,15 +357,19 @@
             // 
             // btnCloseLayer
             // 
-            this.btnCloseLayer.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on_flip_x;
+            this.btnCloseLayer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCloseLayer.BackgroundImage")));
             this.btnCloseLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCloseLayer.FlatAppearance.BorderSize = 0;
+            this.btnCloseLayer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCloseLayer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnCloseLayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseLayer.Location = new System.Drawing.Point(0, 2);
             this.btnCloseLayer.Margin = new System.Windows.Forms.Padding(0);
             this.btnCloseLayer.Name = "btnCloseLayer";
             this.btnCloseLayer.Size = new System.Drawing.Size(56, 30);
             this.btnCloseLayer.TabIndex = 2;
+            this.btnCloseLayer.ToggleButtonStyle = KDrawing.KControls.ToggleButton.Style.ToggleButtonStyle2;
+            this.btnCloseLayer.ToggleStage = true;
             this.btnCloseLayer.ToolTipActive = true;
             this.btnCloseLayer.ToolTipAutomaticDelay = 500;
             this.btnCloseLayer.ToolTipAutoPopDelay = 5000;
@@ -380,15 +386,19 @@
             // 
             // btnCloseToolbar
             // 
-            this.btnCloseToolbar.BackgroundImage = global::KDrawing.Properties.Resources.toggle_on;
+            this.btnCloseToolbar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCloseToolbar.BackgroundImage")));
             this.btnCloseToolbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCloseToolbar.FlatAppearance.BorderSize = 0;
+            this.btnCloseToolbar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCloseToolbar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnCloseToolbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseToolbar.Location = new System.Drawing.Point(2, 2);
             this.btnCloseToolbar.Margin = new System.Windows.Forms.Padding(0);
             this.btnCloseToolbar.Name = "btnCloseToolbar";
             this.btnCloseToolbar.Size = new System.Drawing.Size(56, 30);
             this.btnCloseToolbar.TabIndex = 1;
+            this.btnCloseToolbar.ToggleButtonStyle = KDrawing.KControls.ToggleButton.Style.ToggleButtonStyle1;
+            this.btnCloseToolbar.ToggleStage = true;
             this.btnCloseToolbar.ToolTipActive = true;
             this.btnCloseToolbar.ToolTipAutomaticDelay = 500;
             this.btnCloseToolbar.ToolTipAutoPopDelay = 5000;
@@ -418,7 +428,7 @@
             this.mnuAbout});
             this.mnu.Location = new System.Drawing.Point(60, 1);
             this.mnu.Name = "mnu";
-            this.mnu.Size = new System.Drawing.Size(462, 31);
+            this.mnu.Size = new System.Drawing.Size(460, 31);
             this.mnu.TabIndex = 0;
             this.mnu.Text = "mnu";
             // 
@@ -811,6 +821,17 @@
             this.tblpnlMidArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 751F));
             this.tblpnlMidArea.Size = new System.Drawing.Size(1582, 751);
             this.tblpnlMidArea.TabIndex = 3;
+            // 
+            // shapeLayers
+            // 
+            this.shapeLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.shapeLayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shapeLayers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shapeLayers.Location = new System.Drawing.Point(1280, 0);
+            this.shapeLayers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.shapeLayers.Name = "shapeLayers";
+            this.shapeLayers.Size = new System.Drawing.Size(300, 751);
+            this.shapeLayers.TabIndex = 13;
             // 
             // pnlToolbar
             // 
@@ -1418,17 +1439,6 @@
             this.tmrUpdate.Enabled = true;
             this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
-            // shapeLayers
-            // 
-            this.shapeLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.shapeLayers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shapeLayers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shapeLayers.Location = new System.Drawing.Point(1280, 0);
-            this.shapeLayers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.shapeLayers.Name = "shapeLayers";
-            this.shapeLayers.Size = new System.Drawing.Size(300, 751);
-            this.shapeLayers.TabIndex = 13;
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1485,16 +1495,16 @@
         private System.Windows.Forms.MenuStrip mnu;
         private System.Windows.Forms.ToolStripMenuItem mnuFile;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
-        private KDrawing.KControls.FlatButton btnCloseToolbar;
+        private KDrawing.KControls.ToggleButton btnCloseToolbar;
         private KControls.DragMovePanel dragMovePanel1;
-        private KDrawing.KControls.FlatButton btnCloseLayer;
+        private KDrawing.KControls.ToggleButton btnCloseLayer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.ComboBox cboDashStyle;
         public System.Windows.Forms.NumericUpDown nudLineWeight;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private KDrawing.KControls.FlatButton btnEnableFill;
+        private KDrawing.KControls.ToggleButton btnEnableFill;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;

@@ -96,7 +96,7 @@ namespace KDrawing
 
             DrawingMode = DrawingMode.NoFill;
             ShapeType = ShapeType.NoDrawing;
-            listButton = new List<Button> { btnBezier, btnCurve, btnEllipse, btnLine, btnPolygon, btnRectangle, btnSelect, btnPencil };
+            listButton = new List<Button> { btnBezier, btnCurve, btnEllipse, btnLine, btnPolygon, btnRectangle, btnSelect, btnPencil, btnText };
             cboDashStyle.SelectedIndex = 0;
         }
 
@@ -158,13 +158,11 @@ namespace KDrawing
             if (tblpnlMidArea.Controls.Contains(pnlToolbar))
             {
                 tblpnlMidArea.Controls.Remove(pnlToolbar);
-                btnCloseToolbar.BackgroundImage = Properties.Resources.toggle_off;
                 btnCloseToolbar.ToolTipCaption = "Open tool bar";
             }
             else
             {
                 tblpnlMidArea.Controls.Add(pnlToolbar);
-                btnCloseToolbar.BackgroundImage = Properties.Resources.toggle_on;
                 btnCloseToolbar.ToolTipCaption = "Close tool bar";
             }
         }
@@ -174,13 +172,11 @@ namespace KDrawing
             if (tblpnlMidArea.Controls.Contains(shapeLayers))
             {
                 tblpnlMidArea.Controls.Remove(shapeLayers);
-                btnCloseLayer.BackgroundImage = Properties.Resources.toggle_off_flip_x;
                 btnCloseLayer.ToolTipCaption = "Open layers";
             }
             else
             {
                 tblpnlMidArea.Controls.Add(shapeLayers);
-                btnCloseLayer.BackgroundImage = Properties.Resources.toggle_on_flip_x;
                 btnCloseLayer.ToolTipCaption = "Close layers";
             }
         }
@@ -190,7 +186,6 @@ namespace KDrawing
             if (DrawingMode == DrawingMode.NoFill)
             {
                 DrawingMode = DrawingMode.Fill;
-                btnEnableFill.BackgroundImage = Properties.Resources.toggle_switch;
                 ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).Fill = true);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_white; }
@@ -202,7 +197,6 @@ namespace KDrawing
             else
             {
                 DrawingMode = DrawingMode.NoFill;
-                btnEnableFill.BackgroundImage = Properties.Resources.toggle_switch_off;
                 ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).Fill = false);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
@@ -392,6 +386,17 @@ namespace KDrawing
                             selectedPoint2 = new PointF();
                         }
                     }
+                    break;
+
+                case ShapeType.Text:
+                    var text = Boxs.fTextEditor.Show(this, e.Location);
+                    if (text != null)
+                    {
+                        ListShapes.Add(text);
+                        shapeLayers.Add(text);
+                        ReDraw();
+                    }
+                    isMouseDown = false;
                     break;
 
                 case ShapeType.Freehand:
@@ -695,7 +700,7 @@ namespace KDrawing
                 {
                     shape.Draw(e.Graphics);
 
-                    if (shape is cEllipse || shape is cGroup)
+                    if (shape is cEllipse || shape is cGroup || shape is cText)
                     {
                         e.Graphics.DrawRectangle(framePen, new RectangleF(shape.Begin.X, shape.Begin.Y, shape.End.X - shape.Begin.X, shape.End.Y - shape.Begin.Y));
                     }
@@ -765,6 +770,9 @@ namespace KDrawing
                 {
                     case "Freehand":
                         this.ShapeType = ShapeType.Freehand;
+                        break;
+                    case "Text":
+                        this.ShapeType = ShapeType.Text;
                         break;
                     case "Line":
                         this.ShapeType = ShapeType.Line;

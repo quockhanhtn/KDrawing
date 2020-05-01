@@ -38,5 +38,18 @@ namespace KDrawing.Models
                     cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
             };
         }
+
+        static public Font ChangeFontSize(Font font, float fontSize)
+        {
+            if (font != null)
+            {
+                float currentSize = font.Size;
+                if (currentSize != fontSize)
+                {
+                    font = new Font(font.Name, fontSize, font.Style, font.Unit, font.GdiCharSet, font.GdiVerticalFont);
+                }
+            }
+            return font;
+        }
     }
 }

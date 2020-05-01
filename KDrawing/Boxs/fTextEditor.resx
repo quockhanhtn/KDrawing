@@ -120,4 +120,18 @@
   <metadata name="fontDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnIsFill.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAbJJREFUWEfV1k1OAkEQhmGCgY3Gq+jKn1NIEPRKom7EKxDO406MuvMCBhe6Gt+P
+        zCTVNaUB0xOcxZPYNVXd1djz0ymKotXCYJuEQW/6MOjjEnMs8IEiM82pubXGBfpRL14YtJjoHK+IFm3S
+        C4ZRT1YYFIp3cFtOtk036EY9ShgUiv5D85VJ1KOEQQp0bKKJcvrEHY6xW9LfU+iazx9EvdYCJOqGbfrM
+        v+EAtfXLHg7LHFvzjNqNnQyEJD1tbGFu+nVXzYtfv8I1bcL/J8Y+LxkISXqM2aLcdGxWzYtf3+L6PWzt
+        zOckAyHpyRXldoR1N3ACW7vwOclASFq6otz2sO4GlGtrlz4nGYiSXFFum2xgH7b23eckAyGp9Ueo6ZtY
+        z/l1N/Cnm1gfUrYoNz0a9Yj8dQNlzhds7cjnJQMhSS8yfUjZwtz0klptwq9f9vDTi6znc5NBhcShKWyK
+        fl0dEZ1z3dhyWsb8Ly9nUa+1QIUCfQX6SbblKupRwqBQ1MW1mWRbJtj8c7pC8QA6f9HkTdKa4bGxwqDH
+        RD2MMcMjmnjZaU7NrTVGqN2wkTDYJmGwPYrON1lnWXVHhQYNAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

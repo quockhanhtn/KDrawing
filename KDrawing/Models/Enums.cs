@@ -7,6 +7,10 @@
         /// </summary>
         NoDrawing,
         /// <summary>
+        /// Chữ
+        /// </summary>
+        Text,
+        /// <summary>
         /// Vẽ tự do
         /// </summary>
         Freehand,

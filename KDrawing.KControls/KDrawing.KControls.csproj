@@ -68,6 +68,9 @@
     <Compile Include="TitleBar.Designer.cs">
       <DependentUpon>TitleBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -101,6 +104,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\window-restore-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle_off-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-on-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch-off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-switch-off-flip-x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

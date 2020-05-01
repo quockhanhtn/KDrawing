@@ -151,12 +151,6 @@
     <None Include="Resources\cursor-size-all.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\toggle-switch.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\toggle-switch-off.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\chevron-left.png" />
   </ItemGroup>
   <ItemGroup>
@@ -179,18 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\trash-selected.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\toggle_off.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\toggle_off-flip-x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\toggle-on.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\toggle-on-flip-x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default-color.png" />

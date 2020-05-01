@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDrawing.Models
 {
     public class cText : cFillableShape
     {
+        private Font myFont;
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
 
+        public Font MyFont
+        {
+            get
+            {
+                return myFont;
+            }
+            set
+            {
+                myFont = value; 
+                LineWeight = 1f;
+            }
+        }
         public string Text { get; set; }
-        public Font MyFont { get; set; }
 
         public cText(PointF begin)
         {
@@ -37,14 +44,24 @@ namespace KDrawing.Models
             {
                 GraphicsPath path = new GraphicsPath();
                 path.AddString(Text, MyFont.FontFamily, (int)MyFont.Style, MyFont.Size, Begin, StringFormat.GenericDefault);
+
+                var rec = Rectangle.Round(path.GetBounds());
+                var xLoc = rec.Width + 2 * rec.Location.X - Begin.X;
+                var yLoc = rec.Height + 2 * rec.Location.Y - Begin.Y;
+                End = new PointF(xLoc, yLoc);
+
                 return path;
             }
         }
+
         public override object Clone()
         {
             return new cText(this.Begin, this.Text, this.MyFont, this.Color, Fill)
             {
-                Name = this.Name
+                Name = this.Name,
+                End = this.End,
+                IsSelected = this.IsSelected,
+                IsHidden = this.IsHidden
             };
         }
 
@@ -100,6 +117,8 @@ namespace KDrawing.Models
 
         public override void Scale(float percent)
         {
+            float newFontSize = MyFont.Size * percent;
+            MyFont = Utilities.ChangeFontSize(MyFont, newFontSize);
         }
     }
 }

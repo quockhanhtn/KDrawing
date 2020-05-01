@@ -139,9 +139,6 @@
   <data name="shape-line-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-line-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="toggle-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="eye-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,9 +175,6 @@
   <data name="shape-square-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-square-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="toggle_off-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_off-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="shape-text-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-text-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -189,12 +183,6 @@
   </data>
   <data name="eye-off-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-off-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-pentagon-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-pentagon-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -228,9 +216,6 @@
   </data>
   <data name="shape-square-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-square-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-on-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-on-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="percent-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\percent-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -267,9 +252,6 @@
   </data>
   <data name="chevron-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lead-pencil-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lead-pencil-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
