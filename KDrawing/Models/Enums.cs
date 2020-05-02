@@ -86,5 +86,6 @@
         /// Đang di chuyển hình
         /// </summary>
         IsMovingShape,
+        IsMouseSelect,
     }
 }

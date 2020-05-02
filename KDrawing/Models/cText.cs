@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
@@ -6,6 +7,7 @@ namespace KDrawing.Models
     public class cText : cFillableShape
     {
         private Font myFont;
+
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
 
@@ -17,25 +19,19 @@ namespace KDrawing.Models
             }
             set
             {
-                myFont = value; 
+                myFont = value;
                 LineWeight = 1f;
             }
         }
         public string Text { get; set; }
 
-        public cText(PointF begin)
+        public cText()
         {
-            this.Begin = begin;
-        }
-
-        public cText(PointF begin, string text, Font font, Color color, bool isFill)
-        {
-            this.Name = text;
-            this.Begin = begin;
-            this.Text = text;
-            this.MyFont = font;
-            this.Color = color;
-            this.Fill = isFill;
+            this.Begin = new PointF(0, 0);
+            this.Text = "Example text";
+            this.MyFont = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            this.Color = Color.Black;
+            this.Fill = false;
         }
 
         protected override GraphicsPath GraphicsPath
@@ -56,13 +52,16 @@ namespace KDrawing.Models
 
         public override object Clone()
         {
-            return new cText(this.Begin, this.Text, this.MyFont, this.Color, Fill)
+            cText cloneText = new cText()
             {
+                Begin = this.Begin,
                 Name = this.Name,
                 End = this.End,
                 IsSelected = this.IsSelected,
                 IsHidden = this.IsHidden
             };
+            cloneText.GetProperty(this);
+            return cloneText;
         }
 
         public override void Draw(Graphics graphics)
@@ -111,14 +110,24 @@ namespace KDrawing.Models
             this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
         }
 
-        public override void Rotate(int degree)
-        {
-        }
+        public override void Rotate(int degree) { }
 
         public override void Scale(float percent)
         {
             float newFontSize = MyFont.Size * percent;
             MyFont = Utilities.ChangeFontSize(MyFont, newFontSize);
+        }
+
+        /// <summary>
+        /// Get Text, MyFont, Color, Fill property form source to this
+        /// </summary>
+        /// <param name="source"></param>
+        public void GetProperty(cText source)
+        {
+            this.Text = source.Text;
+            this.MyFont = source.MyFont;
+            this.Color = source.Color;
+            this.Fill = source.Fill;
         }
     }
 }

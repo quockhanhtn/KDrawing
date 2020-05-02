@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace KDrawing.KControls
 {
-    public class FlatTextbox : TextBox
+    public class FlatTextBox : TextBox
     {
         const int WM_NCPAINT = 0x85;
         const uint RDW_INVALIDATE = 0x1;

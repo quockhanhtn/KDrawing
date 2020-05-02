@@ -32,7 +32,7 @@
             this.chkIsSelected = new System.Windows.Forms.CheckBox();
             this.btnDelete = new KDrawing.KControls.FlatButton();
             this.btnHidden = new KDrawing.KControls.FlatButton();
-            this.txtShapeName = new System.Windows.Forms.TextBox();
+            this.txtShapeName = new KDrawing.KControls.RenameFlatTextBox();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -96,9 +96,13 @@
             // 
             // txtShapeName
             // 
+            this.txtShapeName.BoderColorFocus = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.txtShapeName.BorderColor = System.Drawing.Color.White;
             this.txtShapeName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShapeName.Location = new System.Drawing.Point(55, 2);
+            this.txtShapeName.MaxLength = 30;
             this.txtShapeName.Name = "txtShapeName";
+            this.txtShapeName.ReadOnly = true;
             this.txtShapeName.Size = new System.Drawing.Size(189, 30);
             this.txtShapeName.TabIndex = 5;
             // 
@@ -130,7 +134,7 @@
         private System.Windows.Forms.CheckBox chkIsSelected;
         private KDrawing.KControls.FlatButton btnDelete;
         private KDrawing.KControls.FlatButton btnHidden;
-        private System.Windows.Forms.TextBox txtShapeName;
+        private KControls.FlatTextBox txtShapeName;
         private System.Windows.Forms.Timer tmrUpdate;
     }
 }

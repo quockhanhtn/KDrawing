@@ -23,7 +23,8 @@ namespace KDrawing.MyUserControls
             txtShapeName.Text = shape.Name;
             chkIsSelected.Checked = shape.IsSelected;
 
-            txtShapeName.DataBindings.Add("BackColor", this, "BackColor");
+            txtShapeName.DataBindings.Add(new Binding("Text", ShapeShow, "Name", true, DataSourceUpdateMode.OnPropertyChanged));
+            txtShapeName.DataBindings.Add(new Binding("BackColor", this, "BackColor", true, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void btnHidden_Click(object sender, EventArgs e)

@@ -49,9 +49,13 @@
     <Compile Include="FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FlatTextbox.cs">
+    <Compile Include="FlatGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FlatTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphicsExtensions.cs" />
     <Compile Include="MenuStripRenderer.cs" />
     <Compile Include="PaintSurface.cs">
       <SubType>Component</SubType>
@@ -61,6 +65,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RenameFlatTextBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TitleBar.cs">
       <SubType>UserControl</SubType>

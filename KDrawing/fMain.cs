@@ -1,4 +1,5 @@
-﻿using KDrawing.Models;
+﻿using KDrawing.KControls;
+using KDrawing.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -31,7 +32,6 @@ namespace KDrawing
         private bool isMouseDown;
         private bool isControlKeyPress;
         private bool isShiftKeyPress;
-        private bool isMouseSelect;
         private int movingOffset;
 
         public List<cShape> ListShapes { get => listShapes; set => listShapes = value; }
@@ -381,7 +381,7 @@ namespace KDrawing
                         }
                         else
                         {
-                            isMouseSelect = true;
+                            drawingStage = DrawingStage.IsMouseSelect;
                             selectedPoint1 = e.Location;
                             selectedPoint2 = new PointF();
                         }
@@ -549,12 +549,11 @@ namespace KDrawing
                 PointF d = new PointF(e.X - previousPoint.X, e.Y - previousPoint.Y);
                 ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Move(d); });
                 previousPoint = e.Location;
-
                 ReDraw();
             }
             else if (ShapeType == ShapeType.NoDrawing)
             {
-                if (isMouseSelect)
+                if (drawingStage == DrawingStage.IsMouseSelect)
                 {
                     selectedPoint2 = e.Location;
                     ReDraw();
@@ -610,9 +609,9 @@ namespace KDrawing
                 drawingStage = DrawingStage.Orther;
                 selectedShape = null;
             }
-            else if (isMouseSelect)
+            else if (drawingStage == DrawingStage.IsMouseSelect)
             {
-                isMouseSelect = false;
+                drawingStage = DrawingStage.Orther;
                 for (int i = 0; i < ListShapes.Count; i++)
                 {
                     ListShapes[i].IsSelected = false;
@@ -741,10 +740,20 @@ namespace KDrawing
                 }
             });
 
-            if (isMouseSelect)
+            if (drawingStage == DrawingStage.IsMouseSelect)
             {
                 e.Graphics.DrawRectangle(framePen, SelectedRegion);
             }
+        }
+
+        private void btnText_Click(object sender, EventArgs e)
+        {
+            if (ListShapes.FindAll(shape => shape.IsSelected && shape is cText).Count > 0)
+            {
+                Boxs.fTextEditor.Show(this, ListShapes);
+                ReDraw();
+            }
+            else { btnShape_Click(sender, e); }
         }
 
         private void btnShape_Click(object sender, EventArgs e)

@@ -117,21 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="fontDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnIsFill.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAbJJREFUWEfV1k1OAkEQhmGCgY3Gq+jKn1NIEPRKom7EKxDO406MuvMCBhe6Gt+P
-        zCTVNaUB0xOcxZPYNVXd1djz0ymKotXCYJuEQW/6MOjjEnMs8IEiM82pubXGBfpRL14YtJjoHK+IFm3S
-        C4ZRT1YYFIp3cFtOtk036EY9ShgUiv5D85VJ1KOEQQp0bKKJcvrEHY6xW9LfU+iazx9EvdYCJOqGbfrM
-        v+EAtfXLHg7LHFvzjNqNnQyEJD1tbGFu+nVXzYtfv8I1bcL/J8Y+LxkISXqM2aLcdGxWzYtf3+L6PWzt
-        zOckAyHpyRXldoR1N3ACW7vwOclASFq6otz2sO4GlGtrlz4nGYiSXFFum2xgH7b23eckAyGp9Ueo6ZtY
-        z/l1N/Cnm1gfUrYoNz0a9Yj8dQNlzhds7cjnJQMhSS8yfUjZwtz0klptwq9f9vDTi6znc5NBhcShKWyK
-        fl0dEZ1z3dhyWsb8Ly9nUa+1QIUCfQX6SbblKupRwqBQ1MW1mWRbJtj8c7pC8QA6f9HkTdKa4bGxwqDH
-        RD2MMcMjmnjZaU7NrTVGqN2wkTDYJmGwPYrON1lnWXVHhQYNAAAAAElFTkSuQmCC
+        EwAACxMBAJqcGAAAAeJJREFUWEfVlk1OAkEQhYlGNxqvIit/TiEMM7ggbLkGWxE3yBWMVwID7riAwQWu
+        xvdIYbqrWkZNDzIv+RK6qKp+3TPTM7U8zytNMFglbCCgLMuOkyS5bbVaz2AK3kEeGfZkb87R5pwyvSfj
+        1wSU0Ix6BaFJy2SepmkiNr5k/JqACDtwiAYPgca7Ztjv9w/ElvVrAqI9Mb8GXgZiy/o1AQhFlG60AiNw
+        2e12Twh/o/mj/KfzY9P40QL48CBZ3/OLZrN5vl5dQKipM0fVxGZGb9qvNyBy2riFq23mN5JFlHolcLUz
+        7dcbECTyGHMLR+KxUMgdq9qoYHOftF9vQJD44hZhZy/EX6EwwZVbWwJT7dcbECQt3SIs4FT8FYq5bm0J
+        LLVfb0CY5Bb9ZgGdTufMrS2BN+3XGxAkVf4W8h5invPir1DI34uHuK0KV7gKdfH4rZiD3A9VGxUsINV+
+        vQGBEb7I5qp4sW0RYr70F1mv1zvSfr3BOgDhtkkCDbi7Y97nMHwqXDMm/+n8qMDTDb0ZvyYgQtFQN/kv
+        sGl3Ysv6NQERP2FRfK+b7Rrs/OBPn9MboUkDzNymO2K2uW1cGb8mEBAfHjTLeIyh8QR4L7tIsOeEc/C0
+        4ZwyvSfjVweqRjBYHfLaJ1Yj8tiNSRISAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="fontDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

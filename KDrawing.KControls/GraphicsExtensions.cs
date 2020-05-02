@@ -1,6 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
-namespace KDrawing.Models
+namespace KDrawing.KControls
 {
     public static class GraphicsExtensions
     {

@@ -92,7 +92,6 @@
             this.mnuView_Layers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tblpnlMidArea = new System.Windows.Forms.TableLayoutPanel();
-            this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.pnlToolbar = new System.Windows.Forms.Panel();
             this.btnForeColor = new KDrawing.KControls.FlatButton();
             this.btnBackColor = new KDrawing.KControls.FlatButton();
@@ -123,6 +122,7 @@
             this.statusBar_NumShapesSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.imgCboDashStyle = new System.Windows.Forms.ImageList(this.components);
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
+            this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.tblpnlMain.SuspendLayout();
             this.dragMovePnl.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -428,7 +428,7 @@
             this.mnuAbout});
             this.mnu.Location = new System.Drawing.Point(60, 1);
             this.mnu.Name = "mnu";
-            this.mnu.Size = new System.Drawing.Size(460, 31);
+            this.mnu.Size = new System.Drawing.Size(462, 31);
             this.mnu.TabIndex = 0;
             this.mnu.Text = "mnu";
             // 
@@ -822,17 +822,6 @@
             this.tblpnlMidArea.Size = new System.Drawing.Size(1582, 751);
             this.tblpnlMidArea.TabIndex = 3;
             // 
-            // shapeLayers
-            // 
-            this.shapeLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.shapeLayers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shapeLayers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shapeLayers.Location = new System.Drawing.Point(1280, 0);
-            this.shapeLayers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.shapeLayers.Name = "shapeLayers";
-            this.shapeLayers.Size = new System.Drawing.Size(300, 751);
-            this.shapeLayers.TabIndex = 13;
-            // 
             // pnlToolbar
             // 
             this.pnlToolbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -1139,7 +1128,7 @@
             this.btnText.ToolTipShowAlways = true;
             this.btnText.ToolTipTitle = "";
             this.btnText.UseVisualStyleBackColor = true;
-            this.btnText.Click += new System.EventHandler(this.btnShape_Click);
+            this.btnText.Click += new System.EventHandler(this.btnText_Click);
             // 
             // btnPencil
             // 
@@ -1438,6 +1427,17 @@
             // 
             this.tmrUpdate.Enabled = true;
             this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            // 
+            // shapeLayers
+            // 
+            this.shapeLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.shapeLayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shapeLayers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shapeLayers.Location = new System.Drawing.Point(1280, 0);
+            this.shapeLayers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.shapeLayers.Name = "shapeLayers";
+            this.shapeLayers.Size = new System.Drawing.Size(300, 751);
+            this.shapeLayers.TabIndex = 13;
             // 
             // fMain
             // 

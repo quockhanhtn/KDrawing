@@ -98,7 +98,6 @@
     <Compile Include="Models\cShape.cs" />
     <Compile Include="Models\cSquare.cs" />
     <Compile Include="Models\Enums.cs" />
-    <Compile Include="Models\GraphicsExtensions.cs" />
     <Compile Include="Models\MyCursor.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Program.cs" />

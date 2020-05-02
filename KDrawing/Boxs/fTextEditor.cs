@@ -8,19 +8,19 @@ namespace KDrawing.Boxs
 {
     public partial class fTextEditor : Form
     {
-        cText myctext = new cText(new PointF(10, 10), "Example text", new Font("Segoe UI Semibold", 20F), Color.Black, true);
-        Font myFont;
-        
-        public Font MyFont { 
-            get => myFont;
+
+        private cText myText;
+
+        public cText MyText 
+        {
+            get
+            {
+                if (myText == null) { myText = new cText(); }
+                return myText;
+            }
             set
             {
-                myFont = value;
-                myctext.MyFont = value;
-                lblFontFamily.Text = value.FontFamily.Name;
-                lblFontStyle.Text = value.Style.ToString();
-                lblFontSize.Text = value.Size.ToString();
-                this.btnColor.BackColor = fontDialog.Color;
+                myText = value;
                 psfDemo.Invalidate();
             }
         }
@@ -28,105 +28,130 @@ namespace KDrawing.Boxs
         public fTextEditor()
         {
             InitializeComponent();
-            MyFont = new Font("Segoe UI Semibold", 20F);
         }
 
         private void fTextEditor_Shown(object sender, EventArgs e)
         {
-            txtText.Text = myctext.Text;
+            lblFontFamily.Text = MyText.MyFont.FontFamily.Name;
+            lblFontStyle.Text = MyText.MyFont.Style.ToString();
+            lblFontSize.Text = MyText.MyFont.Size.ToString();
+
+            txtText.Text = MyText.Text;
             txtText.Focus();
             txtText.Select(0, txtText.Text.Length);
         }
 
-        public static cText Show(Form form, PointF location)
+        private void fontDialog_Apply(object sender, EventArgs e)
+        {
+            MyText.MyFont = fontDialog.Font;
+            btnColor.BackColor = fontDialog.Color;
+            lblFontFamily.Text = fontDialog.Font.FontFamily.Name;
+            lblFontStyle.Text = fontDialog.Font.Style.ToString();
+            lblFontSize.Text = fontDialog.Font.Size.ToString();
+
+            psfDemo.Invalidate();
+        }
+
+        private void btnChangeFont_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = MyText.MyFont;
+            fontDialog.Color = MyText.Color;
+
+
+            // Save the existing font.
+            Font oldFont = this.Font;
+
+            //Show the dialog, and get the result
+            DialogResult result = fontDialog.ShowDialog();
+
+            // If the OK button in the Font dialog box is clicked, 
+            // set all the controls' fonts to the chosen font by calling
+            // the fontDialog_Apply method.
+            if (result == DialogResult.OK)
+            {
+                fontDialog_Apply(sender, new EventArgs());
+            }
+            // If Cancel is clicked, set the font back to
+            // the original font.
+            else if (result == DialogResult.Cancel)
+            {
+                this.Font = oldFont;
+                foreach (Control containedControl in this.Controls)
+                {
+                    containedControl.Font = oldFont;
+                }
+            }
+        }
+
+        private void btnIsFill_Click(object sender, EventArgs e)
+        {
+            MyText.Fill = btnIsFill.ToggleStage;
+            psfDemo.Invalidate();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            btnColor.BackColor = Vendors.ColorPickerDialog.Show(this, btnColor.BackColor);
+            psfDemo.Invalidate();
+        }
+
+        private void btnColor_BackColorChanged(object sender, EventArgs e)
+        {
+            btnColor.FlatAppearance.MouseOverBackColor = btnColor.BackColor;
+            btnColor.FlatAppearance.MouseDownBackColor = btnColor.BackColor;
+            MyText.Color = btnColor.BackColor;
+        }
+
+        private void txtText_TextChanged(object sender, EventArgs e)
+        {
+            MyText.Text = txtText.Text;
+            psfDemo.Invalidate();
+        }
+
+        private void psfDemo_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            PointF worldLocation = MyText.Begin;
+            MyText.Begin = new PointF(0, 0);
+            MyText.Draw(e.Graphics);
+            MyText.Begin = worldLocation;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            MyText.Name = MyText.Text;
+        }
+
+        public static cText Show(Form parrentForm, PointF textLocation)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
-                formTextEditor.myctext.Begin = location;
-                if (formTextEditor.ShowDialog(form) == DialogResult.OK)
+                if (formTextEditor.ShowDialog(parrentForm) == DialogResult.OK)
                 {
-                    return formTextEditor.myctext;
+                    formTextEditor.MyText.Begin = textLocation;
+                    return formTextEditor.MyText;
                 }
             }
             return null;
         }
 
-        public static void Show(Form form, cText text)
+        public static void Show(Form parrentForm, List<cShape> listShapes)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
-                if (formTextEditor.ShowDialog(form) == DialogResult.OK)
+                List<cText> listTextEditor = new List<cText>();
+                listShapes.FindAll(shape => shape.IsSelected && shape is cText).ForEach(text => listTextEditor.Add(text as cText));
+
+                formTextEditor.MyText.GetProperty(listTextEditor[0]);
+                if (formTextEditor.ShowDialog(parrentForm) == DialogResult.OK)
                 {
-                    text = formTextEditor.myctext;
+                    for (int i = 0; i < listTextEditor.Count; i++)
+                    {
+                        listTextEditor[i].GetProperty(formTextEditor.MyText);
+                    }
                 }
             }
-        }
-
-        public static void Show(Form form, List<cShape> listShape)
-        {
-            using (fTextEditor formTextEditor = new fTextEditor())
-            {
-                if (formTextEditor.ShowDialog(form) == DialogResult.OK)
-                {
-                    listShape.FindAll(shape => shape.IsSelected && shape is cText).ForEach(text => { text = formTextEditor.myctext; });
-                }
-            }
-        }
-
-        private void btnChangeFont_Click(object sender, EventArgs e)
-        {
-            fontDialog.Font = MyFont;
-            fontDialog.Color = btnColor.BackColor;
-            fontDialog.ShowDialog();
-            MyFont = fontDialog.Font;
-            btnColor.BackColor = fontDialog.Color;
-        }
-
-        private void btnColor_BackColorChanged(object sender, EventArgs e)
-        {
-            myctext.Color = btnColor.BackColor;
-            btnColor.FlatAppearance.MouseOverBackColor = btnColor.BackColor;
-        }
-
-        private void btnColor_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            btn.BackColor = Vendors.ColorPickerDialog.Show(this, btn.BackColor);
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            myctext.MyFont = this.MyFont;
-            myctext.Color = btnColor.BackColor;
-            myctext.Fill = btnIsFill.ToggleStage;
-            myctext.Text = txtText.Text;
-            myctext.Name = myctext.Text;
-        }
-
-        private void psfDemo_Paint(object sender, PaintEventArgs e)
-        {
-            PointF worldLocation = myctext.Begin;
-            myctext.Begin = new PointF(5, 5);
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            myctext.Draw(e.Graphics);
-
-            myctext.Begin = worldLocation;
-        }
-
-        private void txtText_TextChanged(object sender, EventArgs e)
-        {
-            myctext.MyFont = this.MyFont;
-            myctext.Color = btnColor.BackColor;
-            myctext.Fill = btnIsFill.ToggleStage;
-            myctext.Text = txtText.Text;
-            myctext.Name = myctext.Text;
-            psfDemo.Invalidate();
-        }
-
-        private void btnIsFill_Click(object sender, EventArgs e)
-        {
-            myctext.Fill = btnIsFill.ToggleStage;
-            psfDemo.Invalidate();
         }
     }
 }
