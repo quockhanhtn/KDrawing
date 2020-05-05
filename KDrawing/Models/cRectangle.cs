@@ -34,6 +34,8 @@ namespace KDrawing.Models
         public PointF BottomLeft { get; set; }
         public bool IsSquare { get; set; }
         public float Width { get; set; }
+
+        public cRectangle() { }
         public cRectangle(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Rectangle " + (index++).ToString();

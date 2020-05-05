@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Xml.Serialization;
 
 namespace KDrawing.Models
 {
@@ -10,7 +11,8 @@ namespace KDrawing.Models
 
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
-
+        public string Text { get; set; }
+        [XmlIgnore()]
         public Font MyFont
         {
             get
@@ -23,15 +25,22 @@ namespace KDrawing.Models
                 LineWeight = 1f;
             }
         }
-        public string Text { get; set; }
 
-        public cText()
+        [Browsable(false)]
+        public string FontSerialize
+        {
+            get { return FontSerializationHelper.ToString(myFont); }
+            set { myFont = FontSerializationHelper.FromString(value); }
+        }
+
+        public cText() { }
+        public cText(Color color, bool fill)
         {
             this.Begin = new PointF(0, 0);
             this.Text = "Example text";
             this.MyFont = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.Color = Color.Black;
-            this.Fill = false;
+            this.Color = color;
+            this.Fill = fill;
         }
 
         protected override GraphicsPath GraphicsPath

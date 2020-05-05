@@ -74,6 +74,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\cText.cs" />
+    <Compile Include="Models\FontSerializationHelper.cs" />
+    <Compile Include="Models\ShapeData.cs" />
+    <Compile Include="Models\XmlColor.cs" />
     <Compile Include="MyUserControls\ShapeLayer.cs">
       <SubType>UserControl</SubType>
     </Compile>

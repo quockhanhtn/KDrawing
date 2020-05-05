@@ -8,16 +8,11 @@ namespace KDrawing.Models
     {
         private static int index = 0;
 
+        public cSquare() : base() { }
         public cSquare(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             Name = "Square " + (index++).ToString();
         }
-
-        public cSquare(cRectangle rec) : base(rec.Begin, rec.LineWeight, rec.Color, rec.DashStyle)
-        {
-            Name = "Square " + (index++).ToString();
-        }
-
         protected override GraphicsPath GraphicsPath
         {
             get

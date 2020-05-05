@@ -7,12 +7,9 @@ namespace KDrawing.Models
     {
         private static int index = 0;
 
-        public cCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
-        {
-            this.Name = "Circle " + (index++).ToString();
-        }
+        public cCircle() : base() { }
 
-        public cCircle(cEllipse ellipse) : base(ellipse.Begin, ellipse.LineWeight, ellipse.Color, ellipse.DashStyle)
+        public cCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             this.Name = "Circle " + (index++).ToString();
         }

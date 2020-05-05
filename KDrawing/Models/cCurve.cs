@@ -16,6 +16,8 @@ namespace KDrawing.Models
 
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
+        
+        public cCurve() { }
         public cCurve(bool isBezier, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = isBezier ? "Bezier " + (indexBezier++).ToString() : "Curve " + (index++).ToString();

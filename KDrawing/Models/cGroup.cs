@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace KDrawing.Models
 {
-    public class cGroup : cShape, IEnumerable
+    public class cGroup : cShape
     {
         private static int index = 0;
-        private List<cShape> listShapes = new List<cShape>();
+        public List<cShape> Shapes = new List<cShape>();
 
-        public int Count => listShapes.Count;
+        public int Count => Shapes.Count;
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
         public cGroup()
@@ -24,29 +24,29 @@ namespace KDrawing.Models
 
         public cShape this[int index]
         {
-            get => listShapes[index];
-            set => listShapes[index] = value;
+            get => Shapes[index];
+            set => Shapes[index] = value;
         }
 
         public void Add(cShape shape)
         {
-            listShapes.Add(shape);
+            Shapes.Add(shape);
         }
 
         private GraphicsPath[] GraphicsPaths
         {
             get
             {
-                GraphicsPath[] paths = new GraphicsPath[listShapes.Count];
+                GraphicsPath[] paths = new GraphicsPath[Shapes.Count];
 
-                for (int i = 0; i < listShapes.Count; i++)
+                for (int i = 0; i < Shapes.Count; i++)
                 {
                     GraphicsPath path = new GraphicsPath();
-                    if (listShapes[i] is cLine line)
+                    if (Shapes[i] is cLine line)
                     {
                         path.AddLine(line.Begin, line.End);
                     }
-                    else if (listShapes[i] is cRectangle rect)
+                    else if (Shapes[i] is cRectangle rect)
                     {
                         if (rect is cSquare square)
                         {
@@ -58,7 +58,7 @@ namespace KDrawing.Models
                             path.AddRectangle(new RectangleF(rect.Begin.X, rect.Begin.Y, rect.End.X - rect.Begin.X, rect.End.Y - rect.Begin.Y));
                         }
                     }
-                    else if (listShapes[i] is cEllipse ellipse)
+                    else if (Shapes[i] is cEllipse ellipse)
                     {
                         if (ellipse is cCircle circle)
                         {
@@ -70,15 +70,26 @@ namespace KDrawing.Models
                             path.AddEllipse(new RectangleF(ellipse.Begin.X, ellipse.Begin.Y, ellipse.End.X - ellipse.Begin.X, ellipse.End.Y - ellipse.Begin.Y));
                         }
                     }
-                    else if (listShapes[i] is cCurve curve)
+                    else if (Shapes[i] is cCurve curve)
                     {
                         path.AddCurve(curve.Points.ToArray());
                     }
-                    else if (listShapes[i] is cPolygon polygon)
+                    else if (Shapes[i] is cPolygon polygon)
                     {
                         path.AddPolygon(polygon.Points.ToArray());
                     }
-                    else if (listShapes[i] is cGroup group)
+                    else if (Shapes[i] is cFreehand freehand)
+                    {
+                        for (int j = 0; j < freehand.Points.Count - 1; j++)
+                        {
+                            path.AddLine(freehand.Points[j], freehand.Points[j + 1]);
+                        }
+                    }
+                    else if (Shapes[i] is cText text)
+                    {
+                        path.AddString(text.Text, text.MyFont.FontFamily, (int)text.MyFont.Style, text.MyFont.Size, text.Begin, StringFormat.GenericDefault);
+                    }
+                    else if (Shapes[i] is cGroup group)
                     {
                         for (int j = 0; j < group.GraphicsPaths.Length; j++)
                         {
@@ -99,7 +110,7 @@ namespace KDrawing.Models
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    if (listShapes[i] is cFillableShape shape)
+                    if (Shapes[i] is cFillableShape shape)
                     {
                         if (shape.Fill)
                         {
@@ -116,13 +127,13 @@ namespace KDrawing.Models
                             }
                         }
                     }
-                    else if (listShapes[i] is cGroup group)
+                    else if (Shapes[i] is cGroup group)
                     {
                         group.Draw(graphics);
                     }
                     else
                     {
-                        using (Pen pen = new Pen(listShapes[i].Color, listShapes[i].LineWeight) { DashStyle = listShapes[i].DashStyle })
+                        using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight) { DashStyle = Shapes[i].DashStyle })
                         {
                             graphics.DrawPath(pen, path);
                         }
@@ -138,7 +149,7 @@ namespace KDrawing.Models
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    if (listShapes[i] is cFillableShape shape)
+                    if (Shapes[i] is cFillableShape shape)
                     {
                         if (shape.Fill)
                         {
@@ -155,14 +166,14 @@ namespace KDrawing.Models
                             }
                         }
                     }
-                    else if (!(listShapes[i] is cGroup))
+                    else if (!(Shapes[i] is cGroup))
                     {
-                        using (Pen pen = new Pen(listShapes[i].Color, listShapes[i].LineWeight + 3))
+                        using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight + 3))
                         {
                             if (path.IsOutlineVisible(point, pen)) { return true; }
                         }
                     }
-                    else if (listShapes[i] is cGroup group) { return group.IsHit(point); }
+                    else if (Shapes[i] is cGroup group) { return group.IsHit(point); }
                 }
             }
 
@@ -171,9 +182,9 @@ namespace KDrawing.Models
 
         public override void Move(PointF distance)
         {
-            for (int i = 0; i < listShapes.Count; i++)
+            for (int i = 0; i < Shapes.Count; i++)
             {
-                if (listShapes[i] is cCurve curve)
+                if (Shapes[i] is cCurve curve)
                 {
                     curve.Begin = new PointF(curve.Begin.X + distance.X, curve.Begin.Y + distance.Y);
                     curve.End = new PointF(curve.End.X + distance.X, curve.End.Y + distance.Y);
@@ -183,7 +194,7 @@ namespace KDrawing.Models
                         curve.Points[j] = new PointF(curve.Points[j].X + distance.X, curve.Points[j].Y + distance.Y);
                     }
                 }
-                else if (listShapes[i] is cPolygon polygon)
+                else if (Shapes[i] is cPolygon polygon)
                 {
                     polygon.Begin = new PointF(polygon.Begin.X + distance.X, polygon.Begin.Y + distance.Y);
                     polygon.End = new PointF(polygon.End.X + distance.X, polygon.End.Y + distance.Y);
@@ -193,14 +204,14 @@ namespace KDrawing.Models
                         polygon.Points[j] = new PointF(polygon.Points[j].X + distance.X, polygon.Points[j].Y + distance.Y);
                     }
                 }
-                else if (listShapes[i] is cGroup group)
+                else if (Shapes[i] is cGroup group)
                 {
                     group.Move(distance);
                 }
                 else
                 {
-                    listShapes[i].Begin = new PointF(listShapes[i].Begin.X + distance.X, listShapes[i].Begin.Y + distance.Y);
-                    listShapes[i].End = new PointF(listShapes[i].End.X + distance.X, listShapes[i].End.Y + distance.Y);
+                    Shapes[i].Begin = new PointF(Shapes[i].Begin.X + distance.X, Shapes[i].Begin.Y + distance.Y);
+                    Shapes[i].End = new PointF(Shapes[i].End.X + distance.X, Shapes[i].End.Y + distance.Y);
                 }
             }
             Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
@@ -219,16 +230,16 @@ namespace KDrawing.Models
                 Color = Color.FromName(Color.Name),
                 LineWeight = LineWeight
             };
-            for (int i = 0; i < listShapes.Count; i++)
+            for (int i = 0; i < Shapes.Count; i++)
             {
-                group.listShapes.Add(listShapes[i].Clone() as cShape);
+                group.Shapes.Add(Shapes[i].Clone() as cShape);
             }
             return group;
         }
 
         public override void Scale(float percent)
         {
-            foreach (cShape shape in this.listShapes)
+            foreach (cShape shape in this.Shapes)
             {
                 shape.Scale(percent);
             }
@@ -236,7 +247,7 @@ namespace KDrawing.Models
 
         public override void Rotate(int degree)
         {
-            foreach (cShape shape in this.listShapes)
+            foreach (cShape shape in this.Shapes)
             {
                 shape.Rotate(degree);
             }
@@ -304,11 +315,6 @@ namespace KDrawing.Models
 
             this.Begin = new PointF(minX, minY);
             this.End = new PointF(maxX, maxY);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return listShapes.GetEnumerator();
         }
 
         ///[Obsolete("Phương thức này bị thừa, không được xài")]

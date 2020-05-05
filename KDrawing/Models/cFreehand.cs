@@ -14,6 +14,8 @@ namespace KDrawing.Models
         public List<PointF> Points { get; set; } = new List<PointF>();
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
+
+        public cFreehand() { }
         public cFreehand(float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Free hand " + (index++).ToString();

@@ -10,6 +10,7 @@ namespace KDrawing.Models
         private static int index = 0;
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
+        public cLine() { }
         public cLine(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Line " + (index++).ToString();

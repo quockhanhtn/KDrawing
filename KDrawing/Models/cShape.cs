@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Xml.Serialization;
 
 namespace KDrawing.Models
 {
@@ -7,6 +9,7 @@ namespace KDrawing.Models
     {
         public abstract PointF Begin { get; set; }
         public abstract PointF End { get; set; }
+        [XmlElement(Type = typeof(XmlColor))]
         public Color Color { get; set; }
         public float LineWeight { get; set; }
         public bool IsSelected { get; set; } = false;

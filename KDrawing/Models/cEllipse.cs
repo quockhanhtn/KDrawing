@@ -33,6 +33,9 @@ namespace KDrawing.Models
         public PointF BottomLeft { get; set; }
         public bool IsCircle { get; set; }
         public float Diameter { get; set; }
+
+        public cEllipse() { }
+
         public cEllipse(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Ellipse " + (index++).ToString();
