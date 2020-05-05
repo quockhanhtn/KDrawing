@@ -15,7 +15,7 @@ namespace KDrawing.Boxs
         {
             get
             {
-                if (myText == null) { myText = new cText(); }
+                if (myText == null) { myText = cText.Default(); }
                 return myText;
             }
             set
@@ -85,7 +85,7 @@ namespace KDrawing.Boxs
 
         private void btnIsFill_Click(object sender, EventArgs e)
         {
-            MyText.Fill = btnIsFill.ToggleStage;
+            MyText.IsFill = btnIsFill.ToggleStage;
             psfDemo.Invalidate();
         }
 

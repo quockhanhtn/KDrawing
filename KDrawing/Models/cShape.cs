@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Xml.Serialization;
 
@@ -7,10 +6,10 @@ namespace KDrawing.Models
 {
     public abstract class cShape
     {
-        public abstract PointF Begin { get; set; }
-        public abstract PointF End { get; set; }
         [XmlElement(Type = typeof(XmlColor))]
         public Color Color { get; set; }
+        public abstract PointF Begin { get; set; }
+        public abstract PointF End { get; set; }
         public float LineWeight { get; set; }
         public bool IsSelected { get; set; } = false;
         public bool IsHidden { get; set; } = false;
@@ -23,5 +22,10 @@ namespace KDrawing.Models
         public abstract object Clone();
         public abstract void Scale(float percent);
         public abstract void Rotate(int degree);
+    }
+
+    public abstract class cFillableShape : cShape
+    {
+        public bool IsFill { get; set; }
     }
 }

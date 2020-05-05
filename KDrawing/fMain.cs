@@ -94,7 +94,7 @@ namespace KDrawing
 
         private void fMain_Load(object sender, EventArgs e)
         {
-            mnu.Renderer = new KControls.MenuStripRenderer(Color.FromArgb(28, 151, 234));
+            mnu.Renderer = new MenuStripRenderer(Color.FromArgb(28, 151, 234));
 
             DrawingMode = DrawingMode.NoFill;
             ShapeType = ShapeType.NoDrawing;
@@ -188,7 +188,7 @@ namespace KDrawing
             if (DrawingMode == DrawingMode.NoFill)
             {
                 DrawingMode = DrawingMode.Fill;
-                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).Fill = true);
+                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).IsFill = true);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_white; }
                 else { btnEllipse.BackgroundImage = Properties.Resources.shape_circle_white; }
@@ -199,7 +199,7 @@ namespace KDrawing
             else
             {
                 DrawingMode = DrawingMode.NoFill;
-                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).Fill = false);
+                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).IsFill = false);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
                 else { btnEllipse.BackgroundImage = Properties.Resources.shape_circle_outline_white; }
@@ -218,7 +218,7 @@ namespace KDrawing
             {
                 if (shape is cGroup group)
                 {
-                    foreach (cShape s in group) { s.LineWeight = (float)nudLineWeight.Value; }
+                    foreach (cShape s in group.Shapes) { s.LineWeight = (float)nudLineWeight.Value; }
                 }
                 else { shape.LineWeight = (float)nudLineWeight.Value; }
             });
@@ -426,25 +426,25 @@ namespace KDrawing
 
                 case ShapeType.Rectangle:
                     cRectangle rectangle = new cRectangle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    rectangle.Fill = (DrawingMode == DrawingMode.Fill);
+                    rectangle.IsFill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(rectangle);
                     break;
 
                 case ShapeType.Square:
                     cSquare square = new cSquare(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    square.Fill = (DrawingMode == DrawingMode.Fill);
+                    square.IsFill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(square);
                     break;
 
                 case ShapeType.Ellipse:
                     cEllipse ellipse = new cEllipse(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    ellipse.Fill = (DrawingMode == DrawingMode.Fill);
+                    ellipse.IsFill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(ellipse);
                     break;
 
                 case ShapeType.Circle:
                     cCircle circle = new cCircle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    circle.Fill = (DrawingMode == DrawingMode.Fill);
+                    circle.IsFill = (DrawingMode == DrawingMode.Fill);
                     ListShapes.Add(circle);
                     break;
 
@@ -499,7 +499,7 @@ namespace KDrawing
                     if (drawingStage != DrawingStage.IsDrawPolygon)
                     {
                         cPolygon polygon = new cPolygon((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                        polygon.Fill = (DrawingMode == DrawingMode.Fill);
+                        polygon.IsFill = (DrawingMode == DrawingMode.Fill);
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 
@@ -701,10 +701,10 @@ namespace KDrawing
                 {
                     shape.Draw(e.Graphics);
 
-                    if (shape is cEllipse || shape is cGroup || shape is cText)
-                    {
+                    //if (shape is cEllipse || shape is cGroup || shape is cText || shape is cCurve)
+                    //{
                         e.Graphics.DrawRectangle(framePen, new RectangleF(shape.Begin.X, shape.Begin.Y, shape.End.X - shape.Begin.X, shape.End.Y - shape.Begin.Y));
-                    }
+                    //}
 
                     if (shape is cEllipse || shape is cRectangle || shape is cLine || shape is cFreehand)
                     {

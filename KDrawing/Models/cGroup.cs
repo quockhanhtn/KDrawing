@@ -1,38 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDrawing.Models
 {
     public class cGroup : cShape
     {
+        #region Fields
         private static int index = 0;
-        public List<cShape> Shapes = new List<cShape>();
+        #endregion
 
-        public int Count => Shapes.Count;
+        #region Properties
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
-        public cGroup()
-        {
-            Name = "Group " + (index++).ToString();
-        }
-
+        public List<cShape> Shapes = new List<cShape>();
+        public int Count => Shapes.Count;
         public cShape this[int index]
         {
             get => Shapes[index];
             set => Shapes[index] = value;
         }
-
-        public void Add(cShape shape)
-        {
-            Shapes.Add(shape);
-        }
-
         private GraphicsPath[] GraphicsPaths
         {
             get
@@ -103,6 +90,20 @@ namespace KDrawing.Models
             }
         }
 
+        ///[Obsolete("Phương thức này bị thừa, không được xài")]
+        protected override GraphicsPath GraphicsPath => null;
+        #endregion
+
+        #region Constructor
+        public cGroup() { Name = "Group " + (index++).ToString(); }
+        #endregion
+
+        #region Methods
+        public void Add(cShape shape)
+        {
+            Shapes.Add(shape);
+        }
+
         public override void Draw(Graphics graphics)
         {
             GraphicsPath[] paths = this.GraphicsPaths;
@@ -112,7 +113,7 @@ namespace KDrawing.Models
                 {
                     if (Shapes[i] is cFillableShape shape)
                     {
-                        if (shape.Fill)
+                        if (shape.IsFill)
                         {
                             using (Brush brush = new SolidBrush(shape.Color))
                             {
@@ -151,7 +152,7 @@ namespace KDrawing.Models
                 {
                     if (Shapes[i] is cFillableShape shape)
                     {
-                        if (shape.Fill)
+                        if (shape.IsFill)
                         {
                             using (Brush brush = new SolidBrush(shape.Color))
                             {
@@ -204,10 +205,7 @@ namespace KDrawing.Models
                         polygon.Points[j] = new PointF(polygon.Points[j].X + distance.X, polygon.Points[j].Y + distance.Y);
                     }
                 }
-                else if (Shapes[i] is cGroup group)
-                {
-                    group.Move(distance);
-                }
+                else if (Shapes[i] is cGroup group) { group.Move(distance); }
                 else
                 {
                     Shapes[i].Begin = new PointF(Shapes[i].Begin.X + distance.X, Shapes[i].Begin.Y + distance.Y);
@@ -237,20 +235,14 @@ namespace KDrawing.Models
             return group;
         }
 
-        public override void Scale(float percent)
-        {
-            foreach (cShape shape in this.Shapes)
-            {
-                shape.Scale(percent);
-            }
-        }
-
         public override void Rotate(int degree)
         {
-            foreach (cShape shape in this.Shapes)
-            {
-                shape.Rotate(degree);
-            }
+            foreach (cShape shape in this.Shapes) { shape.Rotate(degree); }
+        }
+
+        public override void Scale(float percent)
+        {
+            foreach (cShape shape in this.Shapes) { shape.Scale(percent); }
         }
 
         /// <summary>
@@ -316,8 +308,6 @@ namespace KDrawing.Models
             this.Begin = new PointF(minX, minY);
             this.End = new PointF(maxX, maxY);
         }
-
-        ///[Obsolete("Phương thức này bị thừa, không được xài")]
-        protected override GraphicsPath GraphicsPath => null;
+        #endregion
     }
 }

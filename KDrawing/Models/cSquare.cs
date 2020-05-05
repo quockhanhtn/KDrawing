@@ -6,13 +6,19 @@ namespace KDrawing.Models
 {
     public class cSquare : cRectangle
     {
+        #region Fields
         private static int index = 0;
+        #endregion
 
+        #region Constructor
         public cSquare() : base() { }
         public cSquare(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             Name = "Square " + (index++).ToString();
         }
+        #endregion
+
+        #region Properties
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -41,54 +47,9 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
 
-        public override void Draw(Graphics graphics)
-        {
-            using (GraphicsPath path = this.GraphicsPath)
-            {
-                if (!this.Fill)
-                {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
-                    {
-                        graphics.DrawPath(pen, path);
-                    }
-                }
-                else
-                {
-                    using (Brush brush = new SolidBrush(this.Color))
-                    {
-                        graphics.FillPath(brush, path);
-                    }
-                }
-            }
-        }
-
-        public override bool IsHit(PointF point)
-        {
-            bool res = false;
-            using (GraphicsPath path = this.GraphicsPath)
-            {
-                if (!Fill)
-                {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
-                    {
-                        res = path.IsOutlineVisible(point, pen);
-                    }
-                }
-                else
-                {
-                    res = path.IsVisible(point);
-                }
-            }
-            return res;
-        }
-
-        public override void Move(PointF distance)
-        {
-            this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
-        }
-
+        #region Methods
         public override object Clone()
         {
             return new cSquare(this.Begin, this.LineWeight, this.Color, this.DashStyle)
@@ -100,5 +61,6 @@ namespace KDrawing.Models
                 Width = this.Width
             };
         }
+        #endregion
     }
 }

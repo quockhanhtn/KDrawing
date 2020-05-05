@@ -78,7 +78,7 @@ namespace KDrawing
         {
             if (ListShapes.Find(shape => shape.IsSelected) is cGroup selectedGroup)
             {
-                foreach (cShape shape in selectedGroup)
+                foreach (cShape shape in selectedGroup.Shapes)
                 {
                     ListShapes.Add(shape);
                     shapeLayers.Add(shape);

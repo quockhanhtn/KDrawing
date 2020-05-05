@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -7,9 +6,13 @@ namespace KDrawing.Models
 {
     public class cRectangle : cFillableShape
     {
+        #region Fields
         private static int index = 0;
         PointF begin;
         PointF end;
+        #endregion
+
+        #region Properties
         public override PointF Begin
         {
             get => begin;
@@ -34,19 +37,6 @@ namespace KDrawing.Models
         public PointF BottomLeft { get; set; }
         public bool IsSquare { get; set; }
         public float Width { get; set; }
-
-        public cRectangle() { }
-        public cRectangle(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
-        {
-            this.Name = "Rectangle " + (index++).ToString();
-            this.Begin = begin;
-            this.LineWeight = lineWeight;
-            this.Color = color;
-            this.DashStyle = dashStyle;
-            this.IsSquare = false;
-            this.Width = 0f;
-        }
-
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -107,10 +97,26 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
 
+        #region Constructor
+        public cRectangle() { }
+        public cRectangle(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
+        {
+            this.Name = "Rectangle " + (index++).ToString();
+            this.Begin = begin;
+            this.LineWeight = lineWeight;
+            this.Color = color;
+            this.DashStyle = dashStyle;
+            this.IsSquare = false;
+            this.Width = 0f;
+        }
+        #endregion
+
+        #region Methods
         public override object Clone()
         {
-            return new cRectangle(this.Begin,this.LineWeight,this.Color,this.DashStyle)
+            return new cRectangle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,
@@ -125,7 +131,7 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                     {
@@ -144,28 +150,37 @@ namespace KDrawing.Models
 
         public override bool IsHit(PointF point)
         {
-            bool res = false;
+            bool result = false;
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
                     {
-                        res = path.IsOutlineVisible(point, pen);
+                        result = path.IsOutlineVisible(point, pen);
                     }
                 }
                 else
                 {
-                    res = path.IsVisible(point);
+                    result = path.IsVisible(point);
                 }
             }
-            return res;
+            return result;
         }
 
         public override void Move(PointF distance)
         {
             this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
             this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Rotate(int degree)
+        {
+            PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
+            begin = Utilities.RotatePoint(begin, midPoint, degree);
+            end = Utilities.RotatePoint(end, midPoint, degree);
+            TopRight = Utilities.RotatePoint(TopRight, midPoint, degree);
+            BottomLeft = Utilities.RotatePoint(BottomLeft, midPoint, degree);
         }
 
         public override void Scale(float percent)
@@ -178,14 +193,6 @@ namespace KDrawing.Models
 
             End = new PointF(Begin.X + dX, Begin.Y + dY);
         }
-
-        public override void Rotate(int degree)
-        {
-            PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
-            begin = Utilities.RotatePoint(begin, midPoint, degree);
-            end = Utilities.RotatePoint(end, midPoint, degree);
-            TopRight = Utilities.RotatePoint(TopRight, midPoint, degree);
-            BottomLeft = Utilities.RotatePoint(BottomLeft, midPoint, degree);
-        }
+        #endregion
     }
 }

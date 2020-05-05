@@ -1,29 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDrawing.Models
 {
     public class cFreehand : cShape
     {
+        #region Fields
         private static int index = 0;
+        #endregion
+
+        #region Properties
         public List<PointF> Points { get; set; } = new List<PointF>();
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
-
-        public cFreehand() { }
-        public cFreehand(float lineWeight, Color color, DashStyle dashStyle)
-        {
-            this.Name = "Free hand " + (index++).ToString();
-            this.LineWeight = lineWeight;
-            this.Color = color;
-            this.DashStyle = dashStyle;
-            this.Points = new List<PointF>();
-        }
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -36,10 +26,36 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
 
+        #region Constructor
+        public cFreehand() { }
+        public cFreehand(float lineWeight, Color color, DashStyle dashStyle)
+        {
+            this.Name = "Free hand " + (index++).ToString();
+            this.LineWeight = lineWeight;
+            this.Color = color;
+            this.DashStyle = dashStyle;
+            this.Points = new List<PointF>();
+        }
+        #endregion
+
+        #region Methods
         public override object Clone()
         {
-            return null;
+            cFreehand freehand = new cFreehand()
+            {
+                Name = this.Name,
+                Begin = this.Begin,
+                End = this.End,
+                Color = this.Color,
+                LineWeight = this.LineWeight,
+                DashStyle = this.DashStyle,
+                IsHidden = this.IsHidden,
+                IsSelected = this.IsSelected,
+            };
+            Points.ForEach(point => freehand.Points.Add(point));
+            return freehand;
         }
 
         public override void Draw(Graphics graphics)
@@ -56,15 +72,15 @@ namespace KDrawing.Models
 
         public override bool IsHit(PointF point)
         {
-            bool res = false;
+            bool result = false;
             using (GraphicsPath path = GraphicsPath)
             {
                 using (Pen pen = new Pen(Color, LineWeight + 3))
                 {
-                    res = path.IsOutlineVisible(point, pen);
+                    result = path.IsOutlineVisible(point, pen);
                 }
             }
-            return res;
+            return result;
         }
 
         public override void Move(PointF distance)
@@ -77,10 +93,6 @@ namespace KDrawing.Models
             }
         }
 
-        public override void Scale(float percent)
-        {
-        }
-
         public override void Rotate(int degree)
         {
             PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
@@ -91,5 +103,40 @@ namespace KDrawing.Models
                 Points[i] = Utilities.RotatePoint(Points[i], midPoint, degree);
             }
         }
+
+        public override void Scale(float percent)
+        {
+        }
+
+        public void FindRegion()
+        {
+            float minX = float.MaxValue;
+            float minY = float.MaxValue;
+            float maxX = float.MinValue;
+            float maxY = float.MinValue;
+
+            this.Points.ForEach(p =>
+            {
+                if (minX > p.X)
+                {
+                    minX = p.X;
+                }
+                if (minY > p.Y)
+                {
+                    minY = p.Y;
+                }
+                if (maxX < p.X)
+                {
+                    maxX = p.X;
+                }
+                if (maxY < p.Y)
+                {
+                    maxY = p.Y;
+                }
+            });
+            this.Begin = new PointF(minX, minY);
+            this.End = new PointF(maxX, maxY);
+        }
+        #endregion
     }
 }

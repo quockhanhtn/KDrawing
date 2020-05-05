@@ -7,8 +7,11 @@ namespace KDrawing.Models
 {
     public class cText : cFillableShape
     {
+        #region Fields
         private Font myFont;
+        #endregion
 
+        #region Properties
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
         public string Text { get; set; }
@@ -33,16 +36,6 @@ namespace KDrawing.Models
             set { myFont = FontSerializationHelper.FromString(value); }
         }
 
-        public cText() { }
-        public cText(Color color, bool fill)
-        {
-            this.Begin = new PointF(0, 0);
-            this.Text = "Example text";
-            this.MyFont = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.Color = color;
-            this.Fill = fill;
-        }
-
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -58,28 +51,50 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
+
+        #region Constructor
+        public cText() { }
+        public cText(PointF begin, string text, Font font, Color color, bool isFill)
+        {
+            this.Begin = begin;
+            this.Text = text;
+            this.MyFont = font;
+            this.Color = color;
+            this.IsFill = isFill;
+        }
+        #endregion
+
+        #region Methods
+        public static cText Default()
+        {
+            return new cText(
+                new PointF(0, 0),
+                "Example text",
+                new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))),
+                Color.Black,
+                false
+                );
+        }
 
         public override object Clone()
         {
-            cText cloneText = new cText()
+            return new cText(Begin, Text, MyFont, Color, IsFill)
             {
-                Begin = this.Begin,
                 Name = this.Name,
                 End = this.End,
                 IsSelected = this.IsSelected,
                 IsHidden = this.IsHidden
             };
-            cloneText.GetProperty(this);
-            return cloneText;
         }
 
         public override void Draw(Graphics graphics)
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.Fill)
+                if (!this.IsFill)
                 {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
+                    using (Pen pen = new Pen(this.Color, 1f) { DashStyle = this.DashStyle })
                     {
                         graphics.DrawPath(pen, path);
                     }
@@ -96,27 +111,28 @@ namespace KDrawing.Models
 
         public override bool IsHit(PointF point)
         {
-            bool res = false;
+            bool result = false;
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
                     {
-                        res = path.IsOutlineVisible(point, pen);
+                        result = path.IsOutlineVisible(point, pen);
                     }
                 }
                 else
                 {
-                    res = path.IsVisible(point);
+                    result = path.IsVisible(point);
                 }
             }
-            return res;
+            return result;
         }
 
         public override void Move(PointF distance)
         {
             this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
+            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
         }
 
         public override void Rotate(int degree) { }
@@ -136,7 +152,8 @@ namespace KDrawing.Models
             this.Text = source.Text;
             this.MyFont = source.MyFont;
             this.Color = source.Color;
-            this.Fill = source.Fill;
+            this.IsFill = source.IsFill;
         }
+        #endregion
     }
 }

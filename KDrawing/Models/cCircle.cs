@@ -5,15 +5,19 @@ namespace KDrawing.Models
 {
     public class cCircle : cEllipse
     {
+        #region Fields
         private static int index = 0;
+        #endregion
 
+        #region Constructor
         public cCircle() : base() { }
-
         public cCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             this.Name = "Circle " + (index++).ToString();
         }
+        #endregion
 
+        #region Properties
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -27,7 +31,9 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
 
+        #region Methods
         public override object Clone()
         {
             return new cCircle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
@@ -44,7 +50,7 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                     {
@@ -60,25 +66,6 @@ namespace KDrawing.Models
                 }
             }
         }
-
-        public override bool IsHit(PointF point)
-        {
-            bool res = false;
-            using (GraphicsPath path = this.GraphicsPath)
-            {
-                if (!Fill)
-                {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
-                    {
-                        res = path.IsOutlineVisible(point, pen);
-                    }
-                }
-                else
-                {
-                    res = path.IsVisible(point);
-                }
-            }
-            return res;
-        }
+        #endregion
     }
 }

@@ -1,14 +1,17 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 namespace KDrawing.Models
 {
     public class cEllipse : cFillableShape
     {
+        #region Fields
         private static int index = 0;
         PointF begin;
         PointF end;
+        #endregion
+
+        #region Properties
         public override PointF Begin
         {
             get => begin;
@@ -33,20 +36,6 @@ namespace KDrawing.Models
         public PointF BottomLeft { get; set; }
         public bool IsCircle { get; set; }
         public float Diameter { get; set; }
-
-        public cEllipse() { }
-
-        public cEllipse(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
-        {
-            this.Name = "Ellipse " + (index++).ToString();
-            this.Begin = begin;
-            this.LineWeight = lineWeight;
-            this.Color = color;
-            this.DashStyle = dashStyle;
-            this.IsCircle = false;
-            this.Diameter = 0f;
-        }
-
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -66,7 +55,23 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
 
+        #region Constructor
+        public cEllipse() { }
+        public cEllipse(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
+        {
+            this.Name = "Ellipse " + (index++).ToString();
+            this.Begin = begin;
+            this.LineWeight = lineWeight;
+            this.Color = color;
+            this.DashStyle = dashStyle;
+            this.IsCircle = false;
+            this.Diameter = 0f;
+        }
+        #endregion
+
+        #region Methods
         public override object Clone()
         {
             return new cEllipse(this.Begin, this.LineWeight, this.Color, this.DashStyle)
@@ -76,7 +81,7 @@ namespace KDrawing.Models
                 IsHidden = this.IsHidden,
                 Name = this.Name,
                 IsCircle = this.IsCircle,
-                Diameter =this.Diameter
+                Diameter = this.Diameter
             };
         }
 
@@ -84,7 +89,7 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                     {
@@ -103,28 +108,35 @@ namespace KDrawing.Models
 
         public override bool IsHit(PointF point)
         {
-            bool res = false;
+            bool result = false;
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!Fill)
+                if (!IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
                     {
-                        res = path.IsOutlineVisible(point, pen);
+                        result = path.IsOutlineVisible(point, pen);
                     }
                 }
                 else
                 {
-                    res = path.IsVisible(point);
+                    result = path.IsVisible(point);
                 }
             }
-            return res;
+            return result;
         }
 
         public override void Move(PointF distance)
         {
             this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
             this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Rotate(int degree)
+        {
+            PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
+            Begin = Utilities.RotatePoint(Begin, midPoint, degree);
+            End = Utilities.RotatePoint(End, midPoint, degree);
         }
 
         public override void Scale(float percent)
@@ -137,12 +149,6 @@ namespace KDrawing.Models
 
             End = new PointF(Begin.X + dX, Begin.Y + dY);
         }
-
-        public override void Rotate(int degree)
-        {
-            PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
-            Begin = Utilities.RotatePoint(Begin, midPoint, degree);
-            End = Utilities.RotatePoint(End, midPoint, degree);
-        }
+        #endregion
     }
 }

@@ -92,7 +92,6 @@
     <Compile Include="Models\cCircle.cs" />
     <Compile Include="Models\cCurve.cs" />
     <Compile Include="Models\cEllipse.cs" />
-    <Compile Include="Models\cFillableShape.cs" />
     <Compile Include="Models\cFreehand.cs" />
     <Compile Include="Models\cGroup.cs" />
     <Compile Include="Models\cLine.cs" />

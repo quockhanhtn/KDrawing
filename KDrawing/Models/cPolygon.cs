@@ -1,29 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDrawing.Models
 {
     public class cPolygon : cFillableShape
     {
+        #region Fields
         private static int index = 0;
-        public List<PointF> Points { get; set; } = new List<PointF>();
+        #endregion
+
+        #region Properties
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
-
-        public cPolygon() { }
-        public cPolygon(float lineWeight, Color color, DashStyle dashStyle)
-        {
-            this.Name = "Polygon " + (index++).ToString();
-            this.LineWeight = lineWeight;
-            this.Color = color;
-            this.DashStyle = dashStyle;
-        }
-
+        public List<PointF> Points { get; set; } = new List<PointF>();
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -41,12 +31,39 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        #endregion
+
+        #region Constructor
+        public cPolygon() { }
+        public cPolygon(float lineWeight, Color color, DashStyle dashStyle)
+        {
+            this.Name = "Polygon " + (index++).ToString();
+            this.LineWeight = lineWeight;
+            this.Color = color;
+            this.DashStyle = dashStyle;
+        }
+        #endregion
+
+        #region Methods
+        public override object Clone()
+        {
+            cPolygon polygon = new cPolygon(this.LineWeight, this.Color, this.DashStyle)
+            {
+                Begin = this.Begin,
+                End = this.End,
+                IsSelected = this.IsSelected,
+                IsHidden = this.IsHidden,
+                Name = this.Name,
+            };
+            Points.ForEach(point => polygon.Points.Add(point));
+            return polygon;
+        }
 
         public override void Draw(Graphics graphics)
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.Fill)
+                if (!this.IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                     {
@@ -75,22 +92,22 @@ namespace KDrawing.Models
 
         public override bool IsHit(PointF point)
         {
-            bool res = false;
+            bool result = false;
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!Fill)
+                if (!IsFill)
                 {
                     using (Pen pen = new Pen(this.Color, this.LineWeight + 3))
                     {
-                        res = path.IsOutlineVisible(point, pen);
+                        result = path.IsOutlineVisible(point, pen);
                     }
                 }
                 else
                 {
-                    res = path.IsVisible(point);
+                    result = path.IsVisible(point);
                 }
             }
-            return res;
+            return result;
         }
 
         public override void Move(PointF distance)
@@ -101,25 +118,6 @@ namespace KDrawing.Models
             {
                 Points[i] = new PointF(Points[i].X + distance.X, Points[i].Y + distance.Y);
             }
-        }
-
-        public override object Clone()
-        {
-            cPolygon polygon = new cPolygon(this.LineWeight, this.Color, this.DashStyle)
-            {
-                Begin = this.Begin,
-                End = this.End,
-                IsSelected = this.IsSelected,
-                IsHidden = this.IsHidden,
-                Name = this.Name,
-            };
-            Points.ForEach(point => polygon.Points.Add(point));
-            return polygon;
-        }
-
-        public override void Scale(float percent)
-        {
-
         }
 
         public override void Rotate(int degree)
@@ -133,6 +131,10 @@ namespace KDrawing.Models
             }
         }
 
+        public override void Scale(float percent)
+        {
+
+        }
 
         /// <summary>
         /// Tìm khung chứa đa giác
@@ -167,5 +169,6 @@ namespace KDrawing.Models
             this.Begin = new PointF(minX, minY);
             this.End = new PointF(maxX, maxY);
         }
+        #endregion
     }
 }
