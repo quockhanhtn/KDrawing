@@ -37,7 +37,7 @@ namespace KDrawing.Models
     {
         static public T FromString<T>(string value)
         {
-            return (T)Enum.Parse(typeof(T), value, true);
+            return (T)System.Enum.Parse(typeof(T), value, true);
         }
     }
 }

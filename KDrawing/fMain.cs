@@ -1,12 +1,12 @@
-﻿using KDrawing.KControls;
+﻿using KDrawing.Enums;
+using KDrawing.Interfaces;
+using KDrawing.KControls;
 using KDrawing.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace KDrawing
 {
@@ -115,19 +115,19 @@ namespace KDrawing
             {
                 case Keys.W:
                 case Keys.Up:
-                    MoveShape(ToUp);
+                    MoveShape(Direction.Up);
                     break;
                 case Keys.S:
                 case Keys.Down:
-                    MoveShape(ToDown);
+                    MoveShape(Direction.Down);
                     break;
                 case Keys.Left:
                 case Keys.A:
-                    MoveShape(ToLeft);
+                    MoveShape(Direction.Left);
                     break;
                 case Keys.Right:
                 case Keys.D:
-                    MoveShape(ToRight);
+                    MoveShape(Direction.Right);
                     break;
                 case Keys.Delete:
                     DeleteSelectedShape();
@@ -188,7 +188,7 @@ namespace KDrawing
             if (DrawingMode == DrawingMode.NoFill)
             {
                 DrawingMode = DrawingMode.Fill;
-                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).IsFill = true);
+                ListShapes.FindAll(shape => (shape is IFillableShape && shape.IsSelected)).ForEach(shape => (shape as IFillableShape).IsFill = true);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_white; }
                 else { btnEllipse.BackgroundImage = Properties.Resources.shape_circle_white; }
@@ -199,7 +199,7 @@ namespace KDrawing
             else
             {
                 DrawingMode = DrawingMode.NoFill;
-                ListShapes.FindAll(shape => (shape is cFillableShape && shape.IsSelected)).ForEach(shape => (shape as cFillableShape).IsFill = false);
+                ListShapes.FindAll(shape => (shape is IFillableShape && shape.IsSelected)).ForEach(shape => (shape as IFillableShape).IsFill = false);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
                 else { btnEllipse.BackgroundImage = Properties.Resources.shape_circle_outline_white; }

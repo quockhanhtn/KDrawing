@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace KDrawing.Models
 {
-    public class cText : cFillableShape
+    public class cText : cShape, Interfaces.IFillableShape
     {
         #region Fields
         private Font myFont;
@@ -14,6 +14,7 @@ namespace KDrawing.Models
         #region Properties
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
+        public bool IsFill { get; set; }
         public string Text { get; set; }
         [XmlIgnore()]
         public Font MyFont
@@ -35,7 +36,6 @@ namespace KDrawing.Models
             get { return FontSerializationHelper.ToString(myFont); }
             set { myFont = FontSerializationHelper.FromString(value); }
         }
-
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -131,8 +131,14 @@ namespace KDrawing.Models
 
         public override void Move(PointF distance)
         {
-            this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+            Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
+            End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Move(Enums.Direction direction, int movingOffset)
+        {
+            Begin = Utilities.MovePoint(Begin, direction, movingOffset);
+            End = Utilities.MovePoint(End, direction, movingOffset);
         }
 
         public override void Rotate(int degree) { }

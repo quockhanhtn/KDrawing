@@ -1,9 +1,10 @@
-﻿using System.Drawing;
+﻿using KDrawing.Enums;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cEllipse : cFillableShape
+    public class cEllipse : cShape, Interfaces.IFillableShape
     {
         #region Fields
         private static int index = 0;
@@ -55,6 +56,7 @@ namespace KDrawing.Models
                 return path;
             }
         }
+        public bool IsFill { get; set; }
         #endregion
 
         #region Constructor
@@ -128,8 +130,14 @@ namespace KDrawing.Models
 
         public override void Move(PointF distance)
         {
-            this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+            Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
+            End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Move(Direction direction, int movingOffset)
+        {
+            Begin = Utilities.MovePoint(Begin, direction, movingOffset);
+            End = Utilities.MovePoint(End, direction, movingOffset);
         }
 
         public override void Rotate(int degree)
@@ -149,6 +157,8 @@ namespace KDrawing.Models
 
             End = new PointF(Begin.X + dX, Begin.Y + dY);
         }
+
+        
         #endregion
     }
 }

@@ -22,17 +22,23 @@ namespace KDrawing.Models
             double angleInRadians = angleInDegrees * (Math.PI / 180);
             double cosTheta = Math.Cos(angleInRadians);
             double sinTheta = Math.Sin(angleInRadians);
-            return new PointF
-            {
-                X =
-                    (float)
-                    (cosTheta * (pointToRotate.X - centerPoint.X) -
-                    sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
-                Y =
-                    (float)
-                    (sinTheta * (pointToRotate.X - centerPoint.X) +
-                    cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
-            };
+
+            float x = (float)(cosTheta * (pointToRotate.X - centerPoint.X) - sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X);
+            float y = (float)(sinTheta * (pointToRotate.X - centerPoint.X) + cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y);
+            return new PointF(x, y);
+        }
+
+        public static PointF MovePoint(PointF pointToMove, Enums.Direction direction, int movingOffset)
+        {
+            float x = pointToMove.X;
+            float y = pointToMove.Y;
+
+            if (direction == Enums.Direction.Left) { x -= movingOffset; }
+            else if (direction == Enums.Direction.Up) { y -= movingOffset; }
+            else if (direction == Enums.Direction.Right) { x += movingOffset; }
+            else if (direction == Enums.Direction.Down) { y += movingOffset; }
+
+            return new PointF(x, y);
         }
 
         static public Font ChangeFontSize(Font font, float fontSize)

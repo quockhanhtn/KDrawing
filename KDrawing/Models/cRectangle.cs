@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cRectangle : cFillableShape
+    public class cRectangle : cShape, Interfaces.IFillableShape
     {
         #region Fields
         private static int index = 0;
@@ -37,6 +37,7 @@ namespace KDrawing.Models
         public PointF BottomLeft { get; set; }
         public bool IsSquare { get; set; }
         public float Width { get; set; }
+        public bool IsFill { get; set; }
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -170,8 +171,14 @@ namespace KDrawing.Models
 
         public override void Move(PointF distance)
         {
-            this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+            Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
+            End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Move(Enums.Direction direction, int movingOffset)
+        {
+            Begin = Utilities.MovePoint(Begin, direction, movingOffset);
+            End = Utilities.MovePoint(End, direction, movingOffset);
         }
 
         public override void Rotate(int degree)

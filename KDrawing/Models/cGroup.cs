@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using KDrawing.Enums;
+using KDrawing.Interfaces;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -99,10 +101,7 @@ namespace KDrawing.Models
         #endregion
 
         #region Methods
-        public void Add(cShape shape)
-        {
-            Shapes.Add(shape);
-        }
+        public void Add(cShape shape) { Shapes.Add(shape); }
 
         public override void Draw(Graphics graphics)
         {
@@ -111,18 +110,18 @@ namespace KDrawing.Models
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    if (Shapes[i] is cFillableShape shape)
+                    if (Shapes[i] is IFillableShape fillableShape)
                     {
-                        if (shape.IsFill)
+                        if (fillableShape.IsFill)
                         {
-                            using (Brush brush = new SolidBrush(shape.Color))
+                            using (Brush brush = new SolidBrush(Shapes[i].Color))
                             {
                                 graphics.FillPath(brush, path);
                             }
                         }
                         else
                         {
-                            using (Pen pen = new Pen(shape.Color, shape.LineWeight) { DashStyle = shape.DashStyle })
+                            using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight) { DashStyle = Shapes[i].DashStyle })
                             {
                                 graphics.DrawPath(pen, path);
                             }
@@ -150,18 +149,18 @@ namespace KDrawing.Models
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    if (Shapes[i] is cFillableShape shape)
+                    if (Shapes[i] is IFillableShape fillableShape)
                     {
-                        if (shape.IsFill)
+                        if (fillableShape.IsFill)
                         {
-                            using (Brush brush = new SolidBrush(shape.Color))
+                            using (Brush brush = new SolidBrush(Shapes[i].Color))
                             {
                                 if (path.IsVisible(point)) { return true; }
                             }
                         }
                         else
                         {
-                            using (Pen pen = new Pen(shape.Color, shape.LineWeight + 3))
+                            using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight + 3))
                             {
                                 if (path.IsOutlineVisible(point, pen)) { return true; }
                             }
@@ -185,35 +184,20 @@ namespace KDrawing.Models
         {
             for (int i = 0; i < Shapes.Count; i++)
             {
-                if (Shapes[i] is cCurve curve)
-                {
-                    curve.Begin = new PointF(curve.Begin.X + distance.X, curve.Begin.Y + distance.Y);
-                    curve.End = new PointF(curve.End.X + distance.X, curve.End.Y + distance.Y);
-
-                    for (int j = 0; j < curve.Points.Count; j++)
-                    {
-                        curve.Points[j] = new PointF(curve.Points[j].X + distance.X, curve.Points[j].Y + distance.Y);
-                    }
-                }
-                else if (Shapes[i] is cPolygon polygon)
-                {
-                    polygon.Begin = new PointF(polygon.Begin.X + distance.X, polygon.Begin.Y + distance.Y);
-                    polygon.End = new PointF(polygon.End.X + distance.X, polygon.End.Y + distance.Y);
-
-                    for (int j = 0; j < polygon.Points.Count; j++)
-                    {
-                        polygon.Points[j] = new PointF(polygon.Points[j].X + distance.X, polygon.Points[j].Y + distance.Y);
-                    }
-                }
-                else if (Shapes[i] is cGroup group) { group.Move(distance); }
-                else
-                {
-                    Shapes[i].Begin = new PointF(Shapes[i].Begin.X + distance.X, Shapes[i].Begin.Y + distance.Y);
-                    Shapes[i].End = new PointF(Shapes[i].End.X + distance.X, Shapes[i].End.Y + distance.Y);
-                }
+                Shapes[i].Move(distance);
             }
             Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
             End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Move(Direction direction, int movingOffset)
+        {
+            for (int i = 0; i < Shapes.Count; i++)
+            {
+                Shapes[i].Move(direction, movingOffset);
+            }
+            Begin = Utilities.MovePoint(Begin, direction, movingOffset);
+            End = Utilities.MovePoint(End, direction, movingOffset);
         }
 
         public override object Clone()

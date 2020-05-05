@@ -4,17 +4,11 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cCurve : cShape
+    public class cCurve : cMultiPointShape
     {
-        #region Fields
+        #region Fields and Properties
         private static int index = 0;
         private static int indexBezier = 0;
-        #endregion
-
-        #region Properties
-        public override PointF Begin { get; set; }
-        public override PointF End { get; set; }
-        public List<PointF> Points { get; set; } = new List<PointF>();
         protected override GraphicsPath GraphicsPath
         {
             get
@@ -76,52 +70,6 @@ namespace KDrawing.Models
                 }
             }
             return result;
-        }
-
-        public override void Move(PointF distance)
-        {
-            Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            End = new PointF(End.X + distance.X, End.Y + distance.Y);
-            for (int i = 0; i < Points.Count; i++)
-            {
-                Points[i] = new PointF(Points[i].X + distance.X, Points[i].Y + distance.Y);
-            }
-        }
-
-        public override void Rotate(int degree)
-        {
-            PointF midPoint = new PointF((Begin.X + End.X) / 2, (Begin.Y + End.Y) / 2);
-            Begin = Utilities.RotatePoint(Begin, midPoint, degree);
-            End = Utilities.RotatePoint(End, midPoint, degree);
-            for (int i = 0; i < Points.Count; i++)
-            {
-                Points[i] = Utilities.RotatePoint(Points[i], midPoint, degree);
-            }
-        }
-
-        public override void Scale(float percent)
-        {
-        }
-
-        /// <summary>
-        /// Tìm khung chứa đường cong
-        /// </summary>
-        public void FindRegion()
-        {
-            float minX = float.MaxValue;
-            float minY = float.MaxValue;
-            float maxX = float.MinValue;
-            float maxY = float.MinValue;
-
-            this.Points.ForEach(p =>
-            {
-                if (minX > p.X) { minX = p.X; }
-                if (minY > p.Y) { minY = p.Y; }
-                if (maxX < p.X) { maxX = p.X; }
-                if (maxY < p.Y) { maxY = p.Y; }
-            });
-            this.Begin = new PointF(minX, minY);
-            this.End = new PointF(maxX, maxY);
         }
         #endregion
     }

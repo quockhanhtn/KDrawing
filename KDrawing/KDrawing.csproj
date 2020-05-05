@@ -64,6 +64,10 @@
     <Compile Include="Boxs\fTextEditor.Designer.cs">
       <DependentUpon>fTextEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\DrawingMode.cs" />
+    <Compile Include="Enums\DrawingStage.cs" />
+    <Compile Include="Enums\ShapeType.cs" />
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +77,8 @@
     <Compile Include="fMain_Function.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\IFillableShape.cs" />
+    <Compile Include="Models\cMultiPointShape.cs" />
     <Compile Include="Models\cText.cs" />
     <Compile Include="Models\FontSerializationHelper.cs" />
     <Compile Include="Models\ShapeData.cs" />
@@ -99,7 +105,6 @@
     <Compile Include="Models\cRectangle.cs" />
     <Compile Include="Models\cShape.cs" />
     <Compile Include="Models\cSquare.cs" />
-    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\MyCursor.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Program.cs" />

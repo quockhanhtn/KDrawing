@@ -73,8 +73,14 @@ namespace KDrawing.Models
 
         public override void Move(PointF distance)
         {
-            this.Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
-            this.End = new PointF(End.X + distance.X, End.Y + distance.Y);
+            Begin = new PointF(Begin.X + distance.X, Begin.Y + distance.Y);
+            End = new PointF(End.X + distance.X, End.Y + distance.Y);
+        }
+
+        public override void Move(Enums.Direction direction, int movingOffset)
+        {
+            Begin = Utilities.MovePoint(Begin, direction, movingOffset);
+            End = Utilities.MovePoint(End, direction, movingOffset);
         }
 
         public override void Rotate(int degree)
