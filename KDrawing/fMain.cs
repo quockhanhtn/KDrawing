@@ -6,15 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace KDrawing
 {
     public partial class fMain : Form
     {
+        public static int untitledIndex = 0;
+
         ShapeType shapeType = ShapeType.NoDrawing;
         DrawingMode drawingMode = DrawingMode.NoFill;
         DrawingStage drawingStage = DrawingStage.Orther;
+        private string filePath;
 
         private List<Button> listButton;
         private List<cShape> listShapes = new List<cShape>();
@@ -90,6 +94,20 @@ namespace KDrawing
         public fMain()
         {
             InitializeComponent();
+            titleBar.TitleText = "KDrawing - Untitled " + (++untitledIndex).ToString();
+        }
+
+        public fMain(string filePath)
+        {
+            InitializeComponent();
+            this.filePath = filePath;
+            titleBar.TitleText = "KDrawing - " + System.IO.Path.GetFileName(filePath);
+            ShapeData.Deserialize(this.filePath).ForEach(shape =>
+            {
+                ListShapes.Add(shape);
+                shapeLayers.Add(shape);
+            });
+            
         }
 
         private void fMain_Load(object sender, EventArgs e)
@@ -244,7 +262,7 @@ namespace KDrawing
             this.ReDraw();
         }
 
-        #region select Color button envent
+        #region select Color button event
         private void btnDefaultColor_Click(object sender, EventArgs e)
         {
             btnForeColor.BackColor = Color.Black;
@@ -285,6 +303,8 @@ namespace KDrawing
             psfMain.BackColor = btn.BackColor;
         }
         #endregion
+
+        #region psfMain's event
         private void psfMain_DoubleClick(object sender, EventArgs e)
         {
             if (drawingStage == DrawingStage.IsDrawPolygon)
@@ -685,7 +705,10 @@ namespace KDrawing
                         if (drawingStage != DrawingStage.IsDrawPolygon) { shapeLayers.Add(shape); }
                     }
                     // ngược lại không là đường cong thì ghi bình thường
-                    else { shapeLayers.Add(shape); }
+                    else {
+                        if (shape is cFreehand freehand) { freehand.FindRegion(); }
+                        shapeLayers.Add(shape); 
+                    }
                 }
             }
             catch { }
@@ -701,10 +724,10 @@ namespace KDrawing
                 {
                     shape.Draw(e.Graphics);
 
-                    //if (shape is cEllipse || shape is cGroup || shape is cText || shape is cCurve)
-                    //{
+                    if (!(shape is cLine))
+                    {
                         e.Graphics.DrawRectangle(framePen, new RectangleF(shape.Begin.X, shape.Begin.Y, shape.End.X - shape.Begin.X, shape.End.Y - shape.Begin.Y));
-                    //}
+                    }
 
                     if (shape is cEllipse || shape is cRectangle || shape is cLine || shape is cFreehand)
                     {
@@ -747,6 +770,7 @@ namespace KDrawing
                 e.Graphics.DrawRectangle(framePen, SelectedRegion);
             }
         }
+        #endregion
 
         private void btnText_Click(object sender, EventArgs e)
         {
@@ -879,22 +903,130 @@ namespace KDrawing
         #region Menu File
         private void mnuFile_Open_Click(object sender, EventArgs e)
         {
+            string openFilePath = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Kdrawing project | *.kdr";
 
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                openFilePath = openFileDialog.FileName;
+                fMain fMain = new fMain(openFilePath);
+                fMain.Show();
+            }
         }
-
+        
         private void mnuFile_New_Click(object sender, EventArgs e)
         {
-
+            fMain fMain = new fMain();
+            fMain.Show();
         }
 
         private void mnuFile_Save_Click(object sender, EventArgs e)
         {
+            if (this.filePath == null)
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Kdrawing project | *.kdr | " +
+                                            "PNG Picture | *.png | " +
+                                            "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif | " +
+                                            "BMP Picture | *.bmp | " +
+                                            "GIF Picture | *.gif |" +
+                                            "TIFF Picture | *.tif *.tiff";
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        var extension = System.IO.Path.GetExtension(saveFileDialog.FileName);
 
+                        if (extension.ToLower() == ".kdr") { this.filePath = saveFileDialog.FileName; }
+                        else
+                        {
+                            Bitmap myBitmap = Utilities.CreateBimap(psfMain.Width, psfMain.Height, psfMain.BackColor, ListShapes);
+
+                            switch (extension.ToLower())
+                            {
+                                case ".png":
+                                    myBitmap.Save(saveFileDialog.FileName, ImageFormat.Png);
+                                    break;
+
+                                case ".jpeg":
+                                case ".jpg":
+                                case ".jpe":
+                                case ".jfif":
+                                    myBitmap.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                                    break;
+
+                                case ".bmp":
+                                    myBitmap.Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                                    break;
+
+                                case ".gif":
+                                    myBitmap.Save(saveFileDialog.FileName, ImageFormat.Gif);
+                                    break;
+
+                                case ".tif":
+                                case ".tiff":
+                                    myBitmap.Save(saveFileDialog.FileName, ImageFormat.Tiff);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.filePath != null)
+            {
+                ShapeData.Serialize(ListShapes, this.filePath);
+            }
         }
 
         private void mnuFile_SaveAs_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Kdrawing project | *.kdr | " +
+                                        "PNG Picture | *.png | " +
+                                        "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif | " +
+                                        "BMP Picture | *.bmp | " +
+                                        "GIF Picture | *.gif |" +
+                                        "TIFF Picture | *.tif *.tiff";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var extension = System.IO.Path.GetExtension(saveFileDialog.FileName);
 
+                    if (extension.ToLower() == ".kdr") { this.filePath = saveFileDialog.FileName; }
+                    else
+                    {
+                        Bitmap myBitmap = Utilities.CreateBimap(psfMain.Width, psfMain.Height, psfMain.BackColor, ListShapes);
+
+                        switch (extension.ToLower())
+                        {
+                            case ".png":
+                                myBitmap.Save(saveFileDialog.FileName, ImageFormat.Png);
+                                break;
+
+                            case ".jpeg":
+                            case ".jpg":
+                            case ".jpe":
+                            case ".jfif":
+                                myBitmap.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                                break;
+
+                            case ".bmp":
+                                myBitmap.Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                                break;
+
+                            case ".gif":
+                                myBitmap.Save(saveFileDialog.FileName, ImageFormat.Gif);
+                                break;
+
+                            case ".tif":
+                            case ".tiff":
+                                myBitmap.Save(saveFileDialog.FileName, ImageFormat.Tiff);
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         private void mnuFile_Quit_Click(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KDrawing.KControls;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace KDrawing.Models
@@ -41,7 +43,7 @@ namespace KDrawing.Models
             return new PointF(x, y);
         }
 
-        static public Font ChangeFontSize(Font font, float fontSize)
+        public static Font ChangeFontSize(Font font, float fontSize)
         {
             if (font != null)
             {
@@ -52,6 +54,23 @@ namespace KDrawing.Models
                 }
             }
             return font;
+        }
+
+        /// <summary>
+        /// Tạo bitmap từ các hình
+        /// </summary>
+        /// <param name="width">chiều rộng</param>
+        /// <param name="heigth">chiều cao</param>
+        /// <param name="backColor">màu nền</param>
+        /// <param name="listShapes">các hình vẽ co1 IsHidden = false</param>
+        /// <returns></returns>
+        public static Bitmap CreateBimap(int width, int heigth, Color backColor, List<cShape> listShapes)
+        {
+            Bitmap bitmap = new Bitmap(width, heigth, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.Clear(backColor);
+            listShapes.FindAll(shape => !shape.IsHidden).ForEach(shape => shape.Draw(graphics));
+            return bitmap;
         }
     }
 }

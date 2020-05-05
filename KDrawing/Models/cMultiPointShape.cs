@@ -53,7 +53,21 @@ namespace KDrawing.Models
             }
         }
 
-        public override void Scale(float percent) { }
+        public override void Scale(float percent) 
+        {
+            float dX = (End.X - Begin.X) * percent;
+            float dY = (End.Y - Begin.Y) * percent;
+
+            End = new PointF(Begin.X + dX, Begin.Y + dY);
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                float _dX = (Points[i].X - Begin.X) * percent;
+                float _dY = (Points[i].Y - Begin.Y) * percent;
+
+                Points[i] = new PointF(Begin.X + _dX, Begin.Y + _dY);
+            }
+        }
 
         public void FindRegion()
         {

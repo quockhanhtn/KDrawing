@@ -149,16 +149,10 @@ namespace KDrawing.Models
 
         public override void Scale(float percent)
         {
-            float dX = End.X - Begin.X;
-            float dY = End.Y - Begin.Y;
-
-            dX *= percent;
-            dY *= percent;
-
+            float dX = (End.X - Begin.X) * percent;
+            float dY = (End.Y - Begin.Y) * percent;
             End = new PointF(Begin.X + dX, Begin.Y + dY);
         }
-
-        
         #endregion
     }
 }
