@@ -1311,6 +1311,7 @@
             this.psfMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.psfMain.Location = new System.Drawing.Point(69, 5);
             this.psfMain.Margin = new System.Windows.Forms.Padding(5);
+            this.psfMain.MyBitmap = ((System.Drawing.Bitmap)(resources.GetObject("psfMain.MyBitmap")));
             this.psfMain.Name = "psfMain";
             this.psfMain.Size = new System.Drawing.Size(1204, 741);
             this.psfMain.TabIndex = 14;

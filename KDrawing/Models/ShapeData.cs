@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -20,18 +21,20 @@ namespace KDrawing.Models
         [XmlElement(typeof(cText))]
         public List<cShape> ListShapes;
 
-        public static void Serialize(List<cShape> cShapes, string filePath)
+        [XmlElement(Type = typeof(XmlColor))]
+        public Color BackColor { get; set; }
+
+        public static void Serialize(ShapeData shapeData, string filePath)
         {
             using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
             {
-                ShapeData shapeData = new ShapeData() { ListShapes = cShapes };
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(ShapeData));
                 xmlSerializer.Serialize(fileStream, shapeData);
                 fileStream.Close();
             }
         }
 
-        public static List<cShape> Deserialize(string filePath)
+        public static ShapeData Deserialize(string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -42,7 +45,7 @@ namespace KDrawing.Models
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(ShapeData));
                         ShapeData shapeData = xmlSerializer.Deserialize(fileStream) as ShapeData;
                         fileStream.Close();
-                        return shapeData.ListShapes;
+                        return shapeData;
                     }
                     catch (Exception e)
                     {
@@ -51,7 +54,7 @@ namespace KDrawing.Models
                     }
                 }
             }
-            return new List<cShape>();
+            return null;
         }
     }
 }

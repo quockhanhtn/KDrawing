@@ -66,7 +66,7 @@ namespace KDrawing.Models
         /// <returns></returns>
         public static Bitmap CreateBimap(int width, int heigth, Color backColor, List<cShape> listShapes)
         {
-            Bitmap bitmap = new Bitmap(width, heigth, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap bitmap = new Bitmap(width, heigth, System.Drawing.Imaging.PixelFormat.Format64bppArgb);
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.Clear(backColor);
             listShapes.FindAll(shape => !shape.IsHidden).ForEach(shape => shape.Draw(graphics));

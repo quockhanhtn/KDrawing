@@ -102,7 +102,10 @@ namespace KDrawing
             InitializeComponent();
             this.filePath = filePath;
             titleBar.TitleText = "KDrawing - " + System.IO.Path.GetFileName(filePath);
-            ShapeData.Deserialize(this.filePath).ForEach(shape =>
+
+            var shapeData = ShapeData.Deserialize(filePath);
+            psfMain.BackColor = shapeData.BackColor;
+            shapeData.ListShapes.ForEach(shape =>
             {
                 ListShapes.Add(shape);
                 shapeLayers.Add(shape);
@@ -246,8 +249,15 @@ namespace KDrawing
 
         private void cboDashStyle_DrawItem(object sender, DrawItemEventArgs e)
         {
+            //e.DrawBackground();
+            //if (e.Index != -1) { e.Graphics.DrawImage(imgCboDashStyle.Images[e.Index], e.Bounds.Left, e.Bounds.Top); }
+
             e.DrawBackground();
-            if (e.Index != -1) { e.Graphics.DrawImage(imgCboDashStyle.Images[e.Index], e.Bounds.Left, e.Bounds.Top); }
+            if (e.Index != -1)
+            {
+                e.Graphics.DrawImage(imgCboDashStyle.Images[e.Index], e.Bounds.Left, e.Bounds.Top);
+            }
+            e.DrawFocusRectangle();
         }
 
         private void cboDashStyle_SelectedIndexChanged(object sender, EventArgs e)
@@ -927,17 +937,20 @@ namespace KDrawing
             {
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "Kdrawing project | *.kdr | " +
-                                            "PNG Picture | *.png | " +
-                                            "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif | " +
-                                            "BMP Picture | *.bmp | " +
-                                            "GIF Picture | *.gif |" +
+                    saveFileDialog.Filter = "Kdrawing project | *.kdr| " +
+                                            "PNG Picture | *.png| " +
+                                            "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif| " +
+                                            "BMP Picture | *.bmp| " +
+                                            "GIF Picture | *.gif|" +
                                             "TIFF Picture | *.tif *.tiff";
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         var extension = System.IO.Path.GetExtension(saveFileDialog.FileName);
 
-                        if (extension.ToLower() == ".kdr") { this.filePath = saveFileDialog.FileName; }
+                        if (extension.ToLower() == ".kdr") 
+                        {
+                            this.filePath = saveFileDialog.FileName; 
+                        }
                         else
                         {
                             Bitmap myBitmap = Utilities.CreateBimap(psfMain.Width, psfMain.Height, psfMain.BackColor, ListShapes);
@@ -975,7 +988,12 @@ namespace KDrawing
 
             if (this.filePath != null)
             {
-                ShapeData.Serialize(ListShapes, this.filePath);
+                ShapeData shapeData = new ShapeData()
+                {
+                    BackColor = psfMain.BackColor,
+                    ListShapes = this.ListShapes
+                };
+                ShapeData.Serialize(shapeData, this.filePath);
             }
         }
 
@@ -983,12 +1001,12 @@ namespace KDrawing
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "Kdrawing project | *.kdr | " +
-                                        "PNG Picture | *.png | " +
-                                        "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif | " +
-                                        "BMP Picture | *.bmp | " +
-                                        "GIF Picture | *.gif |" +
-                                        "TIFF Picture | *.tif *.tiff";
+                saveFileDialog.Filter = "Kdrawing project | *.kdr| " +
+                                        "PNG Picture | *.png| " +
+                                        "JPEG Picture | *.jpg;*.jpeg;*.jpe;*.jfif| " +
+                                        "BMP Picture | *.bmp| " +
+                                        "GIF Picture | *.gif|" +
+                                        "TIFF Picture | *.tif;*.tiff";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     var extension = System.IO.Path.GetExtension(saveFileDialog.FileName);
