@@ -37,7 +37,7 @@ namespace KDrawing.Models
                 }
                 else if (Begin.X < End.X && Begin.Y > End.Y)
                 {
-                    path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y), new SizeF(Width, Width)));
+                    path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y - Width), new SizeF(Width, Width)));
                 }
                 else
                 {

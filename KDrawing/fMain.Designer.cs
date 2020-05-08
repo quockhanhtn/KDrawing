@@ -34,12 +34,14 @@
             this.titleBar = new KDrawing.KControls.TitleBar();
             this.dragMovePnl = new KDrawing.KControls.DragMovePanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnFillColor = new KDrawing.KControls.SelectColorButton();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cboDashStyle = new System.Windows.Forms.ComboBox();
             this.nudLineWeight = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnEnableFill = new KDrawing.KControls.ToggleButton();
+            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -94,8 +96,8 @@
             this.tblpnlMidArea = new System.Windows.Forms.TableLayoutPanel();
             this.shapeLayers = new KDrawing.MyUserControls.ShapeLayersManager();
             this.pnlToolbar = new System.Windows.Forms.Panel();
-            this.btnForeColor = new KDrawing.KControls.FlatButton();
-            this.btnBackColor = new KDrawing.KControls.FlatButton();
+            this.btnForeColor = new KDrawing.KControls.SelectColorButton();
+            this.btnBackColor = new KDrawing.KControls.SelectColorButton();
             this.btnDefaultColor = new KDrawing.KControls.FlatButton();
             this.btnPolygon = new KDrawing.KControls.FlatButton();
             this.btnRectangle = new KDrawing.KControls.FlatButton();
@@ -190,26 +192,57 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnFillColor);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.cboDashStyle);
             this.panel1.Controls.Add(this.nudLineWeight);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnEnableFill);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(613, 0);
+            this.panel1.Location = new System.Drawing.Point(554, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(665, 34);
+            this.panel1.Size = new System.Drawing.Size(724, 34);
             this.panel1.TabIndex = 4;
+            // 
+            // btnFillColor
+            // 
+            this.btnFillColor.BackColor = System.Drawing.Color.Black;
+            this.btnFillColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFillColor.Enabled = false;
+            this.btnFillColor.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnFillColor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnFillColor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnFillColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillColor.Location = new System.Drawing.Point(174, 5);
+            this.btnFillColor.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFillColor.Name = "btnFillColor";
+            this.btnFillColor.Size = new System.Drawing.Size(24, 24);
+            this.btnFillColor.TabIndex = 1;
+            this.btnFillColor.ToolTipActive = true;
+            this.btnFillColor.ToolTipAutomaticDelay = 500;
+            this.btnFillColor.ToolTipAutoPopDelay = 5000;
+            this.btnFillColor.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnFillColor.ToolTipCaption = "";
+            this.btnFillColor.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnFillColor.ToolTipInitialDelay = 200;
+            this.btnFillColor.ToolTipIsBalloon = false;
+            this.btnFillColor.ToolTipReshowDelay = 100;
+            this.btnFillColor.ToolTipShowAlways = true;
+            this.btnFillColor.ToolTipTitle = "fill color";
+            this.btnFillColor.UseVisualStyleBackColor = false;
+            this.btnFillColor.BackColorChanged += new System.EventHandler(this.btnFillColor_BackColorChanged);
+            this.btnFillColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Location = new System.Drawing.Point(16, 7);
+            this.pictureBox3.Location = new System.Drawing.Point(7, 7);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(2, 20);
             this.pictureBox3.TabIndex = 1;
@@ -228,9 +261,9 @@
             "Dot",
             "Dash Dot",
             "Dash Dot Dot"});
-            this.cboDashStyle.Location = new System.Drawing.Point(455, 3);
+            this.cboDashStyle.Location = new System.Drawing.Point(565, 4);
             this.cboDashStyle.Name = "cboDashStyle";
-            this.cboDashStyle.Size = new System.Drawing.Size(200, 28);
+            this.cboDashStyle.Size = new System.Drawing.Size(150, 28);
             this.cboDashStyle.TabIndex = 2;
             this.cboDashStyle.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cboDashStyle_DrawItem);
             this.cboDashStyle.SelectedIndexChanged += new System.EventHandler(this.cboDashStyle_SelectedIndexChanged);
@@ -239,12 +272,7 @@
             // 
             this.nudLineWeight.DecimalPlaces = 2;
             this.nudLineWeight.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLineWeight.Location = new System.Drawing.Point(236, 4);
-            this.nudLineWeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.nudLineWeight.Location = new System.Drawing.Point(349, 4);
             this.nudLineWeight.Name = "nudLineWeight";
             this.nudLineWeight.Size = new System.Drawing.Size(79, 27);
             this.nudLineWeight.TabIndex = 2;
@@ -261,7 +289,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(371, 7);
+            this.label3.Location = new System.Drawing.Point(481, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 0;
@@ -272,7 +300,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(139, 7);
+            this.label2.Location = new System.Drawing.Point(254, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 0;
@@ -286,7 +314,7 @@
             this.btnEnableFill.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnEnableFill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnEnableFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnableFill.Location = new System.Drawing.Point(66, 5);
+            this.btnEnableFill.Location = new System.Drawing.Point(68, 5);
             this.btnEnableFill.Name = "btnEnableFill";
             this.btnEnableFill.Size = new System.Drawing.Size(48, 24);
             this.btnEnableFill.TabIndex = 0;
@@ -306,12 +334,23 @@
             this.btnEnableFill.UseVisualStyleBackColor = true;
             this.btnEnableFill.Click += new System.EventHandler(this.btnEnableFill_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(122, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "color";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(29, 7);
+            this.label1.Location = new System.Drawing.Point(32, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 20);
             this.label1.TabIndex = 0;
@@ -320,7 +359,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(125, 7);
+            this.pictureBox2.Location = new System.Drawing.Point(231, 7);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(2, 20);
             this.pictureBox2.TabIndex = 1;
@@ -331,7 +370,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(321, 7);
+            this.label4.Location = new System.Drawing.Point(433, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 20);
             this.label4.TabIndex = 0;
@@ -340,7 +379,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(355, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(469, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(2, 20);
             this.pictureBox1.TabIndex = 1;
@@ -867,7 +906,7 @@
             this.btnForeColor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnForeColor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btnForeColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnForeColor.Location = new System.Drawing.Point(5, 250);
+            this.btnForeColor.Location = new System.Drawing.Point(5, 273);
             this.btnForeColor.Margin = new System.Windows.Forms.Padding(0);
             this.btnForeColor.Name = "btnForeColor";
             this.btnForeColor.Size = new System.Drawing.Size(35, 35);
@@ -895,7 +934,7 @@
             this.btnBackColor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnBackColor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnBackColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackColor.Location = new System.Drawing.Point(20, 270);
+            this.btnBackColor.Location = new System.Drawing.Point(20, 293);
             this.btnBackColor.Margin = new System.Windows.Forms.Padding(0);
             this.btnBackColor.Name = "btnBackColor";
             this.btnBackColor.Size = new System.Drawing.Size(35, 35);
@@ -924,7 +963,7 @@
             this.btnDefaultColor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnDefaultColor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnDefaultColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefaultColor.Location = new System.Drawing.Point(5, 225);
+            this.btnDefaultColor.Location = new System.Drawing.Point(5, 248);
             this.btnDefaultColor.Margin = new System.Windows.Forms.Padding(0);
             this.btnDefaultColor.Name = "btnDefaultColor";
             this.btnDefaultColor.Size = new System.Drawing.Size(20, 20);
@@ -951,7 +990,7 @@
             this.btnPolygon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnPolygon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnPolygon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPolygon.Location = new System.Drawing.Point(5, 656);
+            this.btnPolygon.Location = new System.Drawing.Point(5, 704);
             this.btnPolygon.Margin = new System.Windows.Forms.Padding(0);
             this.btnPolygon.Name = "btnPolygon";
             this.btnPolygon.Size = new System.Drawing.Size(50, 40);
@@ -979,7 +1018,7 @@
             this.btnRectangle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnRectangle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRectangle.Location = new System.Drawing.Point(5, 610);
+            this.btnRectangle.Location = new System.Drawing.Point(5, 656);
             this.btnRectangle.Margin = new System.Windows.Forms.Padding(0);
             this.btnRectangle.Name = "btnRectangle";
             this.btnRectangle.Size = new System.Drawing.Size(50, 40);
@@ -1008,7 +1047,7 @@
             this.btnEllipse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnEllipse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnEllipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEllipse.Location = new System.Drawing.Point(5, 564);
+            this.btnEllipse.Location = new System.Drawing.Point(5, 608);
             this.btnEllipse.Margin = new System.Windows.Forms.Padding(0);
             this.btnEllipse.Name = "btnEllipse";
             this.btnEllipse.Size = new System.Drawing.Size(50, 40);
@@ -1037,7 +1076,7 @@
             this.btnBezier.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnBezier.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnBezier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBezier.Location = new System.Drawing.Point(5, 518);
+            this.btnBezier.Location = new System.Drawing.Point(5, 560);
             this.btnBezier.Margin = new System.Windows.Forms.Padding(0);
             this.btnBezier.Name = "btnBezier";
             this.btnBezier.Size = new System.Drawing.Size(50, 40);
@@ -1065,7 +1104,7 @@
             this.btnCurve.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnCurve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCurve.Location = new System.Drawing.Point(5, 472);
+            this.btnCurve.Location = new System.Drawing.Point(5, 512);
             this.btnCurve.Margin = new System.Windows.Forms.Padding(0);
             this.btnCurve.Name = "btnCurve";
             this.btnCurve.Size = new System.Drawing.Size(50, 40);
@@ -1093,7 +1132,7 @@
             this.btnLine.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnLine.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLine.Location = new System.Drawing.Point(5, 426);
+            this.btnLine.Location = new System.Drawing.Point(5, 464);
             this.btnLine.Margin = new System.Windows.Forms.Padding(0);
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(50, 40);
@@ -1121,7 +1160,7 @@
             this.btnText.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnText.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnText.Location = new System.Drawing.Point(5, 311);
+            this.btnText.Location = new System.Drawing.Point(5, 348);
             this.btnText.Margin = new System.Windows.Forms.Padding(0);
             this.btnText.Name = "btnText";
             this.btnText.Size = new System.Drawing.Size(50, 50);
@@ -1149,7 +1188,7 @@
             this.btnPencil.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnPencil.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnPencil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPencil.Location = new System.Drawing.Point(5, 365);
+            this.btnPencil.Location = new System.Drawing.Point(5, 406);
             this.btnPencil.Margin = new System.Windows.Forms.Padding(0);
             this.btnPencil.Name = "btnPencil";
             this.btnPencil.Size = new System.Drawing.Size(50, 50);
@@ -1177,7 +1216,7 @@
             this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(5, 170);
+            this.btnDelete.Location = new System.Drawing.Point(5, 182);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(50, 50);
@@ -1204,7 +1243,7 @@
             this.btnUngroup.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnUngroup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnUngroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUngroup.Location = new System.Drawing.Point(5, 115);
+            this.btnUngroup.Location = new System.Drawing.Point(5, 123);
             this.btnUngroup.Margin = new System.Windows.Forms.Padding(0);
             this.btnUngroup.Name = "btnUngroup";
             this.btnUngroup.Size = new System.Drawing.Size(50, 50);
@@ -1231,7 +1270,7 @@
             this.btnGroup.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnGroup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGroup.Location = new System.Drawing.Point(5, 60);
+            this.btnGroup.Location = new System.Drawing.Point(5, 64);
             this.btnGroup.Margin = new System.Windows.Forms.Padding(0);
             this.btnGroup.Name = "btnGroup";
             this.btnGroup.Size = new System.Drawing.Size(50, 50);
@@ -1285,7 +1324,7 @@
             this.btnSwapColor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSwapColor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
             this.btnSwapColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSwapColor.Location = new System.Drawing.Point(25, 225);
+            this.btnSwapColor.Location = new System.Drawing.Point(25, 248);
             this.btnSwapColor.Margin = new System.Windows.Forms.Padding(0);
             this.btnSwapColor.Name = "btnSwapColor";
             this.btnSwapColor.Size = new System.Drawing.Size(30, 30);
@@ -1515,8 +1554,8 @@
         private KDrawing.KControls.FlatButton btnUngroup;
         private KDrawing.KControls.FlatButton btnGroup;
         private KDrawing.KControls.FlatButton btnDelete;
-        private KDrawing.KControls.FlatButton btnForeColor;
-        private KDrawing.KControls.FlatButton btnBackColor;
+        private KDrawing.KControls.SelectColorButton btnForeColor;
+        private KDrawing.KControls.SelectColorButton btnBackColor;
         private KDrawing.KControls.FlatButton btnDefaultColor;
         private KDrawing.KControls.FlatButton btnSwapColor;
         private KDrawing.KControls.FlatButton btnPolygon;
@@ -1578,5 +1617,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusBar_NumShapesSelected;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_DrawingMode;
         private System.Windows.Forms.Timer tmrUpdate;
+        private KControls.SelectColorButton btnFillColor;
+        private System.Windows.Forms.Label label5;
     }
 }

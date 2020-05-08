@@ -51,16 +51,19 @@ namespace KDrawing.Models
                 return path;
             }
         }
+
+        public Color FillColor { get; set; }
         #endregion
 
         #region Constructor
         public cText() { }
-        public cText(PointF begin, string text, Font font, Color color, bool isFill)
+        public cText(PointF begin, string text, Font font, Color color, float lineWeight, DashStyle dashStyle, bool isFill)
         {
             this.Begin = begin;
             this.Text = text;
             this.MyFont = font;
             this.Color = color;
+            this.FillColor = Color.Transparent;
             this.IsFill = isFill;
         }
         #endregion
@@ -73,18 +76,22 @@ namespace KDrawing.Models
                 "Example text",
                 new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))),
                 Color.Black,
+                1f,
+                DashStyle.Solid,
                 false
-                );
+                )
+            { FillColor = Color.Transparent };
         }
 
         public override object Clone()
         {
-            return new cText(Begin, Text, MyFont, Color, IsFill)
+            return new cText(Begin, Text, MyFont, Color, LineWeight, DashStyle, IsFill)
             {
                 Name = this.Name,
                 End = this.End,
                 IsSelected = this.IsSelected,
-                IsHidden = this.IsHidden
+                IsHidden = this.IsHidden,
+                FillColor = this.FillColor
             };
         }
 
@@ -92,16 +99,13 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.IsFill)
+                using (Pen pen = new Pen(this.Color, LineWeight) { DashStyle = this.DashStyle })
                 {
-                    using (Pen pen = new Pen(this.Color, 1f) { DashStyle = this.DashStyle })
-                    {
-                        graphics.DrawPath(pen, path);
-                    }
+                    graphics.DrawPath(pen, path);
                 }
-                else
+                if (this.IsFill)
                 {
-                    using (Brush brush = new SolidBrush(this.Color))
+                    using (Brush brush = new SolidBrush(this.FillColor))
                     {
                         graphics.FillPath(brush, path);
                     }

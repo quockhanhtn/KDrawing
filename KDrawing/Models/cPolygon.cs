@@ -26,6 +26,7 @@ namespace KDrawing.Models
             }
         }
         public bool IsFill { get; set; }
+        public Color FillColor { get ; set; }
         #endregion
 
         #region Constructor
@@ -35,6 +36,7 @@ namespace KDrawing.Models
             this.Name = "Polygon " + (index++).ToString();
             this.LineWeight = lineWeight;
             this.Color = color;
+            this.FillColor = Color.Transparent;
             this.DashStyle = dashStyle;
         }
         #endregion
@@ -50,6 +52,7 @@ namespace KDrawing.Models
                 IsHidden = this.IsHidden,
                 Name = this.Name,
             };
+            polygon.FillColor = this.FillColor;
             Points.ForEach(point => polygon.Points.Add(point));
             return polygon;
         }
@@ -58,28 +61,26 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.IsFill)
+                using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                 {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
-                    {
-                        graphics.DrawPath(pen, path);
-                    }
+                    graphics.DrawPath(pen, path);
                 }
-                else
+
+                if (this.IsFill)
                 {
-                    using (Brush brush = new SolidBrush(Color))
+                    using (Brush brush = new SolidBrush(this.FillColor))
                     {
-                        if (Points.Count < 3)
-                        {
-                            using (Pen pen = new Pen(this.Color, this.LineWeight))
-                            {
-                                graphics.DrawPath(pen, path);
-                            }
-                        }
-                        else
-                        {
-                            graphics.FillPath(brush, path);
-                        }
+                        //if (Points.Count < 3)
+                        //{
+                        //    using (Pen pen = new Pen(this.Color, this.LineWeight))
+                        //    {
+                        //        graphics.DrawPath(pen, path);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        graphics.FillPath(brush, path);
+                        //}
                     }
                 }
             }

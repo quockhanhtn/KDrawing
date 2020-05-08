@@ -21,6 +21,8 @@ namespace KDrawing.Boxs
             set
             {
                 myText = value;
+                btnFillColor.BackColor = value.FillColor;
+                nudLineWeight.Value = (decimal)value.LineWeight;
                 psfDemo.Invalidate();
             }
         }
@@ -86,6 +88,10 @@ namespace KDrawing.Boxs
         private void btnIsFill_Click(object sender, EventArgs e)
         {
             MyText.IsFill = btnIsFill.ToggleStage;
+            if (MyText.IsFill)
+            {
+                MyText.FillColor = btnFillColor.BackColor;
+            }
             psfDemo.Invalidate();
         }
 
@@ -95,10 +101,13 @@ namespace KDrawing.Boxs
             psfDemo.Invalidate();
         }
 
+        private void btnFillColor_BackColorChanged(object sender, EventArgs e)
+        {
+            MyText.FillColor = btnFillColor.BackColor;
+        }
+
         private void btnColor_BackColorChanged(object sender, EventArgs e)
         {
-            btnColor.FlatAppearance.MouseOverBackColor = btnColor.BackColor;
-            btnColor.FlatAppearance.MouseDownBackColor = btnColor.BackColor;
             MyText.Color = btnColor.BackColor;
         }
 
@@ -123,13 +132,14 @@ namespace KDrawing.Boxs
             MyText.Name = MyText.Text;
         }
 
-        public static cText Show(Form parrentForm, PointF textLocation)
+        public static cText Show(Form parrentForm, PointF textLocation, float lineWeight)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
                 if (formTextEditor.ShowDialog(parrentForm) == DialogResult.OK)
                 {
                     formTextEditor.MyText.Begin = textLocation;
+                    formTextEditor.MyText.LineWeight = lineWeight;
                     return formTextEditor.MyText;
                 }
             }
@@ -152,6 +162,12 @@ namespace KDrawing.Boxs
                     }
                 }
             }
+        }
+
+        private void nudLineWeight_ValueChanged(object sender, EventArgs e)
+        {
+            MyText.LineWeight = (float)nudLineWeight.Value;
+            psfDemo.Invalidate();
         }
     }
 }

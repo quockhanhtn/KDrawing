@@ -57,16 +57,18 @@ namespace KDrawing.Models
             }
         }
         public bool IsFill { get; set; }
+        public Color FillColor { get; set; }
         #endregion
 
         #region Constructor
         public cEllipse() { }
-        public cEllipse(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
+        public cEllipse(PointF begin, float lineWeight, Color color,DashStyle dashStyle)
         {
             this.Name = "Ellipse " + (index++).ToString();
             this.Begin = begin;
             this.LineWeight = lineWeight;
             this.Color = color;
+            this.FillColor = Color.Transparent;
             this.DashStyle = dashStyle;
             this.IsCircle = false;
             this.Diameter = 0f;
@@ -83,7 +85,8 @@ namespace KDrawing.Models
                 IsHidden = this.IsHidden,
                 Name = this.Name,
                 IsCircle = this.IsCircle,
-                Diameter = this.Diameter
+                Diameter = this.Diameter,
+                FillColor = this.FillColor
             };
         }
 
@@ -91,16 +94,13 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.IsFill)
+                using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                 {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
-                    {
-                        graphics.DrawPath(pen, path);
-                    }
+                    graphics.DrawPath(pen, path);
                 }
-                else
+                if (this.IsFill)
                 {
-                    using (Brush brush = new SolidBrush(this.Color))
+                    using (Brush brush = new SolidBrush(this.FillColor))
                     {
                         graphics.FillPath(brush, path);
                     }

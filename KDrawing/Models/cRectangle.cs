@@ -59,7 +59,7 @@ namespace KDrawing.Models
                     }
                     else if (Begin.X < End.X && Begin.Y > End.Y)
                     {
-                        path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y), new SizeF(Width, Width)));
+                        path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y - Width), new SizeF(Width, Width)));
                         End = new PointF(Begin.X + Width, Begin.Y - Width);
                     }
                     else
@@ -98,6 +98,8 @@ namespace KDrawing.Models
                 return path;
             }
         }
+
+        public Color FillColor { get; set; }
         #endregion
 
         #region Constructor
@@ -108,6 +110,7 @@ namespace KDrawing.Models
             this.Begin = begin;
             this.LineWeight = lineWeight;
             this.Color = color;
+            this.FillColor = Color.Transparent;
             this.DashStyle = dashStyle;
             this.IsSquare = false;
             this.Width = 0f;
@@ -124,7 +127,8 @@ namespace KDrawing.Models
                 IsHidden = this.IsHidden,
                 Name = this.Name,
                 IsSquare = this.IsSquare,
-                Width = this.Width
+                Width = this.Width,
+                FillColor = this.FillColor
             };
         }
 
@@ -132,16 +136,13 @@ namespace KDrawing.Models
         {
             using (GraphicsPath path = this.GraphicsPath)
             {
-                if (!this.IsFill)
+                using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
                 {
-                    using (Pen pen = new Pen(this.Color, this.LineWeight) { DashStyle = this.DashStyle })
-                    {
-                        graphics.DrawPath(pen, path);
-                    }
+                    graphics.DrawPath(pen, path);
                 }
-                else
+                if (this.IsFill)
                 {
-                    using (Brush brush = new SolidBrush(this.Color))
+                    using (Brush brush = new SolidBrush(this.FillColor))
                     {
                         graphics.FillPath(brush, path);
                     }

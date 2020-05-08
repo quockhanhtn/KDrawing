@@ -113,6 +113,7 @@ namespace KDrawing
             
         }
 
+        #region fMain event
         private void fMain_Load(object sender, EventArgs e)
         {
             mnu.Renderer = new MenuStripRenderer(Color.FromArgb(28, 151, 234));
@@ -175,6 +176,7 @@ namespace KDrawing
             isControlKeyPress = e.Control;
             isShiftKeyPress = e.Shift;
         }
+        #endregion
 
         private void btnCloseToolbar_Click(object sender, EventArgs e)
         {
@@ -209,6 +211,7 @@ namespace KDrawing
             if (DrawingMode == DrawingMode.NoFill)
             {
                 DrawingMode = DrawingMode.Fill;
+                btnFillColor.Enabled = true;
                 ListShapes.FindAll(shape => (shape is IFillableShape && shape.IsSelected)).ForEach(shape => (shape as IFillableShape).IsFill = true);
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_white; }
@@ -219,6 +222,7 @@ namespace KDrawing
             }
             else
             {
+                btnFillColor.Enabled = false;
                 DrawingMode = DrawingMode.NoFill;
                 ListShapes.FindAll(shape => (shape is IFillableShape && shape.IsSelected)).ForEach(shape => (shape as IFillableShape).IsFill = false);
 
@@ -292,24 +296,28 @@ namespace KDrawing
             btn.BackColor = Vendors.ColorPickerDialog.Show(this, btn.BackColor);
         }
 
+        private void btnFillColor_BackColorChanged(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            ListShapes.FindAll(shape => shape.IsSelected && shape is IFillableShape).ForEach(shape =>
+            {
+                (shape as IFillableShape).FillColor = btn.BackColor;
+            });
+            ReDraw();
+        }
+
         private void btnForeColor_BackColorChanged(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            btn.FlatAppearance.MouseOverBackColor = btn.BackColor;
-            btn.FlatAppearance.MouseDownBackColor = btn.BackColor;
+            var btn = sender as Button;
             statusBar_ForeColor.BackColor = btn.BackColor;
-
             ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Color = btn.BackColor; });
             ReDraw();
         }
 
         private void btnBackColor_BackColorChanged(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            btn.FlatAppearance.MouseOverBackColor = btn.BackColor;
-            btn.FlatAppearance.MouseDownBackColor = btn.BackColor;
+            var btn = sender as Button;
             statusBar_BackColor.BackColor = btn.BackColor;
-
             psfMain.BackColor = btn.BackColor;
         }
         #endregion
@@ -421,7 +429,7 @@ namespace KDrawing
                     break;
 
                 case ShapeType.Text:
-                    var text = Boxs.fTextEditor.Show(this, e.Location);
+                    var text = Boxs.fTextEditor.Show(this, e.Location, (float)nudLineWeight.Value);
                     if (text != null)
                     {
                         ListShapes.Add(text);
@@ -456,25 +464,41 @@ namespace KDrawing
 
                 case ShapeType.Rectangle:
                     cRectangle rectangle = new cRectangle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    rectangle.IsFill = (DrawingMode == DrawingMode.Fill);
+                    if (DrawingMode == DrawingMode.Fill)
+                    {
+                        rectangle.IsFill = true;
+                        rectangle.FillColor = btnFillColor.BackColor;
+                    }
                     ListShapes.Add(rectangle);
                     break;
 
                 case ShapeType.Square:
                     cSquare square = new cSquare(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    square.IsFill = (DrawingMode == DrawingMode.Fill);
+                    if (DrawingMode == DrawingMode.Fill)
+                    {
+                        square.IsFill = true;
+                        square.FillColor = btnFillColor.BackColor;
+                    }
                     ListShapes.Add(square);
                     break;
 
                 case ShapeType.Ellipse:
                     cEllipse ellipse = new cEllipse(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    ellipse.IsFill = (DrawingMode == DrawingMode.Fill);
+                    if (DrawingMode == DrawingMode.Fill)
+                    {
+                        ellipse.IsFill = true;
+                        ellipse.FillColor = btnFillColor.BackColor;
+                    }
                     ListShapes.Add(ellipse);
                     break;
 
                 case ShapeType.Circle:
                     cCircle circle = new cCircle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                    circle.IsFill = (DrawingMode == DrawingMode.Fill);
+                    if (DrawingMode == DrawingMode.Fill)
+                    {
+                        circle.IsFill = true;
+                        circle.FillColor = btnFillColor.BackColor;
+                    }
                     ListShapes.Add(circle);
                     break;
 
@@ -529,7 +553,11 @@ namespace KDrawing
                     if (drawingStage != DrawingStage.IsDrawPolygon)
                     {
                         cPolygon polygon = new cPolygon((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
-                        polygon.IsFill = (DrawingMode == DrawingMode.Fill);
+                        if (DrawingMode == DrawingMode.Fill)
+                        {
+                            polygon.IsFill = true;
+                            polygon.FillColor = btnFillColor.BackColor;
+                        }
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 

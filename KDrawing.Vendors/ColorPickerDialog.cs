@@ -218,5 +218,11 @@ namespace KDrawing.Vendors
         {
             e.Graphics.DrawRectangle(new Pen(Color.FromArgb(0, 122, 204), 5), this.DisplayRectangle);
         }
+
+        private void btnTransparent_Click(object sender, EventArgs e)
+        {
+            Color = Color.Transparent;
+            okButton.PerformClick();
+        }
     }
 }
