@@ -43,6 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorEditor.Designer.cs">
+      <DependentUpon>ColorEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorEditorManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="fColorPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fColorPicker.Designer.cs">
+      <DependentUpon>fColorPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectColorButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,6 +98,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ColorEditor.resx">
+      <DependentUpon>ColorEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fColorPicker.resx">
+      <DependentUpon>fColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -138,6 +159,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\toggle-switch-off-flip-x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vendors.Cyotek.Windows.Forms.ColorPicker\Vendors.Cyotek.Windows.Forms.ColorPicker.csproj">
+      <Project>{fb2a5786-cd2e-42ce-bc5d-0fce90034221}</Project>
+      <Name>Vendors.Cyotek.Windows.Forms.ColorPicker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\palette-white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

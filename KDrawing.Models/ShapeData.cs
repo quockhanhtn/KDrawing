@@ -36,22 +36,19 @@ namespace KDrawing.Models
 
         public static ShapeData Deserialize(string filePath)
         {
-            if (File.Exists(filePath))
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                try
                 {
-                    try
-                    {
-                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(ShapeData));
-                        ShapeData shapeData = xmlSerializer.Deserialize(fileStream) as ShapeData;
-                        fileStream.Close();
-                        return shapeData;
-                    }
-                    catch (Exception e)
-                    {
-                        fileStream.Close();
-                        MessageBox.Show(e.Message);
-                    }
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(ShapeData));
+                    ShapeData shapeData = xmlSerializer.Deserialize(fileStream) as ShapeData;
+                    fileStream.Close();
+                    return shapeData;
+                }
+                catch (Exception e)
+                {
+                    fileStream.Close();
+                    MessageBox.Show(e.Message);
                 }
             }
             return null;

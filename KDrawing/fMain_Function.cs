@@ -1,4 +1,5 @@
 ﻿using KDrawing.Models;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -48,12 +49,13 @@ namespace KDrawing
             {
                 cGroup group = new cGroup();
 
-                for (int i = ListShapes.Count - 1; i >= 0; i--)
+                for (int i = 0; i < ListShapes.Count; i++)
                 {
                     if (ListShapes[i].IsSelected)
                     {
                         group.Add(ListShapes[i]);
                         ListShapes.RemoveAt(i);
+                        i--;
                     }
                 }
 
@@ -73,11 +75,11 @@ namespace KDrawing
         {
             if (ListShapes.Find(shape => shape.IsSelected) is cGroup selectedGroup)
             {
-                foreach (cShape shape in selectedGroup.Shapes)
+                selectedGroup.Shapes.ForEach(shape =>
                 {
                     ListShapes.Add(shape);
                     shapeLayers.Add(shape);
-                }
+                });
                 ListShapes.Remove(selectedGroup);
             }
             ReDraw();

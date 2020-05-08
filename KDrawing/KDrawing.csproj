@@ -257,10 +257,6 @@
       <Project>{2a7fd386-b53b-45de-92fa-7f2b4072bb5d}</Project>
       <Name>KDrawing.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KDrawing.Vendors\KDrawing.Vendors.csproj">
-      <Project>{685e9ea2-4d43-4c5f-8001-32f921a8353c}</Project>
-      <Name>KDrawing.Vendors</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shape-text-white.png" />

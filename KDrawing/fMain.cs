@@ -95,23 +95,7 @@ namespace KDrawing
         public fMain()
         {
             InitializeComponent();
-            titleBar.TitleText = "KDrawing - Untitled " + (++untitledIndex).ToString();
-        }
 
-        public fMain(string filePath)
-        {
-            InitializeComponent();
-            this.filePath = filePath;
-            titleBar.TitleText = "KDrawing - " + System.IO.Path.GetFileName(filePath);
-
-            var shapeData = ShapeData.Deserialize(filePath);
-            psfMain.BackColor = shapeData.BackColor;
-            shapeData.ListShapes.ForEach(shape =>
-            {
-                ListShapes.Add(shape);
-                shapeLayers.Add(shape);
-            });
-            
         }
 
         #region fMain event
@@ -123,6 +107,20 @@ namespace KDrawing
             ShapeType = ShapeType.NoDrawing;
             listButton = new List<Button> { btnBezier, btnCurve, btnEllipse, btnLine, btnPolygon, btnRectangle, btnSelect, btnPencil, btnText };
             cboDashStyle.SelectedIndex = 0;
+
+            if (System.IO.File.Exists(this.filePath))
+            {
+                titleBar.TitleText = "KDrawing - " + System.IO.Path.GetFileName(filePath);
+
+                var shapeData = ShapeData.Deserialize(filePath);
+                psfMain.BackColor = shapeData.BackColor;
+                shapeData.ListShapes.ForEach(shape =>
+                {
+                    ListShapes.Add(shape);
+                    shapeLayers.Add(shape);
+                });
+            }
+            else { titleBar.TitleText = "KDrawing - Untitled " + (++untitledIndex).ToString(); }
         }
 
         private void fMain_KeyDown(object sender, KeyEventArgs e)
@@ -289,12 +287,6 @@ namespace KDrawing
             Color temp = btnForeColor.BackColor;
             btnForeColor.BackColor = btnBackColor.BackColor;
             btnBackColor.BackColor = temp;
-        }
-
-        private void btnColor_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            btn.BackColor = Vendors.ColorPickerDialog.Show(this, btn.BackColor);
         }
 
         private void btnFillColor_BackColorChanged(object sender, EventArgs e)
@@ -948,9 +940,18 @@ namespace KDrawing
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                openFilePath = openFileDialog.FileName;
-                fMain fMain = new fMain(openFilePath);
-                fMain.Show();
+                if (this.ListShapes.Count == 0)
+                {
+                    this.filePath = openFileDialog.FileName;
+                    this.OnLoad(null);
+                }
+                else
+                {
+                    openFilePath = openFileDialog.FileName;
+                    fMain fMain = new fMain();
+                    fMain.filePath = openFilePath;
+                    fMain.Show();
+                }
             }
         }
         

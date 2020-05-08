@@ -117,59 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="window-close-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-close-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="screenColorPicker.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        0QAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="window-minimize-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-minimize-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-on-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-on-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-maximize-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-maximize-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-close-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-close-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-minimize-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-minimize-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_off-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_off-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-maximize-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-maximize-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cursor-size-all" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cursor-size-all.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-restore-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-restore-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window-restore-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window-restore-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle-switch-off-flip-x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle-switch-off-flip-x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="palette_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\palette-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="colorEditorManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Xml.Serialization;
@@ -163,6 +164,9 @@ namespace KDrawing.Models
             this.MyFont = source.MyFont;
             this.Color = source.Color;
             this.IsFill = source.IsFill;
+            this.FillColor = source.FillColor;
+            this.LineWeight = source.LineWeight;
+            this.DashStyle = source.DashStyle;
         }
         #endregion
     }

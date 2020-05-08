@@ -38,6 +38,11 @@ namespace KDrawing.Boxs
             lblFontStyle.Text = MyText.MyFont.Style.ToString();
             lblFontSize.Text = MyText.MyFont.Size.ToString();
 
+            nudLineWeight.Value = (decimal)MyText.LineWeight;
+            btnFillColor.BackColor = MyText.FillColor;
+            btnIsFill.ToggleStage = MyText.IsFill;
+            btnColor.BackColor = MyText.Color;
+
             txtText.Text = MyText.Text;
             txtText.Focus();
             txtText.Select(0, txtText.Text.Length);
@@ -46,11 +51,12 @@ namespace KDrawing.Boxs
         private void fontDialog_Apply(object sender, EventArgs e)
         {
             MyText.MyFont = fontDialog.Font;
+            MyText.LineWeight = (float)nudLineWeight.Value;
             btnColor.BackColor = fontDialog.Color;
             lblFontFamily.Text = fontDialog.Font.FontFamily.Name;
             lblFontStyle.Text = fontDialog.Font.Style.ToString();
             lblFontSize.Text = fontDialog.Font.Size.ToString();
-
+           
             psfDemo.Invalidate();
         }
 
@@ -58,7 +64,6 @@ namespace KDrawing.Boxs
         {
             fontDialog.Font = MyText.MyFont;
             fontDialog.Color = MyText.Color;
-
 
             // Save the existing font.
             Font oldFont = this.Font;
@@ -95,20 +100,16 @@ namespace KDrawing.Boxs
             psfDemo.Invalidate();
         }
 
-        private void btnColor_Click(object sender, EventArgs e)
-        {
-            btnColor.BackColor = Vendors.ColorPickerDialog.Show(this, btnColor.BackColor);
-            psfDemo.Invalidate();
-        }
-
         private void btnFillColor_BackColorChanged(object sender, EventArgs e)
         {
             MyText.FillColor = btnFillColor.BackColor;
+            psfDemo.Invalidate();
         }
 
         private void btnColor_BackColorChanged(object sender, EventArgs e)
         {
             MyText.Color = btnColor.BackColor;
+            psfDemo.Invalidate();
         }
 
         private void txtText_TextChanged(object sender, EventArgs e)

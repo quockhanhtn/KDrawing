@@ -237,7 +237,6 @@
             this.btnFillColor.ToolTipTitle = "fill color";
             this.btnFillColor.UseVisualStyleBackColor = false;
             this.btnFillColor.BackColorChanged += new System.EventHandler(this.btnFillColor_BackColorChanged);
-            this.btnFillColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // pictureBox3
             // 
@@ -924,7 +923,6 @@
             this.btnForeColor.ToolTipTitle = "Fore color";
             this.btnForeColor.UseVisualStyleBackColor = false;
             this.btnForeColor.BackColorChanged += new System.EventHandler(this.btnForeColor_BackColorChanged);
-            this.btnForeColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // btnBackColor
             // 
@@ -952,7 +950,6 @@
             this.btnBackColor.ToolTipTitle = "Back color";
             this.btnBackColor.UseVisualStyleBackColor = false;
             this.btnBackColor.BackColorChanged += new System.EventHandler(this.btnBackColor_BackColorChanged);
-            this.btnBackColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // btnDefaultColor
             // 

@@ -221,7 +221,6 @@
             this.btnColor.ToolTipTitle = "";
             this.btnColor.UseVisualStyleBackColor = false;
             this.btnColor.BackColorChanged += new System.EventHandler(this.btnColor_BackColorChanged);
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // grpFill
             // 
@@ -263,7 +262,6 @@
             this.btnFillColor.ToolTipTitle = "";
             this.btnFillColor.UseVisualStyleBackColor = false;
             this.btnFillColor.BackColorChanged += new System.EventHandler(this.btnFillColor_BackColorChanged);
-            this.btnFillColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // btnIsFill
             // 

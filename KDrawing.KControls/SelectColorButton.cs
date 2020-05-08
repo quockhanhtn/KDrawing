@@ -8,6 +8,15 @@ namespace KDrawing.KControls
         public SelectColorButton()
         {
             this.BackColorChanged += ButtonSelectColor_BackColorChanged;
+            this.Click += SelectColorButton_Click;
+
+            ButtonSelectColor_BackColorChanged(this, null);
+        }
+
+        private void SelectColorButton_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.BackColor = fColorPicker.Show(this.FindForm(), btn.BackColor);
         }
 
         private void ButtonSelectColor_BackColorChanged(object sender, EventArgs e)

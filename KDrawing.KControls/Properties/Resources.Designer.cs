@@ -73,6 +73,16 @@ namespace KDrawing.KControls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap palette_white {
+            get {
+                object obj = ResourceManager.GetObject("palette_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap toggle_off {
             get {
                 object obj = ResourceManager.GetObject("toggle_off", resourceCulture);
