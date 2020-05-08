@@ -139,7 +139,7 @@ namespace KDrawing.Models
             End = new PointF(End.X + distance.X, End.Y + distance.Y);
         }
 
-        public override void Move(Enums.Direction direction, int movingOffset)
+        public override void Move(KDrawing.Enums.Direction direction, int movingOffset)
         {
             Begin = Utilities.MovePoint(Begin, direction, movingOffset);
             End = Utilities.MovePoint(End, direction, movingOffset);

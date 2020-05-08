@@ -58,7 +58,7 @@ namespace KDrawing.Models
         /// </summary>
         /// <param name="direction">Hướng di chuyển</param>
         /// <param name="movingOffset">Khoảng cách di chuyển</param>
-        public abstract void Move(Enums.Direction direction, int movingOffset);
+        public abstract void Move(KDrawing.Enums.Direction direction, int movingOffset);
         public abstract object Clone();
         /// <summary>
         /// Phóng to hình theo tỉ lệ "percent"

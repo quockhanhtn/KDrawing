@@ -83,36 +83,6 @@ namespace KDrawing.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cursor_cross {
-            get {
-                object obj = ResourceManager.GetObject("cursor-cross", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap cursor_lead_pencil_black {
-            get {
-                object obj = ResourceManager.GetObject("cursor-lead-pencil-black", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap cursor_size_all {
-            get {
-                object obj = ResourceManager.GetObject("cursor-size-all", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap default_color {
             get {
                 object obj = ResourceManager.GetObject("default-color", resourceCulture);

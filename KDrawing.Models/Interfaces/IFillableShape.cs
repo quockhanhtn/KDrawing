@@ -1,4 +1,4 @@
-﻿namespace KDrawing.Interfaces
+﻿namespace KDrawing.Models.Interfaces
 {
     public interface IFillableShape
     {

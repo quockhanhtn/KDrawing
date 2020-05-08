@@ -1,4 +1,4 @@
-﻿namespace KDrawing.Enums
+﻿namespace KDrawing.Models.Enums
 {
     public enum DrawingStage
     {

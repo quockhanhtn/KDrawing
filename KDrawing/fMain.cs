@@ -1,7 +1,8 @@
 ﻿using KDrawing.Enums;
-using KDrawing.Interfaces;
 using KDrawing.KControls;
 using KDrawing.Models;
+using KDrawing.Models.Enums;
+using KDrawing.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -1,4 +1,4 @@
-﻿using KDrawing.KControls;
+﻿using KDrawing.Enums;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,15 +30,15 @@ namespace KDrawing.Models
             return new PointF(x, y);
         }
 
-        public static PointF MovePoint(PointF pointToMove, Enums.Direction direction, int movingOffset)
+        public static PointF MovePoint(PointF pointToMove, Direction direction, int movingOffset)
         {
             float x = pointToMove.X;
             float y = pointToMove.Y;
 
-            if (direction == Enums.Direction.Left) { x -= movingOffset; }
-            else if (direction == Enums.Direction.Up) { y -= movingOffset; }
-            else if (direction == Enums.Direction.Right) { x += movingOffset; }
-            else if (direction == Enums.Direction.Down) { y += movingOffset; }
+            if (direction == Direction.Left) { x -= movingOffset; }
+            else if (direction == Direction.Up) { y -= movingOffset; }
+            else if (direction == Direction.Right) { x += movingOffset; }
+            else if (direction == Direction.Down) { y += movingOffset; }
 
             return new PointF(x, y);
         }

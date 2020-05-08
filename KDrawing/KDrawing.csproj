@@ -64,10 +64,6 @@
     <Compile Include="Boxs\fTextEditor.Designer.cs">
       <DependentUpon>fTextEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enums\Direction.cs" />
-    <Compile Include="Enums\DrawingMode.cs" />
-    <Compile Include="Enums\DrawingStage.cs" />
-    <Compile Include="Enums\ShapeType.cs" />
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,12 +73,6 @@
     <Compile Include="fMain_Function.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaces\IFillableShape.cs" />
-    <Compile Include="Models\cMultiPointShape.cs" />
-    <Compile Include="Models\cText.cs" />
-    <Compile Include="Models\FontSerializationHelper.cs" />
-    <Compile Include="Models\ShapeData.cs" />
-    <Compile Include="Models\XmlColor.cs" />
     <Compile Include="MyUserControls\ShapeLayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,18 +85,6 @@
     <Compile Include="MyUserControls\ShapeLayersManager.Designer.cs">
       <DependentUpon>ShapeLayersManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\cCircle.cs" />
-    <Compile Include="Models\cCurve.cs" />
-    <Compile Include="Models\cEllipse.cs" />
-    <Compile Include="Models\cFreehand.cs" />
-    <Compile Include="Models\cGroup.cs" />
-    <Compile Include="Models\cLine.cs" />
-    <Compile Include="Models\cPolygon.cs" />
-    <Compile Include="Models\cRectangle.cs" />
-    <Compile Include="Models\cShape.cs" />
-    <Compile Include="Models\cSquare.cs" />
-    <Compile Include="Models\MyCursor.cs" />
-    <Compile Include="Models\Utilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Boxs\fRotate.resx">
@@ -149,12 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cursor-cross.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cursor-size-all.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chevron-left.png" />
@@ -229,9 +201,6 @@
     <None Include="Resources\lead-pencil-white.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cursor-lead-pencil-black.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\group-white.png" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +252,10 @@
     <ProjectReference Include="..\KDrawing.KControls\KDrawing.KControls.csproj">
       <Project>{2aae1a04-95a0-4116-9c40-905826733386}</Project>
       <Name>KDrawing.KControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KDrawing.Models\KDrawing.Models.csproj">
+      <Project>{2a7fd386-b53b-45de-92fa-7f2b4072bb5d}</Project>
+      <Name>KDrawing.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\KDrawing.Vendors\KDrawing.Vendors.csproj">
       <Project>{685e9ea2-4d43-4c5f-8001-32f921a8353c}</Project>
