@@ -8,12 +8,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace KDrawing
 {
     public partial class fMain : Form
     {
+        #region Fields
         public static int untitledIndex = 0;
 
         ShapeType shapeType = ShapeType.NoDrawing;
@@ -40,7 +42,9 @@ namespace KDrawing
         private bool isControlKeyPress;
         private bool isShiftKeyPress;
         private int movingOffset;
+        #endregion
 
+        #region Properties
         public List<cShape> ListShapes { get => listShapes; set => listShapes = value; }
         public RectangleF SelectedRegion
         {
@@ -72,7 +76,6 @@ namespace KDrawing
             }
             set => selectedRegion = value;
         }
-
         public ShapeType ShapeType { 
             get => shapeType;
             set
@@ -81,7 +84,6 @@ namespace KDrawing
                 statusBar_ShapeType.Text = "Shape type : " + value.ToString();
             }
         }
-
         public DrawingMode DrawingMode
         {
             get => drawingMode;
@@ -91,6 +93,7 @@ namespace KDrawing
                 statusBar_DrawingMode.Text = "Mode : " + value.ToString();
             }
         }
+        #endregion
 
         public fMain()
         {
@@ -98,6 +101,7 @@ namespace KDrawing
 
         }
 
+        #region Events
         #region fMain event
         private void fMain_Load(object sender, EventArgs e)
         {
@@ -1084,10 +1088,7 @@ namespace KDrawing
             }
         }
 
-        private void mnuFile_Quit_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void mnuFile_Quit_Click(object sender, EventArgs e) { this.Close(); }
         #endregion
 
         #region Menu Edit
@@ -1164,5 +1165,128 @@ namespace KDrawing
             statusBar_NumShapesSelected.Text = "Selected " + numShapeSelected.ToString() + "/" + numShapes.ToString() + " shapes";
             shapeLayers.Update(numShapeSelected, numShapes);
         }
+        #endregion
+
+        #region Methods
+        #region Public methods
+
+        /// <summary>
+        /// Vẽ lại psfMain (== psfMain.Invalidate();)
+        /// </summary>
+        public void ReDraw() { psfMain.Invalidate(); }
+
+        /// <summary>
+        /// Phóng to các hình theo tỉ lệ nhập vào
+        /// </summary>
+        public void ScaleShapes()
+        {
+            if (ListShapes.Count(shape => shape.IsSelected) > 0)
+            {
+                float percent = Boxs.fScale.Show(this, 1f);
+                ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Scale(percent); });
+                ReDraw();
+            }
+        }
+
+        /// <summary>
+        /// Xoay các hình được chọn theo số độ nhập vào
+        /// </summary>
+        public void RotateShapes()
+        {
+            if (ListShapes.Count(shape => shape.IsSelected) > 0)
+            {
+                int degree = Boxs.fRotate.Show(this, 0);
+                ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Rotate(degree); });
+                ReDraw();
+            }
+        }
+
+        /// <summary>
+        /// Group các hình được chọn
+        /// </summary>
+        public void GroupSelectedShape()
+        {
+            if (ListShapes.Count(shape => shape.IsSelected) > 1)
+            {
+                cGroup group = new cGroup();
+
+                for (int i = 0; i < ListShapes.Count; i++)
+                {
+                    if (ListShapes[i].IsSelected)
+                    {
+                        group.Add(ListShapes[i]);
+                        ListShapes.RemoveAt(i);
+                        i--;
+                    }
+                }
+
+                group.FindRegion();
+                ListShapes.Add(group);
+                group.IsSelected = true;
+
+                shapeLayers.Add(group);
+                ReDraw();
+            }
+        }
+
+        /// <summary>
+        /// Ungroup các group được chọn
+        /// </summary>
+        public void UngroupSelectedGroup()
+        {
+            if (ListShapes.Find(shape => shape.IsSelected) is cGroup selectedGroup)
+            {
+                selectedGroup.Shapes.ForEach(shape =>
+                {
+                    ListShapes.Add(shape);
+                    shapeLayers.Add(shape);
+                });
+                ListShapes.Remove(selectedGroup);
+            }
+            ReDraw();
+        }
+
+        /// <summary>
+        /// Xóa các hình được chọn
+        /// </summary>
+        public void DeleteSelectedShape()
+        {
+            for (int i = ListShapes.Count - 1; i >= 0; i--)
+            {
+                if (ListShapes[i].IsSelected) { ListShapes.RemoveAt(i); }
+            }
+            ReDraw();
+        }
+        #endregion
+
+        #region Private methods
+        /// <summary>
+        /// Bỏ chọn hết các shapes
+        /// </summary>
+        private void UnselectAllShapes()
+        {
+            ListShapes.ForEach(shape => shape.IsSelected = false);
+            ReDraw();
+        }
+
+        /// <summary>
+        /// Bỏ chọn hết các button
+        /// </summary>
+        private void UncheckAll()
+        {
+            listButton.ForEach(button => button.BackColor = Color.Transparent);
+        }
+
+        /// <summary>
+        /// Di chuyển các hình đã chọn
+        /// </summary>
+        /// <param name="action">Hướng di chuyển</param>
+        private void MoveShape(Enums.Direction direction)
+        {
+            ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => shape.Move(direction, movingOffset));
+            ReDraw();
+        }
+        #endregion
+        #endregion
     }
 }

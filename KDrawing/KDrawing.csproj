@@ -76,9 +76,6 @@
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="fMain_Function.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MyUserControls\ShapeLayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
