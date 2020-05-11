@@ -1,4 +1,4 @@
-﻿namespace KDrawing.Boxs
+﻿namespace KDrawing
 {
     partial class fScale
     {

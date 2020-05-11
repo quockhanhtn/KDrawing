@@ -433,7 +433,7 @@ namespace KDrawing
                     break;
 
                 case ShapeType.Text:
-                    var text = Boxs.fTextEditor.Show(this, e.Location, (float)nudLineWeight.Value);
+                    var text = fTextEditor.Show(this, e.Location, (float)nudLineWeight.Value);
                     if (text != null)
                     {
                         ListShapes.Add(text);
@@ -818,7 +818,7 @@ namespace KDrawing
         {
             if (ListShapes.FindAll(shape => shape.IsSelected && shape is cText).Count > 0)
             {
-                Boxs.fTextEditor.Show(this, ListShapes);
+                fTextEditor.Show(this, ListShapes);
                 ReDraw();
             }
             else { btnShape_Click(sender, e); }
@@ -1182,7 +1182,7 @@ namespace KDrawing
         {
             if (ListShapes.Count(shape => shape.IsSelected) > 0)
             {
-                float percent = Boxs.fScale.Show(this, 1f);
+                float percent = fScale.Show(this, 1f);
                 ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Scale(percent); });
                 ReDraw();
             }
@@ -1195,7 +1195,7 @@ namespace KDrawing
         {
             if (ListShapes.Count(shape => shape.IsSelected) > 0)
             {
-                int degree = Boxs.fRotate.Show(this, 0);
+                int degree = fRotate.Show(this, 0);
                 ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape => { shape.Rotate(degree); });
                 ReDraw();
             }

@@ -46,22 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boxs\fRotate.cs">
+    <Compile Include="fRotate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Boxs\fRotate.Designer.cs">
+    <Compile Include="fRotate.Designer.cs">
       <DependentUpon>fRotate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Boxs\fScale.cs">
+    <Compile Include="fScale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Boxs\fScale.Designer.cs">
+    <Compile Include="fScale.Designer.cs">
       <DependentUpon>fScale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Boxs\fTextEditor.cs">
+    <Compile Include="fTextEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Boxs\fTextEditor.Designer.cs">
+    <Compile Include="fTextEditor.Designer.cs">
       <DependentUpon>fTextEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="fAbout.cs">
@@ -90,13 +90,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Boxs\fRotate.resx">
+    <EmbeddedResource Include="fRotate.resx">
       <DependentUpon>fRotate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Boxs\fScale.resx">
+    <EmbeddedResource Include="fScale.resx">
       <DependentUpon>fScale.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Boxs\fTextEditor.resx">
+    <EmbeddedResource Include="fTextEditor.resx">
       <DependentUpon>fTextEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fAbout.resx">

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace KDrawing.Boxs
+namespace KDrawing
 {
     public partial class fTextEditor : Form
     {
