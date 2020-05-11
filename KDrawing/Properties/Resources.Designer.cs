@@ -143,6 +143,26 @@ namespace KDrawing.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap github {
+            get {
+                object obj = ResourceManager.GetObject("github", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gmail {
+            get {
+                object obj = ResourceManager.GetObject("gmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap group_white {
             get {
                 object obj = ResourceManager.GetObject("group-white", resourceCulture);
@@ -506,6 +526,16 @@ namespace KDrawing.Properties {
         internal static System.Drawing.Bitmap ungroup_white {
             get {
                 object obj = ResourceManager.GetObject("ungroup-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap web {
+            get {
+                object obj = ResourceManager.GetObject("web", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

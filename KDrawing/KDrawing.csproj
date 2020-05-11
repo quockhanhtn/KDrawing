@@ -64,6 +64,12 @@
     <Compile Include="Boxs\fTextEditor.Designer.cs">
       <DependentUpon>fTextEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="fAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAbout.Designer.cs">
+      <DependentUpon>fAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Boxs\fTextEditor.resx">
       <DependentUpon>fTextEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fAbout.resx">
+      <DependentUpon>fAbout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
@@ -272,6 +281,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\qk_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\github.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

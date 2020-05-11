@@ -1154,10 +1154,7 @@ namespace KDrawing
 
         private void mnuView_Layers_Click(object sender, EventArgs e) { btnCloseLayer.PerformClick(); }
 
-        private void mnuAbout_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void mnuAbout_Click(object sender, EventArgs e) { fAbout.Show(this); }
         #endregion
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
