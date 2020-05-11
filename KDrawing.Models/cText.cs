@@ -53,6 +53,7 @@ namespace KDrawing.Models
             }
         }
 
+        [XmlElement(Type = typeof(XmlColor))]
         public Color FillColor { get; set; }
         #endregion
 

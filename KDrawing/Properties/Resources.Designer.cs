@@ -63,6 +63,16 @@ namespace KDrawing.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_all {
+            get {
+                object obj = ResourceManager.GetObject("arrow-all", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chevron_left {
             get {
                 object obj = ResourceManager.GetObject("chevron-left", resourceCulture);
@@ -166,6 +176,16 @@ namespace KDrawing.Properties {
         internal static System.Drawing.Bitmap percent_white {
             get {
                 object obj = ResourceManager.GetObject("percent-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap qk_logo {
+            get {
+                object obj = ResourceManager.GetObject("qk_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

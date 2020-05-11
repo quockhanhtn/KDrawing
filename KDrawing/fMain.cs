@@ -119,6 +119,7 @@ namespace KDrawing
                     ListShapes.Add(shape);
                     shapeLayers.Add(shape);
                 });
+                ReDraw();
             }
             else { titleBar.TitleText = "KDrawing - Untitled " + (++untitledIndex).ToString(); }
         }
@@ -207,7 +208,7 @@ namespace KDrawing
 
         private void btnEnableFill_Click(object sender, EventArgs e)
         {
-            if (DrawingMode == DrawingMode.NoFill)
+            if (btnEnableFill.ToggleStage)
             {
                 DrawingMode = DrawingMode.Fill;
                 btnFillColor.Enabled = true;
@@ -221,9 +222,10 @@ namespace KDrawing
             }
             else
             {
-                btnFillColor.Enabled = false;
                 DrawingMode = DrawingMode.NoFill;
+                btnFillColor.Enabled = false;
                 ListShapes.FindAll(shape => (shape is IFillableShape && shape.IsSelected)).ForEach(shape => (shape as IFillableShape).IsFill = false);
+
 
                 if (btnEllipse.Tag.ToString() == "Ellipse") { btnEllipse.BackgroundImage = Properties.Resources.shape_ellipse_outline_white; }
                 else { btnEllipse.BackgroundImage = Properties.Resources.shape_circle_outline_white; }
@@ -400,6 +402,11 @@ namespace KDrawing
                                     nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
                                     cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
                                     btnForeColor.BackColor = ListShapes[i].Color;
+                                    if (ListShapes[i] is IFillableShape fillableShape)
+                                    {
+                                        btnFillColor.BackColor = fillableShape.FillColor;
+                                        btnEnableFill.ToggleStage = fillableShape.IsFill;
+                                    }
                                 }
 
                                 ReDraw();

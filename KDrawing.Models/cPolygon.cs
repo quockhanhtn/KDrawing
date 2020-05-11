@@ -26,6 +26,7 @@ namespace KDrawing.Models
             }
         }
         public bool IsFill { get; set; }
+        [System.Xml.Serialization.XmlElement(Type = typeof(XmlColor))]
         public Color FillColor { get ; set; }
         #endregion
 

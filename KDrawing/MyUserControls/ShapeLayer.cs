@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KDrawing.Models;
 
@@ -51,6 +45,7 @@ namespace KDrawing.MyUserControls
             tmrUpdate.Stop();
             FormMain.ListShapes.Remove(this.ShapeShow);
             FormMain.ReDraw();
+            this.Dispose();
         }
 
         private void chkIsSelected_CheckedChanged(object sender, EventArgs e)

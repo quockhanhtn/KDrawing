@@ -122,13 +122,13 @@
             this.btnDeleteSelected.ToolTipAutomaticDelay = 500;
             this.btnDeleteSelected.ToolTipAutoPopDelay = 5000;
             this.btnDeleteSelected.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnDeleteSelected.ToolTipCaption = "";
+            this.btnDeleteSelected.ToolTipCaption = "Delete select shapes";
             this.btnDeleteSelected.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnDeleteSelected.ToolTipInitialDelay = 200;
             this.btnDeleteSelected.ToolTipIsBalloon = false;
             this.btnDeleteSelected.ToolTipReshowDelay = 100;
             this.btnDeleteSelected.ToolTipShowAlways = true;
-            this.btnDeleteSelected.ToolTipTitle = "";
+            this.btnDeleteSelected.ToolTipTitle = "Delete all shapes is select";
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
             this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 

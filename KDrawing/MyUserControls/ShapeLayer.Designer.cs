@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.chkIsSelected = new System.Windows.Forms.CheckBox();
-            this.btnDelete = new KDrawing.KControls.FlatButton();
-            this.btnHidden = new KDrawing.KControls.FlatButton();
-            this.txtShapeName = new KDrawing.KControls.RenameFlatTextBox();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
+            this.txtShapeName = new KDrawing.KControls.RenameLable();
+            this.btnHidden = new KDrawing.KControls.FlatButton();
+            this.btnDelete = new KDrawing.KControls.FlatButton();
             this.SuspendLayout();
             // 
             // chkIsSelected
@@ -46,29 +46,20 @@
             this.chkIsSelected.UseVisualStyleBackColor = true;
             this.chkIsSelected.CheckedChanged += new System.EventHandler(this.chkIsSelected_CheckedChanged);
             // 
-            // btnDelete
+            // tmrUpdate
             // 
-            this.btnDelete.BackgroundImage = global::KDrawing.Properties.Resources.trash_red;
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(250, 5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(24, 24);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.ToolTipActive = true;
-            this.btnDelete.ToolTipAutomaticDelay = 500;
-            this.btnDelete.ToolTipAutoPopDelay = 5000;
-            this.btnDelete.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnDelete.ToolTipCaption = "";
-            this.btnDelete.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnDelete.ToolTipInitialDelay = 200;
-            this.btnDelete.ToolTipIsBalloon = false;
-            this.btnDelete.ToolTipReshowDelay = 100;
-            this.btnDelete.ToolTipShowAlways = true;
-            this.btnDelete.ToolTipTitle = "";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.tmrUpdate.Enabled = true;
+            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            // 
+            // txtShapeName
+            // 
+            this.txtShapeName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShapeName.Location = new System.Drawing.Point(55, 2);
+            this.txtShapeName.Name = "txtShapeName";
+            this.txtShapeName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtShapeName.Size = new System.Drawing.Size(189, 30);
+            this.txtShapeName.TabIndex = 5;
+            this.txtShapeName.Text = "bnhfm";
             // 
             // btnHidden
             // 
@@ -94,22 +85,29 @@
             this.btnHidden.UseVisualStyleBackColor = true;
             this.btnHidden.Click += new System.EventHandler(this.btnHidden_Click);
             // 
-            // txtShapeName
+            // btnDelete
             // 
-            this.txtShapeName.BoderColorFocus = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.txtShapeName.BorderColor = System.Drawing.Color.White;
-            this.txtShapeName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShapeName.Location = new System.Drawing.Point(55, 2);
-            this.txtShapeName.MaxLength = 30;
-            this.txtShapeName.Name = "txtShapeName";
-            this.txtShapeName.ReadOnly = true;
-            this.txtShapeName.Size = new System.Drawing.Size(189, 30);
-            this.txtShapeName.TabIndex = 5;
-            // 
-            // tmrUpdate
-            // 
-            this.tmrUpdate.Enabled = true;
-            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            this.btnDelete.BackgroundImage = global::KDrawing.Properties.Resources.trash_red;
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Location = new System.Drawing.Point(250, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(24, 24);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.ToolTipActive = true;
+            this.btnDelete.ToolTipAutomaticDelay = 500;
+            this.btnDelete.ToolTipAutoPopDelay = 5000;
+            this.btnDelete.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnDelete.ToolTipCaption = "";
+            this.btnDelete.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnDelete.ToolTipInitialDelay = 200;
+            this.btnDelete.ToolTipIsBalloon = false;
+            this.btnDelete.ToolTipReshowDelay = 100;
+            this.btnDelete.ToolTipShowAlways = true;
+            this.btnDelete.ToolTipTitle = "";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // ShapeLayer
             // 
@@ -134,7 +132,7 @@
         private System.Windows.Forms.CheckBox chkIsSelected;
         private KDrawing.KControls.FlatButton btnDelete;
         private KDrawing.KControls.FlatButton btnHidden;
-        private KControls.FlatTextBox txtShapeName;
+        private KControls.RenameLable txtShapeName;
         private System.Windows.Forms.Timer tmrUpdate;
     }
 }

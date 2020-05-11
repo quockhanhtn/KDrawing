@@ -58,6 +58,9 @@
     <Compile Include="fColorPicker.Designer.cs">
       <DependentUpon>fColorPicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="RenameLable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SelectColorButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -84,9 +87,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RenameFlatTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="TitleBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +107,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TitleBar.resx">
+      <DependentUpon>TitleBar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

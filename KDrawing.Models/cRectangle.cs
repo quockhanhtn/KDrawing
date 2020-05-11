@@ -98,7 +98,7 @@ namespace KDrawing.Models
                 return path;
             }
         }
-
+        [System.Xml.Serialization.XmlElement(Type = typeof(XmlColor))]
         public Color FillColor { get; set; }
         #endregion
 

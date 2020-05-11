@@ -267,5 +267,11 @@
   <ItemGroup>
     <None Include="Resources\lead-pencil-black.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qk_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

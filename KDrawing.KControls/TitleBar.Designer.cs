@@ -29,55 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnMaximinze = new System.Windows.Forms.Button();
-            this.pnlDragMove = new KControls.DragMovePanel();
+            this.pnlDragMove = new KDrawing.KControls.DragMovePanel();
             this.cmnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblTitleText = new System.Windows.Forms.Label();
             this.cmnuRestore = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMinimize = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMaximize = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmnuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTitleText = new System.Windows.Forms.Label();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnMaximinze = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.picIcon = new System.Windows.Forms.PictureBox();
             this.pnlDragMove.SuspendLayout();
             this.cmnu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.BackColor = System.Drawing.SystemColors.Control;
-            this.btnMinimize.BackgroundImage = global::KDrawing.KControls.Properties.Resources.window_minimize_black;
-            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMinimize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(356, 0);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(34, 34);
-            this.btnMinimize.TabIndex = 3;
-            this.btnMinimize.UseVisualStyleBackColor = false;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnMaximinze
-            // 
-            this.btnMaximinze.BackColor = System.Drawing.SystemColors.Control;
-            this.btnMaximinze.BackgroundImage = global::KDrawing.KControls.Properties.Resources.window_maximize_black;
-            this.btnMaximinze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMaximinze.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMaximinze.FlatAppearance.BorderSize = 0;
-            this.btnMaximinze.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.btnMaximinze.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximinze.Location = new System.Drawing.Point(390, 0);
-            this.btnMaximinze.Name = "btnMaximinze";
-            this.btnMaximinze.Size = new System.Drawing.Size(34, 34);
-            this.btnMaximinze.TabIndex = 2;
-            this.btnMaximinze.UseVisualStyleBackColor = false;
-            this.btnMaximinze.Click += new System.EventHandler(this.btnMaximinze_Click);
             // 
             // pnlDragMove
             // 
@@ -101,6 +69,22 @@
             this.cmnuClose});
             this.cmnu.Name = "cmnu";
             this.cmnu.Size = new System.Drawing.Size(147, 140);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // lblTitleText
+            // 
+            this.lblTitleText.AutoSize = true;
+            this.lblTitleText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleText.Location = new System.Drawing.Point(3, 7);
+            this.lblTitleText.Name = "lblTitleText";
+            this.lblTitleText.Size = new System.Drawing.Size(65, 20);
+            this.lblTitleText.TabIndex = 0;
+            this.lblTitleText.Text = "TitleText";
+            this.lblTitleText.SizeChanged += new System.EventHandler(this.lblTitleText_SizeChanged);
             // 
             // cmnuRestore
             // 
@@ -134,11 +118,6 @@
             this.cmnuMaximize.Text = "Maximize";
             this.cmnuMaximize.Click += new System.EventHandler(this.cmnuMaximize_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
-            // 
             // cmnuClose
             // 
             this.cmnuClose.Image = global::KDrawing.KControls.Properties.Resources.window_close_black;
@@ -147,16 +126,37 @@
             this.cmnuClose.Text = "Close";
             this.cmnuClose.Click += new System.EventHandler(this.cmnuClose_Click);
             // 
-            // lblTitleText
+            // btnMinimize
             // 
-            this.lblTitleText.AutoSize = true;
-            this.lblTitleText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleText.Location = new System.Drawing.Point(3, 7);
-            this.lblTitleText.Name = "lblTitleText";
-            this.lblTitleText.Size = new System.Drawing.Size(65, 20);
-            this.lblTitleText.TabIndex = 0;
-            this.lblTitleText.Text = "TitleText";
-            this.lblTitleText.SizeChanged += new System.EventHandler(this.lblTitleText_SizeChanged);
+            this.btnMinimize.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMinimize.BackgroundImage = global::KDrawing.KControls.Properties.Resources.window_minimize_black;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(356, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(34, 34);
+            this.btnMinimize.TabIndex = 3;
+            this.btnMinimize.UseVisualStyleBackColor = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnMaximinze
+            // 
+            this.btnMaximinze.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMaximinze.BackgroundImage = global::KDrawing.KControls.Properties.Resources.window_maximize_black;
+            this.btnMaximinze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMaximinze.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMaximinze.FlatAppearance.BorderSize = 0;
+            this.btnMaximinze.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.btnMaximinze.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximinze.Location = new System.Drawing.Point(390, 0);
+            this.btnMaximinze.Name = "btnMaximinze";
+            this.btnMaximinze.Size = new System.Drawing.Size(34, 34);
+            this.btnMaximinze.TabIndex = 2;
+            this.btnMaximinze.UseVisualStyleBackColor = false;
+            this.btnMaximinze.Click += new System.EventHandler(this.btnMaximinze_Click);
             // 
             // btnClose
             // 

@@ -27,6 +27,7 @@ namespace KDrawing.MyUserControls
         private void btnDeleteSelected_Click(object sender, EventArgs e)
         {
             int numShapeSelected = FormMain.ListShapes.FindAll(shape => shape.IsSelected).Count;
+            if (numShapeSelected < 1) { return; } 
             string dialogText = "Are you sure you want to delete " + numShapeSelected.ToString() + " shape is selected ?";
 
             DialogResult dialogResult = MessageBox.Show(dialogText, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);

@@ -173,7 +173,7 @@
             this.titleBar.TabIndex = 0;
             this.titleBar.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleBar.TitleForeColor = System.Drawing.Color.White;
-            this.titleBar.TitleIcon = null;
+            this.titleBar.TitleIcon = global::KDrawing.Properties.Resources.qk_logo;
             this.titleBar.TitleText = "KDrawing";
             // 
             // dragMovePnl
@@ -1288,6 +1288,7 @@
             // 
             // btnSelect
             // 
+            this.btnSelect.BackgroundImage = global::KDrawing.Properties.Resources.arrow_all;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSelect.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.btnSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
@@ -1484,6 +1485,7 @@
             this.Controls.Add(this.tblpnlMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.mnu;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

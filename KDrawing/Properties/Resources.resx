@@ -124,11 +124,14 @@
   <data name="eye-off-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-off-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape-square-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape-square-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lead-pencil-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lead-pencil-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="default-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default-color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shape-line-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape-line-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="trash-red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trash-red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,9 +151,6 @@
   <data name="shape-rectangle-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-rectangle-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape-circle-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape-circle-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="eye-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,23 +160,20 @@
   <data name="shape-circle-outline-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-circle-outline-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lead-pencil-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lead-pencil-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="shape-ellipse-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-ellipse-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-curve-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-curve-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="shape-ellipse-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape-ellipse-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="trash-selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trash-selected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-square-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-square-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shape-text-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape-text-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-ellipse-outline-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-ellipse-outline-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,20 +187,26 @@
   <data name="chevron-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ungroup-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ungroup-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="shape-bezier-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-bezier-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="swap-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\swap-color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ungroup-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ungroup-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shape-text-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape-text-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-circle-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-circle-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-pentagon-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-pentagon-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shape-square-outline-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape-square-outline-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-rectangle-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-rectangle-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,8 +217,8 @@
   <data name="percent-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\percent-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape-line-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape-line-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-all" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-all.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-curve-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-curve-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,8 +232,8 @@
   <data name="shape-text-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-text-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape-ellipse-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape-ellipse-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lead-pencil-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lead-pencil-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape-ellipse-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape-ellipse-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,7 +247,10 @@
   <data name="chevron-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lead-pencil-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lead-pencil-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shape-circle-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape-circle-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="qk_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\qk_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
