@@ -55,15 +55,15 @@ namespace KDrawing.Models
                         path.AddRectangle(new RectangleF(new PointF(Begin.X - Width, Begin.Y - Width), new SizeF(Width, Width)));
                         End = new PointF(Begin.X - Width, Begin.Y - Width);
                     }
-                    else if (Begin.X > End.X && Begin.Y < End.Y)
+                    else if (End.X < Begin.X && End.Y > Begin.Y)
                     {
                         path.AddRectangle(new RectangleF(new PointF(Begin.X - Width, Begin.Y), new SizeF(Width, Width)));
                         End = new PointF(Begin.X - Width, Begin.Y + Width);
                     }
-                    else if (Begin.X < End.X && Begin.Y > End.Y)
+                    else if (End.X > Begin.X && End.Y < Begin.Y)
                     {
                         path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y - Width), new SizeF(Width, Width)));
-                        End = new PointF(Begin.X + Width, Begin.Y - Width);
+                        End = new PointF(Begin.X - Width, Begin.Y + Width);
                     }
                     else
                     {
@@ -74,28 +74,29 @@ namespace KDrawing.Models
                 else
                 {
                     PointF[] pointFs = new PointF[] { Begin, TopRight, End, BottomLeft };
+                    path.AddPolygon(pointFs);
 
-                    if (End.X < Begin.X && End.Y < Begin.Y)
-                    {
+                    //if (End.X < Begin.X && End.Y < Begin.Y)
+                    //{
 
-                        path.AddPolygon(pointFs);
-                        //path.AddRectangle(new RectangleF(End, new SizeF(Begin.X - End.X, Begin.Y - End.Y)));
-                    }
-                    else if (Begin.X > End.X && Begin.Y < End.Y)
-                    {
-                        path.AddPolygon(pointFs);
-                        //path.AddRectangle(new RectangleF(new PointF(End.X, Begin.Y), new SizeF(Begin.X - End.X, End.Y - Begin.Y)));
-                    }
-                    else if (Begin.X < End.X && Begin.Y > End.Y)
-                    {
-                        path.AddPolygon(pointFs);
-                        //path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y), new SizeF(End.X - Begin.X, Begin.Y - End.Y)));
-                    }
-                    else
-                    {
-                        path.AddPolygon(pointFs);
-                        //path.AddRectangle(new RectangleF(Begin, new SizeF(End.X - Begin.X, End.Y - Begin.Y)));
-                    }
+                    //    path.AddPolygon(pointFs);
+                    //    //path.AddRectangle(new RectangleF(End, new SizeF(Begin.X - End.X, Begin.Y - End.Y)));
+                    //}
+                    //else if (Begin.X > End.X && Begin.Y < End.Y)
+                    //{
+                    //    path.AddPolygon(pointFs);
+                    //    //path.AddRectangle(new RectangleF(new PointF(End.X, Begin.Y), new SizeF(Begin.X - End.X, End.Y - Begin.Y)));
+                    //}
+                    //else if (Begin.X < End.X && Begin.Y > End.Y)
+                    //{
+                    //    path.AddPolygon(pointFs);
+                    //    //path.AddRectangle(new RectangleF(new PointF(Begin.X, End.Y), new SizeF(End.X - Begin.X, Begin.Y - End.Y)));
+                    //}
+                    //else
+                    //{
+                    //    path.AddPolygon(pointFs);
+                    //    //path.AddRectangle(new RectangleF(Begin, new SizeF(End.X - Begin.X, End.Y - Begin.Y)));
+                    //}
                 }
 
                 return path;

@@ -58,7 +58,8 @@ namespace KDrawing.Models
                 IsSelected = this.IsSelected,
                 IsHidden = this.IsHidden,
                 Name = this.Name,
-                Width = this.Width
+                Width = this.Width,
+                FillColor = this.FillColor
             };
         }
         #endregion

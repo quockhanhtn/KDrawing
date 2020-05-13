@@ -272,6 +272,11 @@
             this.nudLineWeight.DecimalPlaces = 2;
             this.nudLineWeight.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLineWeight.Location = new System.Drawing.Point(349, 4);
+            this.nudLineWeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudLineWeight.Name = "nudLineWeight";
             this.nudLineWeight.Size = new System.Drawing.Size(79, 27);
             this.nudLineWeight.TabIndex = 2;
@@ -412,7 +417,7 @@
             this.btnCloseLayer.ToolTipAutomaticDelay = 500;
             this.btnCloseLayer.ToolTipAutoPopDelay = 5000;
             this.btnCloseLayer.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnCloseLayer.ToolTipCaption = "Close tool bar";
+            this.btnCloseLayer.ToolTipCaption = "Close layers";
             this.btnCloseLayer.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnCloseLayer.ToolTipInitialDelay = 200;
             this.btnCloseLayer.ToolTipIsBalloon = false;
@@ -466,7 +471,7 @@
             this.mnuAbout});
             this.mnu.Location = new System.Drawing.Point(60, 1);
             this.mnu.Name = "mnu";
-            this.mnu.Size = new System.Drawing.Size(460, 31);
+            this.mnu.Size = new System.Drawing.Size(462, 31);
             this.mnu.TabIndex = 0;
             this.mnu.Text = "mnu";
             // 
@@ -480,7 +485,7 @@
             this.mnuFile_SaveAs,
             this.toolStripSeparator5,
             this.mnuFile_Quit});
-            this.mnuFile.ForeColor = System.Drawing.Color.White;
+            this.mnuFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuFile.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(50, 27);
@@ -548,7 +553,7 @@
             this.mnuEdit_BackColor,
             this.mnuEdit_SwapColor,
             this.mnuEdit_DefaultColor});
-            this.mnuEdit.ForeColor = System.Drawing.Color.White;
+            this.mnuEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuEdit.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(53, 27);
@@ -627,7 +632,7 @@
             this.mnuSelect_Rotate,
             this.toolStripSeparator3,
             this.mnuSelect_DeleteSelected});
-            this.mnuSelect.ForeColor = System.Drawing.Color.White;
+            this.mnuSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuSelect.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuSelect.Name = "mnuSelect";
             this.mnuSelect.Size = new System.Drawing.Size(69, 27);
@@ -724,7 +729,7 @@
             this.mnuDrawing_Ellipse,
             this.mnuDrawing_Rectangle,
             this.mnuDrawing_Polygon});
-            this.mnuDrawing.ForeColor = System.Drawing.Color.White;
+            this.mnuDrawing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuDrawing.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuDrawing.Name = "mnuDrawing";
             this.mnuDrawing.Size = new System.Drawing.Size(88, 27);
@@ -804,7 +809,7 @@
             this.mnuView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuView_Toolbar,
             this.mnuView_Layers});
-            this.mnuView.ForeColor = System.Drawing.Color.White;
+            this.mnuView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuView.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(61, 27);
@@ -834,7 +839,7 @@
             // 
             // mnuAbout
             // 
-            this.mnuAbout.ForeColor = System.Drawing.Color.White;
+            this.mnuAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(30)))), ((int)(((byte)(81)))));
             this.mnuAbout.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.mnuAbout.Name = "mnuAbout";
             this.mnuAbout.Size = new System.Drawing.Size(71, 27);
@@ -914,7 +919,7 @@
             this.btnForeColor.ToolTipAutomaticDelay = 500;
             this.btnForeColor.ToolTipAutoPopDelay = 5000;
             this.btnForeColor.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnForeColor.ToolTipCaption = "";
+            this.btnForeColor.ToolTipCaption = "Fore color or color outline of fill shape";
             this.btnForeColor.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnForeColor.ToolTipInitialDelay = 200;
             this.btnForeColor.ToolTipIsBalloon = false;
@@ -941,7 +946,7 @@
             this.btnBackColor.ToolTipAutomaticDelay = 500;
             this.btnBackColor.ToolTipAutoPopDelay = 5000;
             this.btnBackColor.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnBackColor.ToolTipCaption = "";
+            this.btnBackColor.ToolTipCaption = "Back color";
             this.btnBackColor.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnBackColor.ToolTipInitialDelay = 200;
             this.btnBackColor.ToolTipIsBalloon = false;
@@ -1167,13 +1172,13 @@
             this.btnText.ToolTipAutomaticDelay = 500;
             this.btnText.ToolTipAutoPopDelay = 5000;
             this.btnText.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnText.ToolTipCaption = "";
+            this.btnText.ToolTipCaption = "Create a text";
             this.btnText.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnText.ToolTipInitialDelay = 200;
             this.btnText.ToolTipIsBalloon = false;
             this.btnText.ToolTipReshowDelay = 100;
             this.btnText.ToolTipShowAlways = true;
-            this.btnText.ToolTipTitle = "";
+            this.btnText.ToolTipTitle = "Text";
             this.btnText.UseVisualStyleBackColor = true;
             this.btnText.Click += new System.EventHandler(this.btnText_Click);
             // 
@@ -1195,13 +1200,13 @@
             this.btnPencil.ToolTipAutomaticDelay = 500;
             this.btnPencil.ToolTipAutoPopDelay = 5000;
             this.btnPencil.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnPencil.ToolTipCaption = "";
+            this.btnPencil.ToolTipCaption = "Draw like you are holding a pencil ";
             this.btnPencil.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnPencil.ToolTipInitialDelay = 200;
             this.btnPencil.ToolTipIsBalloon = false;
             this.btnPencil.ToolTipReshowDelay = 100;
             this.btnPencil.ToolTipShowAlways = true;
-            this.btnPencil.ToolTipTitle = "";
+            this.btnPencil.ToolTipTitle = "Freehand";
             this.btnPencil.UseVisualStyleBackColor = true;
             this.btnPencil.Click += new System.EventHandler(this.btnShape_Click);
             // 

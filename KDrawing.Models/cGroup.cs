@@ -37,15 +37,7 @@ namespace KDrawing.Models
                     }
                     else if (Shapes[i] is cRectangle rect)
                     {
-                        if (rect is cSquare square)
-                        {
-                            float a = ((square.End.X - square.Begin.X) + (square.End.Y - square.Begin.Y)) / 2;
-                            path.AddRectangle(new RectangleF(square.Begin.X, square.Begin.Y, a, a));
-                        }
-                        else
-                        {
-                            path.AddRectangle(new RectangleF(rect.Begin.X, rect.Begin.Y, rect.End.X - rect.Begin.X, rect.End.Y - rect.Begin.Y));
-                        }
+                        path.AddRectangle(new RectangleF(rect.Begin.X, rect.Begin.Y, rect.End.X - rect.Begin.X, rect.End.Y - rect.Begin.Y));
                     }
                     else if (Shapes[i] is cEllipse ellipse)
                     {
@@ -114,9 +106,13 @@ namespace KDrawing.Models
                     {
                         if (fillableShape.IsFill)
                         {
-                            using (Brush brush = new SolidBrush(Shapes[i].Color))
+                            using (Brush brush = new SolidBrush(fillableShape.FillColor))
                             {
                                 graphics.FillPath(brush, path);
+                            }
+                            using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight) { DashStyle = Shapes[i].DashStyle })
+                            {
+                                graphics.DrawPath(pen, path);
                             }
                         }
                         else
