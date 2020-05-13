@@ -1,13 +1,8 @@
 ﻿using Cyotek.Windows.Forms;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KDrawing.KControls
@@ -17,41 +12,32 @@ namespace KDrawing.KControls
     public partial class fColorPicker : Form
     {
         #region Constants
-
         private static readonly object _eventPreviewColorChanged = new object();
-
         #endregion
 
         #region Fields
-
         private Brush _textureBrush;
-
         #endregion
 
         #region Constructors
-
         public fColorPicker()
         {
             this.InitializeComponent();
             this.ShowAlphaChannel = true;
             //this.Font = SystemFonts.DialogFont;
         }
-
         #endregion
 
         #region Events
-
         [Category("Property Changed")]
         public event EventHandler PreviewColorChanged
         {
             add { this.Events.AddHandler(_eventPreviewColorChanged, value); }
             remove { this.Events.RemoveHandler(_eventPreviewColorChanged, value); }
         }
-
         #endregion
 
         #region Properties
-
         public Color Color
         {
             get { return colorEditorManager.Color; }
@@ -61,11 +47,9 @@ namespace KDrawing.KControls
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowAlphaChannel { get; set; }
-
         #endregion
 
         #region Methods
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -103,9 +87,7 @@ namespace KDrawing.KControls
             {
                 for (int i = 0; i < colorGrid.Colors.Count; i++)
                 {
-                    Color color;
-
-                    color = colorGrid.Colors[i];
+                    Color color = colorGrid.Colors[i];
                     if (color.A != 255)
                     {
                         colorGrid.Colors[i] = Color.FromArgb(255, color);
@@ -120,23 +102,13 @@ namespace KDrawing.KControls
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected virtual void OnPreviewColorChanged(EventArgs e)
         {
-            EventHandler handler;
-
-            handler = (EventHandler)this.Events[_eventPreviewColorChanged];
-
+            EventHandler handler = (EventHandler)this.Events[_eventPreviewColorChanged];
             handler?.Invoke(this, e);
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
         }
 
         private void colorEditorManager_ColorChanged(object sender, EventArgs e)
         {
             previewPanel.Invalidate();
-
             this.OnPreviewColorChanged(e);
         }
 
@@ -157,17 +129,9 @@ namespace KDrawing.KControls
             }
         }
 
-        private void okButton_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
         private void previewPanel_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle region;
-
-            region = previewPanel.ClientRectangle;
+            Rectangle region = previewPanel.ClientRectangle;
 
             if (this.Color.A != 255)
             {
@@ -191,7 +155,7 @@ namespace KDrawing.KControls
         }
         #endregion
 
-        #region Khanh's Methods
+        #region Khanh's Extension
         public static Color Show(Form form, Color controlColor)
         {
             using (fColorPicker formColorPicker = new fColorPicker())
@@ -205,7 +169,7 @@ namespace KDrawing.KControls
             }
             return controlColor;
         }
-        #endregion
+        
 
         private void ColorPickerDialog_Paint(object sender, PaintEventArgs e)
         {
@@ -215,9 +179,8 @@ namespace KDrawing.KControls
         private void btnTransparent_Click(object sender, EventArgs e)
         {
             Color = Color.Transparent;
-            okButton.PerformClick();
+            btnOK.PerformClick();
         }
+        #endregion
     }
-
-
 }

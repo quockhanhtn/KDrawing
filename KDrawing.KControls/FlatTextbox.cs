@@ -7,17 +7,6 @@ namespace KDrawing.KControls
 {
     public class FlatTextBox : TextBox
     {
-        const int WM_NCPAINT = 0x85;
-        const uint RDW_INVALIDATE = 0x1;
-        const uint RDW_IUPDATENOW = 0x100;
-        const uint RDW_FRAME = 0x400;
-        [DllImport("user32.dll")]
-        static extern IntPtr GetWindowDC(IntPtr hWnd);
-        [DllImport("user32.dll")]
-        static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
-        [DllImport("user32.dll")]
-        static extern bool RedrawWindow(IntPtr hWnd, IntPtr lprc, IntPtr hrgn, uint flags);
-
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -49,15 +38,25 @@ namespace KDrawing.KControls
                    RDW_FRAME | RDW_IUPDATENOW | RDW_INVALIDATE);
         }
 
+        #region Fields and properties
+        const int WM_NCPAINT = 0x85;
+        const uint RDW_INVALIDATE = 0x1;
+        const uint RDW_IUPDATENOW = 0x100;
+        const uint RDW_FRAME = 0x400;
         Color boderColorFocus = Color.FromArgb(0, 122, 204);
         Color borderColor = Color.White;
 
+        [DllImport("user32.dll")]
+        static extern IntPtr GetWindowDC(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+        [DllImport("user32.dll")]
+        static extern bool RedrawWindow(IntPtr hWnd, IntPtr lprc, IntPtr hrgn, uint flags);
         public Color BoderColorFocus
         {
             get => boderColorFocus;
             set => boderColorFocus = value;
         }
-
         public Color BorderColor
         {
             get { return borderColor; }
@@ -68,5 +67,6 @@ namespace KDrawing.KControls
                     RDW_FRAME | RDW_IUPDATENOW | RDW_INVALIDATE);
             }
         }
+        #endregion
     }
 }

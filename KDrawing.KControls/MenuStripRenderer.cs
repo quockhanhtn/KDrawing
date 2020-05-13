@@ -8,12 +8,19 @@ namespace KDrawing.KControls
     /// </summary>
     public class MenuStripRenderer : ToolStripProfessionalRenderer
     {
+        #region Properties
         public int MyProperty { get; set; }
         public Color MouseHoverColor { get; set; }
+        #endregion
+
+        #region Constructor
         public MenuStripRenderer(Color mouseHoverColor) : base()
         {
             this.MouseHoverColor = mouseHoverColor;
         }
+        #endregion
+
+        #region Event
         protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs myMenu)
         {
             if (!myMenu.Item.Selected)
@@ -29,5 +36,6 @@ namespace KDrawing.KControls
                 //myMenu.Graphics.DrawRectangle(Pens.White, 1, 0, menuRectangle.Width - 2, menuRectangle.Height - 1);
             }
         }
+        #endregion
     }
 }

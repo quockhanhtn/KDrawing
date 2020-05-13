@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.pnlDragMove = new KDrawing.KControls.DragMovePanel();
             this.cmnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblTitleText = new System.Windows.Forms.Label();
             this.cmnuRestore = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMinimize = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnuMaximize = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmnuClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTitleText = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximinze = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -69,22 +69,6 @@
             this.cmnuClose});
             this.cmnu.Name = "cmnu";
             this.cmnu.Size = new System.Drawing.Size(147, 140);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
-            // 
-            // lblTitleText
-            // 
-            this.lblTitleText.AutoSize = true;
-            this.lblTitleText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleText.Location = new System.Drawing.Point(3, 7);
-            this.lblTitleText.Name = "lblTitleText";
-            this.lblTitleText.Size = new System.Drawing.Size(65, 20);
-            this.lblTitleText.TabIndex = 0;
-            this.lblTitleText.Text = "TitleText";
-            this.lblTitleText.SizeChanged += new System.EventHandler(this.lblTitleText_SizeChanged);
             // 
             // cmnuRestore
             // 
@@ -118,6 +102,11 @@
             this.cmnuMaximize.Text = "Maximize";
             this.cmnuMaximize.Click += new System.EventHandler(this.cmnuMaximize_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
             // cmnuClose
             // 
             this.cmnuClose.Image = global::KDrawing.KControls.Properties.Resources.window_close_black;
@@ -125,6 +114,18 @@
             this.cmnuClose.Size = new System.Drawing.Size(146, 26);
             this.cmnuClose.Text = "Close";
             this.cmnuClose.Click += new System.EventHandler(this.cmnuClose_Click);
+            // 
+            // lblTitleText
+            // 
+            this.lblTitleText.AutoSize = true;
+            this.lblTitleText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleText.Location = new System.Drawing.Point(3, 7);
+            this.lblTitleText.Name = "lblTitleText";
+            this.lblTitleText.Size = new System.Drawing.Size(65, 20);
+            this.lblTitleText.TabIndex = 0;
+            this.lblTitleText.Text = "TitleText";
+            this.lblTitleText.SizeChanged += new System.EventHandler(this.lblTitleText_SizeChanged);
+            this.lblTitleText.TextChanged += new System.EventHandler(this.lblTitleText_TextChanged);
             // 
             // btnMinimize
             // 

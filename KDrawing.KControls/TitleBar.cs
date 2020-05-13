@@ -7,22 +7,7 @@ namespace KDrawing.KControls
 {
     public partial class TitleBar : UserControl
     {
-        private ButtonColor buttonColor;
-        private ResizeBox resizeBox;
-        private Point oldLocation;
-        private Point distanceMoved;
-        private Point DistanceMoved
-        {
-            get => distanceMoved;
-            set
-            {
-                distanceMoved = value;
-                int parentXLoc = ParentForm.Location.X + distanceMoved.X - oldLocation.X;
-                int parentYLoc = ParentForm.Location.Y + distanceMoved.Y - oldLocation.Y;
-                this.ParentForm.Location = new Point(parentXLoc, parentYLoc);
-            }
-        }
-
+        #region Enums
         public enum ButtonColor
         {
             White, Black
@@ -35,6 +20,14 @@ namespace KDrawing.KControls
             MinimizeBoxOnly,
             NoneResize
         }
+        #endregion
+
+        #region Fields
+        private ButtonColor buttonColor;
+        private ResizeBox resizeBox;
+        #endregion
+
+        #region Properties
 
         [Category("My Properties"), Description("")]
         public Font TitleFont
@@ -130,13 +123,18 @@ namespace KDrawing.KControls
                 }
             }
         }
+        #endregion
 
+        #region Constructor
         public TitleBar()
         {
             InitializeComponent();
             this.buttonColor = ButtonColor.Black;
             this.cmnuRestore.Enabled = false;
         }
+        #endregion
+
+        #region Events
         private void TitleBar_BackColorChanged(object sender, EventArgs e)
         {
             this.picIcon.BackColor = this.BackColor;
@@ -159,36 +157,32 @@ namespace KDrawing.KControls
             cmnu.Show(Cursor.Position);
         }
 
-        private void lblTitleText_SizeChanged(object sender, EventArgs e)
-        {
-            this.lblTitleText.Location = new Point(6, (this.Height - lblTitleText.Height) / 2);
-        }
+        private void lblTitleText_SizeChanged(object sender, EventArgs e) { this.lblTitleText.Location = new Point(6, (this.Height - lblTitleText.Height) / 2); }
+
+        private void lblTitleText_TextChanged(object sender, EventArgs e) { if (this.FindForm() != null) { this.FindForm().Text = lblTitleText.Text; } }
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-            this.ParentForm.WindowState = FormWindowState.Minimized;
+            this.FindForm().WindowState = FormWindowState.Minimized;
         }
 
         private void btnMaximinze_Click(object sender, EventArgs e)
         {
-            if (this.ParentForm.WindowState == FormWindowState.Maximized)
+            if (this.FindForm().WindowState == FormWindowState.Maximized)
             {
-                this.ParentForm.WindowState = FormWindowState.Normal;
+                this.FindForm().WindowState = FormWindowState.Normal;
                 this.cmnuMaximize.Enabled = true;
                 this.cmnuRestore.Enabled = false;
             }
             else
             {
-                this.ParentForm.WindowState = FormWindowState.Maximized;
+                this.FindForm().WindowState = FormWindowState.Maximized;
                 this.cmnuMaximize.Enabled = false;
                 this.cmnuRestore.Enabled = true;
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.ParentForm.Close();
-        }
+        private void btnClose_Click(object sender, EventArgs e) { this.FindForm().Close(); }
 
         private void cmnuRestore_Click(object sender, EventArgs e) { this.btnMaximinze.PerformClick(); }
 
@@ -213,5 +207,6 @@ namespace KDrawing.KControls
                 cmnuMinimize.Enabled = false;
             }
         }
+        #endregion
     }
 }

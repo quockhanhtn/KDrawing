@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KDrawing
 {
     public partial class fAbout : Form
     {
+        #region Constructor
         public fAbout()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region Method
         public static void Show(Form parentForm)
         {
             using (fAbout formAbout = new fAbout())
@@ -24,7 +20,9 @@ namespace KDrawing
                 formAbout.ShowDialog(parentForm);
             }
         }
+        #endregion
 
+        #region Events
         private void llbGmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
@@ -56,5 +54,6 @@ namespace KDrawing
         {
             llbWeb_LinkClicked(llbWeb, null);
         }
+        #endregion
     }
 }

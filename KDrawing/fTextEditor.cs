@@ -8,7 +8,7 @@ namespace KDrawing
 {
     public partial class fTextEditor : Form
     {
-
+        #region Fields and properties
         private cText myText;
 
         public cText MyText 
@@ -26,12 +26,16 @@ namespace KDrawing
                 psfDemo.Invalidate();
             }
         }
+        #endregion
 
+        #region Constructor
         public fTextEditor()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region Events
         private void fTextEditor_Shown(object sender, EventArgs e)
         {
             lblFontFamily.Text = MyText.MyFont.FontFamily.Name;
@@ -128,19 +132,28 @@ namespace KDrawing
             MyText.Begin = worldLocation;
         }
 
+        private void nudLineWeight_ValueChanged(object sender, EventArgs e)
+        {
+            MyText.LineWeight = (float)nudLineWeight.Value;
+            psfDemo.Invalidate();
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             MyText.Name = MyText.Text;
         }
+#endregion
 
+        #region Methods
         public static cText Show(Form parrentForm, PointF textLocation, float lineWeight)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
+                formTextEditor.nudLineWeight.Value = (decimal)lineWeight;
                 if (formTextEditor.ShowDialog(parrentForm) == DialogResult.OK)
                 {
                     formTextEditor.MyText.Begin = textLocation;
-                    formTextEditor.MyText.LineWeight = lineWeight;
+                    formTextEditor.MyText.LineWeight = (float)formTextEditor.nudLineWeight.Value;
                     return formTextEditor.MyText;
                 }
             }
@@ -164,11 +177,6 @@ namespace KDrawing
                 }
             }
         }
-
-        private void nudLineWeight_ValueChanged(object sender, EventArgs e)
-        {
-            MyText.LineWeight = (float)nudLineWeight.Value;
-            psfDemo.Invalidate();
-        }
+        #endregion
     }
 }

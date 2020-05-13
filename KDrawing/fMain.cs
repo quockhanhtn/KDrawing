@@ -98,7 +98,6 @@ namespace KDrawing
         public fMain()
         {
             InitializeComponent();
-
         }
 
         #region Events
@@ -114,7 +113,7 @@ namespace KDrawing
 
             if (System.IO.File.Exists(this.filePath))
             {
-                titleBar.TitleText = "KDrawing - " + System.IO.Path.GetFileName(filePath);
+                titleBar.TitleText = System.IO.Path.GetFileName(filePath) + " - KDrawing";
 
                 var shapeData = ShapeData.Deserialize(filePath);
                 psfMain.BackColor = shapeData.BackColor;
@@ -125,7 +124,7 @@ namespace KDrawing
                 });
                 ReDraw();
             }
-            else { titleBar.TitleText = "KDrawing - Untitled " + (++untitledIndex).ToString(); }
+            else { titleBar.TitleText = "Untitled " + (++untitledIndex).ToString() + " - KDrawing"; }
         }
 
         private void fMain_KeyDown(object sender, KeyEventArgs e)
@@ -179,6 +178,23 @@ namespace KDrawing
         {
             isControlKeyPress = e.Control;
             isShiftKeyPress = e.Shift;
+        }
+
+        private void fMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ListShapes.Count > 0)
+            {
+                string mess = "Save changes to drawing project \"" + titleBar.TitleText.TrimEnd(" - KDrawing".ToCharArray()) + "\" before quitting ?"; ;
+                DialogResult dialogResult = MessageBox.Show(mess, "KDrawing", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    mnuFile_Save.PerformClick();
+                }
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
         #endregion
 
@@ -361,6 +377,15 @@ namespace KDrawing
                             nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
                             cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
                             btnForeColor.BackColor = ListShapes[i].Color;
+
+                            if (ListShapes[i] is IFillableShape fillableShape)
+                            {
+                                if (btnEnableFill.ToggleStage != fillableShape.IsFill)
+                                {
+                                    btnEnableFill.PerformClick();
+                                }
+                                btnFillColor.BackColor = fillableShape.FillColor;
+                            }
                         }
 
                         ReDraw();
@@ -406,10 +431,14 @@ namespace KDrawing
                                     nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
                                     cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
                                     btnForeColor.BackColor = ListShapes[i].Color;
+
                                     if (ListShapes[i] is IFillableShape fillableShape)
                                     {
+                                        if (btnEnableFill.ToggleStage != fillableShape.IsFill)
+                                        {
+                                            btnEnableFill.PerformClick();
+                                        }
                                         btnFillColor.BackColor = fillableShape.FillColor;
-                                        btnEnableFill.ToggleStage = fillableShape.IsFill;
                                     }
                                 }
 
@@ -1287,6 +1316,7 @@ namespace KDrawing
             ReDraw();
         }
         #endregion
+
         #endregion
     }
 }

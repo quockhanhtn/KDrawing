@@ -5,6 +5,7 @@ namespace KDrawing.KControls
 {
     public class SelectColorButton : FlatButton
     {
+        #region Constructor
         public SelectColorButton()
         {
             this.BackColorChanged += ButtonSelectColor_BackColorChanged;
@@ -12,7 +13,9 @@ namespace KDrawing.KControls
 
             ButtonSelectColor_BackColorChanged(this, null);
         }
+        #endregion
 
+        #region Events
         private void SelectColorButton_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -25,5 +28,6 @@ namespace KDrawing.KControls
             btn.FlatAppearance.MouseOverBackColor = btn.BackColor;
             btn.FlatAppearance.MouseDownBackColor = btn.BackColor;
         }
+        #endregion
     }
 }

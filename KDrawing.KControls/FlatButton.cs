@@ -6,6 +6,7 @@ namespace KDrawing.KControls
 {
     public class FlatButton : Button
     {
+        #region Properties
         [Category("Tool tip"), Description("")]
         public bool ToolTipActive { get => this.toolTip.Active; set => this.toolTip.Active = value; }
 
@@ -46,19 +47,23 @@ namespace KDrawing.KControls
 
         [Category("Tool tip"), Description("")]
         public bool ToolTipShowAlways { get => this.toolTip.ShowAlways; set => this.toolTip.ShowAlways = value; }
+        #endregion
 
+        #region Constructor
         public FlatButton() : base()
         {
             FlatStyle = FlatStyle.Flat;
             BackgroundImageLayout = ImageLayout.Zoom;
-            Text = "";
 
             this.toolTip = new ToolTip();
             this.toolTip.ShowAlways = true;
             this.toolTip.InitialDelay = 200;
         }
+        #endregion
 
+        #region Fields
         private ToolTip toolTip;
         private string toolTipCation = "";
+        #endregion
     }
 }

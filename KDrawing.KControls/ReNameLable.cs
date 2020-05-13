@@ -1,13 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace KDrawing.KControls
 {
     public class RenameLable : Label
     {
-
+        #region Constructor
         public RenameLable()
         {
             this.DoubleClick += RenameLable_DoubleClick;
@@ -17,7 +15,9 @@ namespace KDrawing.KControls
             toolTip.InitialDelay = 0;
             toolTip.SetToolTip(this, this.Text);
         }
+        #endregion
 
+        #region Events
         private void RenameLable_DoubleClick(object sender, EventArgs e)
         {
             FlatTextBox txtRename = new FlatTextBox()
@@ -51,7 +51,12 @@ namespace KDrawing.KControls
 
             toolTip.SetToolTip(this, this.Text);
         }
+        #endregion
+
+        #region Field
 
         ToolTip toolTip;
+
+        #endregion
     }
 }

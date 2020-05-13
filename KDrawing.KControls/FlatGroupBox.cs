@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace KDrawing.KControls
 {
     public class FlatGroupBox : GroupBox
     {
+        #region Fields
+
         Color borderColor = Color.Black;
         float borderWidth = 2;
 
+        #endregion
+
+        #region Properties
         public Color BorderColor
         {
             get => borderColor;
@@ -22,13 +22,17 @@ namespace KDrawing.KControls
             get => borderWidth; 
             set { borderWidth = value; this.Invalidate();}
         }
+        #endregion
 
+        #region Constructor
         public FlatGroupBox()
         {
             this.DoubleBuffered = true;
             this.Paint += FlatGroupBox_Paint;
         }
+        #endregion
 
+        #region Event
         private void FlatGroupBox_Paint(object sender, PaintEventArgs e)
         {
             Brush textBrush = new SolidBrush(this.ForeColor);
@@ -58,5 +62,6 @@ namespace KDrawing.KControls
             //Top2
             e.Graphics.DrawLine(borderPen, new Point(rect.X + this.Padding.Left + (int)(strSize.Width) + 10, rect.Y), new Point(rect.X + rect.Width, rect.Y));
         }
+        #endregion
     }
 }

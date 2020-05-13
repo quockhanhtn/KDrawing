@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDrawing.KControls
 {
     public class ToggleButton : FlatButton
     {
+        #region Fields
+
         private Style toggleButtonStyle;
         private bool toggleStage = true;
+
+        #endregion
+
+        #region Properties
         public Style ToggleButtonStyle { get => toggleButtonStyle; set { toggleButtonStyle = value; SetBackgroundImage(); } }
         public bool ToggleStage { get => toggleStage; set { toggleStage = value; SetBackgroundImage(); } }
+        #endregion
 
+        #region Constructor
         public ToggleButton() : base()
         {
             this.Click += ToggleButton_Click;
@@ -20,7 +24,9 @@ namespace KDrawing.KControls
             SetBackgroundImage();
             this.FlatAppearance.BorderSize = 0;
         }
+        #endregion
 
+        #region Events
         private void ToggleButton_BackColorChanged(object sender, EventArgs e)
         {
             this.FlatAppearance.MouseOverBackColor = this.BackColor;
@@ -32,7 +38,9 @@ namespace KDrawing.KControls
             ToggleStage = !ToggleStage;
             SetBackgroundImage();
         }
+        #endregion
 
+        #region Method
         void SetBackgroundImage()
         {
             if (ToggleStage == true)
@@ -72,6 +80,7 @@ namespace KDrawing.KControls
                 }
             }
         }
+        #endregion
 
         public enum Style
         {

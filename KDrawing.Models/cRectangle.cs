@@ -7,12 +7,15 @@ namespace KDrawing.Models
     public class cRectangle : cShape, Interfaces.IFillableShape
     {
         #region Fields
+
         private static int index = 0;
         PointF begin;
         PointF end;
+
         #endregion
 
         #region Properties
+
         public override PointF Begin
         {
             get => begin;
@@ -100,6 +103,7 @@ namespace KDrawing.Models
         }
         [System.Xml.Serialization.XmlElement(Type = typeof(XmlColor))]
         public Color FillColor { get; set; }
+
         #endregion
 
         #region Constructor
