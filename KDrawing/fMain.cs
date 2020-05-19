@@ -417,7 +417,22 @@ namespace KDrawing
                     }
                     else
                     {
-                        UnselectAllShapes();
+                        var isHitSelectedShape = false;
+                        var listShapeSelected = ListShapes.FindAll(shape => shape.IsSelected);
+
+                        for (int i = 0; i < listShapeSelected.Count; i++)
+                        {
+                            if (listShapeSelected[i].IsHit(e.Location))
+                            {
+                                isHitSelectedShape = true;
+                                break;
+                            }
+                        }
+
+                        if (!isHitSelectedShape)
+                        {
+                            UnselectAllShapes();
+                        }
 
                         for (int i = 0; i < ListShapes.Count; i++)
                         {
