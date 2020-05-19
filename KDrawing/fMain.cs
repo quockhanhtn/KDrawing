@@ -1007,10 +1007,10 @@ namespace KDrawing
             {
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "Kdrawing project | *.kdr| " +
-                                            "PNG Picture | *.png| " +
-                                            "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif| " +
-                                            "BMP Picture | *.bmp| " +
+                    saveFileDialog.Filter = "Kdrawing project | *.kdr|" +
+                                            "PNG Picture | *.png|" +
+                                            "JPEG Picture | *.jpg *.jpeg *.jpe *.jfif|" +
+                                            "BMP Picture | *.bmp|" +
                                             "GIF Picture | *.gif|" +
                                             "TIFF Picture | *.tif *.tiff";
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -1071,10 +1071,10 @@ namespace KDrawing
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "Kdrawing project | *.kdr| " +
-                                        "PNG Picture | *.png| " +
-                                        "JPEG Picture | *.jpg;*.jpeg;*.jpe;*.jfif| " +
-                                        "BMP Picture | *.bmp| " +
+                saveFileDialog.Filter = "Kdrawing project | *.kdr|" +
+                                        "PNG Picture | *.png|" +
+                                        "JPEG Picture | *.jpg;*.jpeg;*.jpe;*.jfif|" +
+                                        "BMP Picture | *.bmp|" +
                                         "GIF Picture | *.gif|" +
                                         "TIFF Picture | *.tif;*.tiff";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)

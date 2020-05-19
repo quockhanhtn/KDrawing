@@ -51,6 +51,7 @@ namespace KDrawing.Models
             {
                 Points[i] = Utilities.RotatePoint(Points[i], midPoint, degree);
             }
+            this.FindRegion();
         }
 
         public override void Scale(float percent) 
@@ -67,6 +68,7 @@ namespace KDrawing.Models
 
                 Points[i] = new PointF(Begin.X + _dX, Begin.Y + _dY);
             }
+            this.FindRegion();
         }
 
         public void FindRegion()

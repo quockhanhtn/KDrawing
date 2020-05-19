@@ -7,9 +7,8 @@ namespace KDrawing.MyUserControls
 {
     public partial class ShapeLayer : UserControl
     {
-        cShape shapeShow;
         public fMain FormMain { get => this.FindForm() as fMain; }
-        public cShape ShapeShow { get => shapeShow; set => shapeShow = value; }
+        public cShape ShapeShow { get; set; }
         public ShapeLayer(cShape shape)
         {
             InitializeComponent();
@@ -27,6 +26,7 @@ namespace KDrawing.MyUserControls
             {
                 btnHidden.BackgroundImage = Properties.Resources.eye_off_black;
                 this.BackColor = Color.FromArgb(230, 255, 255);
+                chkIsSelected.Enabled = true;
             }
             else
             {
@@ -34,6 +34,7 @@ namespace KDrawing.MyUserControls
                 chkIsSelected.Checked = false;
                 btnHidden.BackgroundImage = Properties.Resources.eye_black;
                 this.BackColor = Color.LightGray;
+                chkIsSelected.Enabled = false;
             }
 
             ShapeShow.IsHidden = !ShapeShow.IsHidden;
