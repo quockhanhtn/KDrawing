@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDrawing.Models", "KDrawing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vendors.Cyotek.Windows.Forms.ColorPicker", "Vendors.Cyotek.Windows.Forms.ColorPicker\Vendors.Cyotek.Windows.Forms.ColorPicker.csproj", "{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "KDrawing.Setup", "KDrawing.Setup\KDrawing.Setup.vdproj", "{B78C06E1-9337-484C-9149-43CE5CCAA691}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B78C06E1-9337-484C-9149-43CE5CCAA691}.Debug|Any CPU.ActiveCfg = Debug
+		{B78C06E1-9337-484C-9149-43CE5CCAA691}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
