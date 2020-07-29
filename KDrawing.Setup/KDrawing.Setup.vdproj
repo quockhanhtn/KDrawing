@@ -15,7 +15,19 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_39A57438A63A2A9E9696DE85147A1906"
+        "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_413DC7A9465A33BA5B684FD0140C1DAB"
+        "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42DA3603634BE9B7430D12E1E20C8233"
         "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -34,19 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_82C51193713B0E859B19FB0CE666CE07"
-        "OwnerKey" = "8:_B43F249FE38FBBBFFF646EFE29D52AE6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AF8FE7343CEB566CAF507EC04F58805D"
-        "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B43F249FE38FBBBFFF646EFE29D52AE6"
-        "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
+        "OwnerKey" = "8:_39A57438A63A2A9E9696DE85147A1906"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,19 +58,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_42DA3603634BE9B7430D12E1E20C8233"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_39A57438A63A2A9E9696DE85147A1906"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_600177EE73284AD383F8CE310774B39A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AF8FE7343CEB566CAF507EC04F58805D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B43F249FE38FBBBFFF646EFE29D52AE6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -104,7 +104,7 @@
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
         "OutputFilename" = "8:Release\\KDrawing.Setup.msi"
-        "PackageFilesAs" = "3:2"
+        "PackageFilesAs" = "3:4"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
@@ -142,6 +142,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_39A57438A63A2A9E9696DE85147A1906"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:KDrawing.KControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_39A57438A63A2A9E9696DE85147A1906"
+                    {
+                    "Name" = "8:KDrawing.KControls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:KDrawing.KControls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_413DC7A9465A33BA5B684FD0140C1DAB"
             {
             "AssemblyRegister" = "3:1"
@@ -156,6 +187,37 @@
                     }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_42DA3603634BE9B7430D12E1E20C8233"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:KDrawing.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_42DA3603634BE9B7430D12E1E20C8233"
+                    {
+                    "Name" = "8:KDrawing.Models.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:KDrawing.Models.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
@@ -204,68 +266,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AF8FE7343CEB566CAF507EC04F58805D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:KDrawing.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_AF8FE7343CEB566CAF507EC04F58805D"
-                    {
-                    "Name" = "8:KDrawing.Models.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:KDrawing.Models.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B43F249FE38FBBBFFF646EFE29D52AE6"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:KDrawing.KControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B43F249FE38FBBBFFF646EFE29D52AE6"
-                    {
-                    "Name" = "8:KDrawing.KControls.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:KDrawing.KControls.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -285,7 +285,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_7FC86DBCB6754E44936B7E95CBC4CAAA"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -323,7 +323,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:KDrawing"
         "ProductCode" = "8:{174A1236-9B2C-4013-BAC4-D6159BE12472}"
-        "PackageCode" = "8:{AD947A6B-D0EA-4819-928B-51E968538978}"
+        "PackageCode" = "8:{2D9C4687-43FE-4023-9865-7D0578CA8A35}"
         "UpgradeCode" = "8:{74913CA0-D3B5-44B8-A3A9-171989FB3FBD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -331,7 +331,7 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:quockhanh.dev"
+        "Manufacturer" = "8:Quoc Khanh"
         "ARPHELPTELEPHONE" = "8:0949494029"
         "ARPHELPLINK" = "8:http://facebook.com/profile.php?id=100004367534716"
         "Title" = "8:\"KDrawing\" by Quốc Khánh"
@@ -950,7 +950,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_600177EE73284AD383F8CE310774B39A"
             {
-            "SourcePath" = "8:..\\KDrawing\\obj\\Release\\KDrawing.exe"
+            "SourcePath" = "8:..\\KDrawing\\obj\\Debug\\KDrawing.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7FC86DBCB6754E44936B7E95CBC4CAAA"
