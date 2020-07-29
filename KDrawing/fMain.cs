@@ -374,32 +374,33 @@ namespace KDrawing
         {
             if (e.Button == MouseButtons.Right)
             {
-                for (int i = 0; i < ListShapes.Count; i++)
-                {
-                    if (ListShapes[i].IsHit(e.Location))
-                    {
-                        ListShapes[i].IsSelected = true;
+                return;
+                //for (int i = 0; i < ListShapes.Count; i++)
+                //{
+                //    if (ListShapes[i].IsHit(e.Location))
+                //    {
+                //        ListShapes[i].IsSelected = true;
 
-                        if (!(ListShapes[i] is MyGroup))
-                        {
-                            nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
-                            cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
-                            btnForeColor.BackColor = ListShapes[i].Color;
+                //        if (!(ListShapes[i] is MyGroup))
+                //        {
+                //            nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
+                //            cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
+                //            btnForeColor.BackColor = ListShapes[i].Color;
 
-                            if (ListShapes[i] is IFillableShape fillableShape)
-                            {
-                                if (btnEnableFill.ToggleStage != fillableShape.IsFill)
-                                {
-                                    btnEnableFill.PerformClick();
-                                }
-                                btnFillColor.BackColor = fillableShape.FillColor;
-                            }
-                        }
+                //            if (ListShapes[i] is IFillableShape fillableShape)
+                //            {
+                //                if (btnEnableFill.ToggleStage != fillableShape.IsFill)
+                //                {
+                //                    btnEnableFill.PerformClick();
+                //                }
+                //                btnFillColor.BackColor = fillableShape.FillColor;
+                //            }
+                //        }
 
-                        ReDraw();
-                        return;
-                    }
-                }
+                //        ReDraw();
+                //        return;
+                //    }
+                //}
             }
 
             if (ShapeType != ShapeType.NoDrawing)
