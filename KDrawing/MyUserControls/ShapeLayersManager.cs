@@ -19,7 +19,7 @@ namespace KDrawing.MyUserControls
             InitializeComponent();
         }
 
-        public void Add(cShape shape)
+        public void Add(MyShape shape)
         {
             flpShapeLayers.Controls.Add(new ShapeLayer(shape));
         }

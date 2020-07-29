@@ -6,13 +6,13 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cMultiPointShape : cShape
+    public class MultiPointShape : MyShape
     {
         public List<PointF> Points { get; set; } = new List<PointF>();
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
 
-        protected cMultiPointShape() { }
+        protected MultiPointShape() { }
 
         protected override GraphicsPath GraphicsPath => throw new NotImplementedException();
 

@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cEllipse : cShape, Interfaces.IFillableShape
+    public class MyEllipse : MyShape, Interfaces.IFillableShape
     {
         #region Fields
         private static int index = 0;
@@ -62,8 +62,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cEllipse() { }
-        public cEllipse(PointF begin, float lineWeight, Color color,DashStyle dashStyle)
+        public MyEllipse() { }
+        public MyEllipse(PointF begin, float lineWeight, Color color,DashStyle dashStyle)
         {
             this.Name = "Ellipse " + (index++).ToString();
             this.Begin = begin;
@@ -79,7 +79,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            return new cEllipse(this.Begin, this.LineWeight, this.Color, this.DashStyle)
+            return new MyEllipse(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,

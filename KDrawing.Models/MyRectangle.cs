@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cRectangle : cShape, Interfaces.IFillableShape
+    public class MyRectangle : MyShape, Interfaces.IFillableShape
     {
         #region Fields
 
@@ -108,8 +108,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cRectangle() { }
-        public cRectangle(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
+        public MyRectangle() { }
+        public MyRectangle(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Rectangle " + (index++).ToString();
             this.Begin = begin;
@@ -125,7 +125,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            return new cRectangle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
+            return new MyRectangle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,

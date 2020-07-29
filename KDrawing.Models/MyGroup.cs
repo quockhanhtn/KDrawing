@@ -6,7 +6,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cGroup : cShape
+    public class MyGroup : MyShape
     {
         #region Fields
         private static int index = 0;
@@ -15,9 +15,9 @@ namespace KDrawing.Models
         #region Properties
         public override PointF Begin { get; set; }
         public override PointF End { get; set; }
-        public List<cShape> Shapes = new List<cShape>();
+        public List<MyShape> Shapes = new List<MyShape>();
         public int Count => Shapes.Count;
-        public cShape this[int index]
+        public MyShape this[int index]
         {
             get => Shapes[index];
             set => Shapes[index] = value;
@@ -31,17 +31,17 @@ namespace KDrawing.Models
                 for (int i = 0; i < Shapes.Count; i++)
                 {
                     GraphicsPath path = new GraphicsPath();
-                    if (Shapes[i] is cLine line)
+                    if (Shapes[i] is MyLine line)
                     {
                         path.AddLine(line.Begin, line.End);
                     }
-                    else if (Shapes[i] is cRectangle rect)
+                    else if (Shapes[i] is MyRectangle rect)
                     {
                         path.AddRectangle(new RectangleF(rect.Begin.X, rect.Begin.Y, rect.End.X - rect.Begin.X, rect.End.Y - rect.Begin.Y));
                     }
-                    else if (Shapes[i] is cEllipse ellipse)
+                    else if (Shapes[i] is MyEllipse ellipse)
                     {
-                        if (ellipse is cCircle circle)
+                        if (ellipse is MyCircle circle)
                         {
                             float r = ((circle.End.X - circle.Begin.X) + (circle.End.Y - circle.Begin.Y)) / 2;
                             path.AddEllipse(new RectangleF(circle.Begin.X, circle.Begin.Y, r, r));
@@ -51,26 +51,26 @@ namespace KDrawing.Models
                             path.AddEllipse(new RectangleF(ellipse.Begin.X, ellipse.Begin.Y, ellipse.End.X - ellipse.Begin.X, ellipse.End.Y - ellipse.Begin.Y));
                         }
                     }
-                    else if (Shapes[i] is cCurve curve)
+                    else if (Shapes[i] is MyCurve curve)
                     {
                         path.AddCurve(curve.Points.ToArray());
                     }
-                    else if (Shapes[i] is cPolygon polygon)
+                    else if (Shapes[i] is MyPolygon polygon)
                     {
                         path.AddPolygon(polygon.Points.ToArray());
                     }
-                    else if (Shapes[i] is cFreehand freehand)
+                    else if (Shapes[i] is MyFreehand freehand)
                     {
                         for (int j = 0; j < freehand.Points.Count - 1; j++)
                         {
                             path.AddLine(freehand.Points[j], freehand.Points[j + 1]);
                         }
                     }
-                    else if (Shapes[i] is cText text)
+                    else if (Shapes[i] is MyText text)
                     {
                         path.AddString(text.Text, text.MyFont.FontFamily, (int)text.MyFont.Style, text.MyFont.Size, text.Begin, StringFormat.GenericDefault);
                     }
-                    else if (Shapes[i] is cGroup group)
+                    else if (Shapes[i] is MyGroup group)
                     {
                         for (int j = 0; j < group.GraphicsPaths.Length; j++)
                         {
@@ -89,11 +89,11 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cGroup() { Name = "Group " + (index++).ToString(); }
+        public MyGroup() { Name = "Group " + (index++).ToString(); }
         #endregion
 
         #region Methods
-        public void Add(cShape shape) { Shapes.Add(shape); }
+        public void Add(MyShape shape) { Shapes.Add(shape); }
 
         public override void Draw(Graphics graphics)
         {
@@ -123,7 +123,7 @@ namespace KDrawing.Models
                             }
                         }
                     }
-                    else if (Shapes[i] is cGroup group)
+                    else if (Shapes[i] is MyGroup group)
                     {
                         group.Draw(graphics);
                     }
@@ -162,14 +162,14 @@ namespace KDrawing.Models
                             }
                         }
                     }
-                    else if (!(Shapes[i] is cGroup))
+                    else if (!(Shapes[i] is MyGroup))
                     {
                         using (Pen pen = new Pen(Shapes[i].Color, Shapes[i].LineWeight + 3))
                         {
                             if (path.IsOutlineVisible(point, pen)) { return true; }
                         }
                     }
-                    else if (Shapes[i] is cGroup group) { return group.IsHit(point); }
+                    else if (Shapes[i] is MyGroup group) { return group.IsHit(point); }
                 }
             }
 
@@ -198,7 +198,7 @@ namespace KDrawing.Models
 
         public override object Clone()
         {
-            cGroup group = new cGroup
+            MyGroup group = new MyGroup
             {
                 Begin = this.Begin,
                 End = this.End,
@@ -210,19 +210,19 @@ namespace KDrawing.Models
             };
             for (int i = 0; i < Shapes.Count; i++)
             {
-                group.Shapes.Add(Shapes[i].Clone() as cShape);
+                group.Shapes.Add(Shapes[i].Clone() as MyShape);
             }
             return group;
         }
 
         public override void Rotate(int degree)
         {
-            foreach (cShape shape in this.Shapes) { shape.Rotate(degree); }
+            foreach (MyShape shape in this.Shapes) { shape.Rotate(degree); }
         }
 
         public override void Scale(float percent)
         {
-            foreach (cShape shape in this.Shapes) { shape.Scale(percent); }
+            foreach (MyShape shape in this.Shapes) { shape.Scale(percent); }
         }
 
         /// <summary>
@@ -237,13 +237,13 @@ namespace KDrawing.Models
 
             for (int i = 0; i < this.Count; i++)
             {
-                cShape shape = this[i];
+                MyShape shape = this[i];
 
-                if (shape is cCurve curve)
+                if (shape is MyCurve curve)
                 {
                     curve.FindRegion();
                 }
-                else if (shape is cPolygon polygon)
+                else if (shape is MyPolygon polygon)
                 {
                     polygon.FindRegion();
                 }

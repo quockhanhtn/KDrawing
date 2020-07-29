@@ -4,15 +4,15 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cSquare : cRectangle
+    public class MySquare : MyRectangle
     {
         #region Fields
         private static int index = 0;
         #endregion
 
         #region Constructor
-        public cSquare() : base() { }
-        public cSquare(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
+        public MySquare() : base() { }
+        public MySquare(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             Name = "Square " + (index++).ToString();
         }
@@ -52,7 +52,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            return new cSquare(this.Begin, this.LineWeight, this.Color, this.DashStyle)
+            return new MySquare(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,

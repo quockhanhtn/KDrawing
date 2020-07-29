@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace KDrawing.Models
 {
-    public class cText : cShape, Interfaces.IFillableShape
+    public class MyText : MyShape, Interfaces.IFillableShape
     {
         #region Fields
         private Font myFont;
@@ -58,8 +58,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cText() { }
-        public cText(PointF begin, string text, Font font, Color color, float lineWeight, DashStyle dashStyle, bool isFill)
+        public MyText() { }
+        public MyText(PointF begin, string text, Font font, Color color, float lineWeight, DashStyle dashStyle, bool isFill)
         {
             this.Begin = begin;
             this.Text = text;
@@ -71,9 +71,9 @@ namespace KDrawing.Models
         #endregion
 
         #region Methods
-        public static cText Default()
+        public static MyText Default()
         {
-            return new cText(
+            return new MyText(
                 new PointF(0, 0),
                 "Example text",
                 new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))),
@@ -87,7 +87,7 @@ namespace KDrawing.Models
 
         public override object Clone()
         {
-            return new cText(Begin, Text, MyFont, Color, LineWeight, DashStyle, IsFill)
+            return new MyText(Begin, Text, MyFont, Color, LineWeight, DashStyle, IsFill)
             {
                 Name = this.Name,
                 End = this.End,
@@ -159,7 +159,7 @@ namespace KDrawing.Models
         /// Get Text, MyFont, Color, Fill property form source to this
         /// </summary>
         /// <param name="source"></param>
-        public void GetProperty(cText source)
+        public void GetProperty(MyText source)
         {
             this.Text = source.Text;
             this.MyFont = source.MyFont;

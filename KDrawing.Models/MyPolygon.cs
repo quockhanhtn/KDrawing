@@ -3,7 +3,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cPolygon : cMultiPointShape, Interfaces.IFillableShape
+    public class MyPolygon : MultiPointShape, Interfaces.IFillableShape
     {
         #region Fields and Properties
         private static int index = 0;
@@ -30,8 +30,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cPolygon() { }
-        public cPolygon(float lineWeight, Color color, DashStyle dashStyle)
+        public MyPolygon() { }
+        public MyPolygon(float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Polygon " + (index++).ToString();
             this.LineWeight = lineWeight;
@@ -44,7 +44,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            cPolygon polygon = new cPolygon(this.LineWeight, this.Color, this.DashStyle)
+            MyPolygon polygon = new MyPolygon(this.LineWeight, this.Color, this.DashStyle)
             {
                 Begin = this.Begin,
                 End = this.End,

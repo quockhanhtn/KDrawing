@@ -471,7 +471,7 @@
             this.mnuAbout});
             this.mnu.Location = new System.Drawing.Point(60, 1);
             this.mnu.Name = "mnu";
-            this.mnu.Size = new System.Drawing.Size(462, 31);
+            this.mnu.Size = new System.Drawing.Size(460, 31);
             this.mnu.TabIndex = 0;
             this.mnu.Text = "mnu";
             // 
@@ -1308,7 +1308,7 @@
             this.btnSelect.ToolTipAutomaticDelay = 500;
             this.btnSelect.ToolTipAutoPopDelay = 5000;
             this.btnSelect.ToolTipBackColor = System.Drawing.SystemColors.Info;
-            this.btnSelect.ToolTipCaption = "Select shape by click. Press \"Shift\" to select multi shapes";
+            this.btnSelect.ToolTipCaption = "Select shape by click. Hold \"Ctrl\" to select multi shapes";
             this.btnSelect.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
             this.btnSelect.ToolTipInitialDelay = 200;
             this.btnSelect.ToolTipIsBalloon = false;

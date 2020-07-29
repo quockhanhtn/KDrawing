@@ -24,16 +24,24 @@ namespace KDrawing
         private string filePath;
 
         private List<Button> listButton;
-        private List<cShape> listShapes = new List<cShape>();
+        private List<MyShape> listShapes = new List<MyShape>();
         private PointF previousPoint;
-        private Brush brush = new SolidBrush(Color.Blue);
-        private Pen framePen = new Pen(Color.Blue, 1)
+
+        private Brush brush = new SolidBrush(Color.FromArgb(0, 30, 81));
+        private Brush brushShadow = new SolidBrush(Color.White);
+        private Pen framePen = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
         {
             DashPattern = new float[] { 3, 3, 3, 3 },
             DashStyle = DashStyle.Custom
         };
+        
+        private Pen framePenShadow = new Pen(Color.White, 2f)
+        {
+            DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
+            DashStyle = DashStyle.Custom
+        };
 
-        private cShape selectedShape;
+        private MyShape selectedShape;
         private PointF selectedPoint1;
         private PointF selectedPoint2;
         private RectangleF selectedRegion;
@@ -45,7 +53,7 @@ namespace KDrawing
         #endregion
 
         #region Properties
-        public List<cShape> ListShapes { get => listShapes; set => listShapes = value; }
+        public List<MyShape> ListShapes { get => listShapes; set => listShapes = value; }
         public RectangleF SelectedRegion
         {
             get
@@ -262,9 +270,9 @@ namespace KDrawing
 
             this.ListShapes.FindAll(shape => shape.IsSelected).ForEach(shape =>
             {
-                if (shape is cGroup group)
+                if (shape is MyGroup group)
                 {
-                    foreach (cShape s in group.Shapes) { s.LineWeight = (float)nudLineWeight.Value; }
+                    foreach (MyShape s in group.Shapes) { s.LineWeight = (float)nudLineWeight.Value; }
                 }
                 else { shape.LineWeight = (float)nudLineWeight.Value; }
             });
@@ -343,7 +351,7 @@ namespace KDrawing
             if (drawingStage == DrawingStage.IsDrawPolygon)
             {
                 drawingStage = DrawingStage.Orther;
-                cPolygon polygon = ListShapes[ListShapes.Count - 1] as cPolygon;
+                MyPolygon polygon = ListShapes[ListShapes.Count - 1] as MyPolygon;
                 polygon.Points.RemoveAt(polygon.Points.Count - 1);
 
                 psfMain.Invalidate();
@@ -352,7 +360,7 @@ namespace KDrawing
             else if (drawingStage == DrawingStage.IsDrawCurve)
             {
                 drawingStage = DrawingStage.Orther;
-                cCurve curve = ListShapes[ListShapes.Count - 1] as cCurve;
+                MyCurve curve = ListShapes[ListShapes.Count - 1] as MyCurve;
                 if (curve.Points.Count <= 3) { ListShapes.Remove(curve); }
                 curve.Points.RemoveAt(curve.Points.Count - 1);
                 curve.Points.RemoveAt(curve.Points.Count - 1);
@@ -372,7 +380,7 @@ namespace KDrawing
                     {
                         ListShapes[i].IsSelected = true;
 
-                        if (!(ListShapes[i] is cGroup))
+                        if (!(ListShapes[i] is MyGroup))
                         {
                             nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
                             cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
@@ -441,7 +449,7 @@ namespace KDrawing
                                 selectedShape = ListShapes[i];
                                 ListShapes[i].IsSelected = true;
 
-                                if (!(ListShapes[i] is cGroup))
+                                if (!(ListShapes[i] is MyGroup))
                                 {
                                     nudLineWeight.Value = (decimal)ListShapes[i].LineWeight;
                                     cboDashStyle.SelectedIndex = (int)ListShapes[i].DashStyle;
@@ -490,7 +498,7 @@ namespace KDrawing
                 case ShapeType.Freehand:
                     if (drawingStage != DrawingStage.IsFreehand)
                     {
-                        cFreehand freehand = new cFreehand((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                        MyFreehand freehand = new MyFreehand((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                         freehand.Begin = e.Location;
                         freehand.Points.Add(e.Location);
 
@@ -499,19 +507,19 @@ namespace KDrawing
                     }
                     else
                     {
-                        cFreehand freehand = ListShapes[ListShapes.Count - 1] as cFreehand;
+                        MyFreehand freehand = ListShapes[ListShapes.Count - 1] as MyFreehand;
                         freehand.Points[freehand.Points.Count - 1] = e.Location;
                         freehand.Points.Add(e.Location);
                     }
                     break;
 
                 case ShapeType.Line:
-                    cLine line = new cLine(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                    MyLine line = new MyLine(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                     ListShapes.Add(line);
                     break;
 
                 case ShapeType.Rectangle:
-                    cRectangle rectangle = new cRectangle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                    MyRectangle rectangle = new MyRectangle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                     if (DrawingMode == DrawingMode.Fill)
                     {
                         rectangle.IsFill = true;
@@ -521,7 +529,7 @@ namespace KDrawing
                     break;
 
                 case ShapeType.Square:
-                    cSquare square = new cSquare(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                    MySquare square = new MySquare(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                     if (DrawingMode == DrawingMode.Fill)
                     {
                         square.IsFill = true;
@@ -531,7 +539,7 @@ namespace KDrawing
                     break;
 
                 case ShapeType.Ellipse:
-                    cEllipse ellipse = new cEllipse(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                    MyEllipse ellipse = new MyEllipse(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                     if (DrawingMode == DrawingMode.Fill)
                     {
                         ellipse.IsFill = true;
@@ -541,7 +549,7 @@ namespace KDrawing
                     break;
 
                 case ShapeType.Circle:
-                    cCircle circle = new cCircle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                    MyCircle circle = new MyCircle(e.Location, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                     if (DrawingMode == DrawingMode.Fill)
                     {
                         circle.IsFill = true;
@@ -553,7 +561,7 @@ namespace KDrawing
                 case ShapeType.Curve:
                     if (drawingStage != DrawingStage.IsDrawCurve)
                     {
-                        cCurve curve = new cCurve(false, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                        MyCurve curve = new MyCurve(false, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                         curve.Points.Add(e.Location);
                         curve.Points.Add(e.Location);
 
@@ -562,7 +570,7 @@ namespace KDrawing
                     }
                     else
                     {
-                        cCurve curve = ListShapes[ListShapes.Count - 1] as cCurve;
+                        MyCurve curve = ListShapes[ListShapes.Count - 1] as MyCurve;
                         curve.Points[curve.Points.Count - 1] = e.Location;
 
                         curve.Points.Add(e.Location);
@@ -573,7 +581,7 @@ namespace KDrawing
                 case ShapeType.Bezier:
                     if (drawingStage != DrawingStage.IsDrawBezier)
                     {
-                        cCurve bezier = new cCurve(true, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                        MyCurve bezier = new MyCurve(true, (float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                         bezier.Points.Add(e.Location);
                         bezier.Points.Add(e.Location);
 
@@ -582,7 +590,7 @@ namespace KDrawing
                     }
                     else
                     {
-                        cCurve bezier = ListShapes[ListShapes.Count - 1] as cCurve;
+                        MyCurve bezier = ListShapes[ListShapes.Count - 1] as MyCurve;
                         if (bezier.Points.Count < 4)
                         {
                             bezier.Points[bezier.Points.Count - 1] = e.Location;
@@ -600,7 +608,7 @@ namespace KDrawing
                 case ShapeType.Polygon:
                     if (drawingStage != DrawingStage.IsDrawPolygon)
                     {
-                        cPolygon polygon = new cPolygon((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
+                        MyPolygon polygon = new MyPolygon((float)nudLineWeight.Value, btnForeColor.BackColor, (DashStyle)cboDashStyle.SelectedIndex);
                         if (DrawingMode == DrawingMode.Fill)
                         {
                             polygon.IsFill = true;
@@ -614,7 +622,7 @@ namespace KDrawing
                     }
                     else
                     {
-                        cPolygon polygon = ListShapes[ListShapes.Count - 1] as cPolygon;
+                        MyPolygon polygon = ListShapes[ListShapes.Count - 1] as MyPolygon;
                         polygon.Points[polygon.Points.Count - 1] = e.Location;
                         polygon.Points.Add(e.Location);
                     }
@@ -631,23 +639,23 @@ namespace KDrawing
         {
             if (drawingStage == DrawingStage.IsFreehand)
             {
-                cFreehand freehand = ListShapes[ListShapes.Count - 1] as cFreehand;
+                MyFreehand freehand = ListShapes[ListShapes.Count - 1] as MyFreehand;
                 freehand.Points.Add(e.Location);
                 ReDraw();
             }
 
             if (isMouseDown)
             {
-                cShape lastShape = ListShapes[ListShapes.Count - 1];
+                MyShape lastShape = ListShapes[ListShapes.Count - 1];
                 if (isShiftKeyPress)
                 {
-                    if (lastShape is cRectangle) { (lastShape as cRectangle).IsSquare = true; }
-                    else if (lastShape is cEllipse) { (lastShape as cEllipse).IsCircle = true; }
+                    if (lastShape is MyRectangle) { (lastShape as MyRectangle).IsSquare = true; }
+                    else if (lastShape is MyEllipse) { (lastShape as MyEllipse).IsCircle = true; }
                 }
                 else
                 {
-                    if (lastShape is cRectangle) { (lastShape as cRectangle).IsSquare = false; }
-                    else if (lastShape is cEllipse) { (lastShape as cEllipse).IsCircle = false; }
+                    if (lastShape is MyRectangle) { (lastShape as MyRectangle).IsSquare = false; }
+                    else if (lastShape is MyEllipse) { (lastShape as MyEllipse).IsCircle = false; }
                 }
                 lastShape.End = e.Location;
                 ReDraw();
@@ -681,21 +689,21 @@ namespace KDrawing
 
             else if (drawingStage == DrawingStage.IsDrawPolygon)
             {
-                cPolygon polygon = ListShapes[ListShapes.Count - 1] as cPolygon;
+                MyPolygon polygon = ListShapes[ListShapes.Count - 1] as MyPolygon;
                 polygon.Points[polygon.Points.Count - 1] = e.Location;
 
                 ReDraw();
             }
             else if (drawingStage == DrawingStage.IsDrawCurve)
             {
-                cCurve curve = ListShapes[ListShapes.Count - 1] as cCurve;
+                MyCurve curve = ListShapes[ListShapes.Count - 1] as MyCurve;
                 curve.Points[curve.Points.Count - 1] = e.Location;
 
                 ReDraw();
             }
             else if (drawingStage == DrawingStage.IsDrawBezier)
             {
-                cCurve bezier = ListShapes[ListShapes.Count - 1] as cCurve;
+                MyCurve bezier = ListShapes[ListShapes.Count - 1] as MyCurve;
                 bezier.Points[bezier.Points.Count - 1] = e.Location;
 
                 ReDraw();
@@ -708,7 +716,7 @@ namespace KDrawing
             if (drawingStage == DrawingStage.IsFreehand)
             {
                 drawingStage = DrawingStage.Orther;
-                cFreehand freehand = ListShapes[ListShapes.Count - 1] as cFreehand;
+                MyFreehand freehand = ListShapes[ListShapes.Count - 1] as MyFreehand;
                 freehand.End = freehand.Points[freehand.Points.Count - 1];
                 psfMain.Invalidate();
             }
@@ -737,7 +745,7 @@ namespace KDrawing
 
             try
             {
-                cShape shape = ListShapes[ListShapes.Count - 1];
+                MyShape shape = ListShapes[ListShapes.Count - 1];
 
                 // Đổi 2 điểm lại cho thuận nếu bị ngược
                 if (shape.Begin.X > shape.End.X || (shape.Begin.X == shape.End.X && shape.Begin.Y > shape.End.Y))
@@ -747,11 +755,11 @@ namespace KDrawing
                     shape.End = temp;
                 }
 
-                if (shape is cCircle circle)
+                if (shape is MyCircle circle)
                 {
                     circle.End = new PointF(circle.Begin.X + circle.Diameter, circle.Begin.Y + circle.Diameter);
                 }
-                else if (shape is cSquare square)
+                else if (shape is MySquare square)
                 {
                     if (square.Begin.X < square.End.X && square.Begin.Y > square.End.Y)
                     {
@@ -763,7 +771,7 @@ namespace KDrawing
                         square.End = new PointF(square.Begin.X + square.Width, square.Begin.Y + square.Width);
                     }
                 }
-                else if (shape is cRectangle rect)
+                else if (shape is MyRectangle rect)
                 {
                     if (rect.Begin.X < rect.End.X && rect.Begin.Y > rect.End.Y)
                     {
@@ -776,7 +784,7 @@ namespace KDrawing
 
                 if (ShapeType != ShapeType.NoDrawing)
                 {
-                    if (shape is cCurve)
+                    if (shape is MyCurve)
                     {
                         // Chỉ ghi khi đã vẽ xong đường cong đó
                         if ((ShapeType == ShapeType.Curve && drawingStage != DrawingStage.IsDrawCurve) ||
@@ -785,14 +793,14 @@ namespace KDrawing
                             shapeLayers.Add(shape);
                         }
                     }
-                    else if (shape is cPolygon) // ngược lại nếu là đa giác
+                    else if (shape is MyPolygon) // ngược lại nếu là đa giác
                     {
                         // thì cũng đợi vẽ xong mới ghi thông tin
                         if (drawingStage != DrawingStage.IsDrawPolygon) { shapeLayers.Add(shape); }
                     }
                     // ngược lại không là đường cong thì ghi bình thường
                     else {
-                        if (shape is cFreehand freehand) { freehand.FindRegion(); }
+                        if (shape is MyFreehand freehand) { freehand.FindRegion(); }
                         shapeLayers.Add(shape); 
                     }
                 }
@@ -810,39 +818,30 @@ namespace KDrawing
                 {
                     shape.Draw(e.Graphics);
 
-                    if (!(shape is cLine))
+                    if (!(shape is MyLine))
                     {
-                        e.Graphics.DrawRectangle(framePen, new RectangleF(shape.Begin.X, shape.Begin.Y, shape.End.X - shape.Begin.X, shape.End.Y - shape.Begin.Y));
+                        GraphicsExtensions.DrawSelectFrame(e.Graphics, framePen, framePenShadow, new RectangleF(shape.Begin.X, shape.Begin.Y, shape.End.X - shape.Begin.X, shape.End.Y - shape.Begin.Y));
                     }
 
-                    if (shape is cEllipse || shape is cRectangle || shape is cLine || shape is cFreehand)
+                    if (shape is MyEllipse || shape is MyRectangle || shape is MyLine || shape is MyFreehand)
                     {
-                        e.Graphics.FillEllipse(brush, new RectangleF(shape.Begin.X - 4, shape.Begin.Y - 4, 8, 8));
-                        e.Graphics.FillEllipse(brush, new RectangleF(shape.End.X - 4, shape.End.Y - 4, 8, 8));
-                        if (shape is cEllipse elip)
+                        GraphicsExtensions.DrawSelectPoints(e.Graphics, brush, brushShadow, shape.Begin, shape.End);
+                        if (shape is MyEllipse elip)
                         {
-                            e.Graphics.FillEllipse(brush, new RectangleF(elip.TopRight.X - 4, elip.TopRight.Y - 4, 8, 8));
-                            e.Graphics.FillEllipse(brush, new RectangleF(elip.BottomLeft.X - 4, elip.BottomLeft.Y - 4, 8, 8));
+                            GraphicsExtensions.DrawSelectPoints(e.Graphics, brush, brushShadow, elip.TopRight, elip.BottomLeft);
                         }
-                        else if (shape is cRectangle rec)
+                        else if (shape is MyRectangle rec)
                         {
-                            e.Graphics.FillEllipse(brush, new RectangleF(rec.TopRight.X - 4, rec.TopRight.Y - 4, 8, 8));
-                            e.Graphics.FillEllipse(brush, new RectangleF(rec.BottomLeft.X - 4, rec.BottomLeft.Y - 4, 8, 8));
+                            GraphicsExtensions.DrawSelectPoints(e.Graphics, brush, brushShadow, rec.TopRight, rec.BottomLeft);
                         }
                     }
-                    else if (shape is cCurve curve)
+                    else if (shape is MyCurve curve)
                     {
-                        for (int i = 0; i < curve.Points.Count; i++)
-                        {
-                            e.Graphics.FillEllipse(brush, new RectangleF(curve.Points[i].X - 4, curve.Points[i].Y - 4, 8, 8));
-                        }
+                        GraphicsExtensions.DrawSelectPoints(e.Graphics, brush, brushShadow, curve.Points);
                     }
-                    else if (shape is cPolygon polygon)
+                    else if (shape is MyPolygon polygon)
                     {
-                        for (int i = 0; i < polygon.Points.Count; i++)
-                        {
-                            e.Graphics.FillEllipse(brush, new RectangleF(polygon.Points[i].X - 4, polygon.Points[i].Y - 4, 8, 8));
-                        }
+                        GraphicsExtensions.DrawSelectPoints(e.Graphics, brush, brushShadow, polygon.Points);
                     }
                 }
                 else if (!shape.IsHidden)
@@ -853,14 +852,14 @@ namespace KDrawing
 
             if (drawingStage == DrawingStage.IsMouseSelect)
             {
-                e.Graphics.DrawRectangle(framePen, SelectedRegion);
+                GraphicsExtensions.DrawSelectFrame(e.Graphics, framePen, framePenShadow, SelectedRegion);
             }
         }
         #endregion
 
         private void btnText_Click(object sender, EventArgs e)
         {
-            if (ListShapes.FindAll(shape => shape.IsSelected && shape is cText).Count > 0)
+            if (ListShapes.FindAll(shape => shape.IsSelected && shape is MyText).Count > 0)
             {
                 fTextEditor.Show(this, ListShapes);
                 ReDraw();
@@ -1252,7 +1251,7 @@ namespace KDrawing
         {
             if (ListShapes.Count(shape => shape.IsSelected) > 1)
             {
-                cGroup group = new cGroup();
+                MyGroup group = new MyGroup();
 
                 for (int i = 0; i < ListShapes.Count; i++)
                 {
@@ -1278,7 +1277,7 @@ namespace KDrawing
         /// </summary>
         public void UngroupSelectedGroup()
         {
-            if (ListShapes.Find(shape => shape.IsSelected) is cGroup selectedGroup)
+            if (ListShapes.Find(shape => shape.IsSelected) is MyGroup selectedGroup)
             {
                 selectedGroup.Shapes.ForEach(shape =>
                 {

@@ -9,13 +9,13 @@ namespace KDrawing
     public partial class fTextEditor : Form
     {
         #region Fields and properties
-        private cText myText;
+        private MyText myText;
 
-        public cText MyText 
+        public MyText MyText 
         {
             get
             {
-                if (myText == null) { myText = cText.Default(); }
+                if (myText == null) { myText = MyText.Default(); }
                 return myText;
             }
             set
@@ -145,7 +145,7 @@ namespace KDrawing
 #endregion
 
         #region Methods
-        public static cText Show(Form parrentForm, PointF textLocation, float lineWeight)
+        public static MyText Show(Form parrentForm, PointF textLocation, float lineWeight)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
@@ -160,12 +160,12 @@ namespace KDrawing
             return null;
         }
 
-        public static void Show(Form parrentForm, List<cShape> listShapes)
+        public static void Show(Form parrentForm, List<MyShape> listShapes)
         {
             using (fTextEditor formTextEditor = new fTextEditor())
             {
-                List<cText> listTextEditor = new List<cText>();
-                listShapes.FindAll(shape => shape.IsSelected && shape is cText).ForEach(text => listTextEditor.Add(text as cText));
+                List<MyText> listTextEditor = new List<MyText>();
+                listShapes.FindAll(shape => shape.IsSelected && shape is MyText).ForEach(text => listTextEditor.Add(text as MyText));
 
                 formTextEditor.MyText.GetProperty(listTextEditor[0]);
                 if (formTextEditor.ShowDialog(parrentForm) == DialogResult.OK)

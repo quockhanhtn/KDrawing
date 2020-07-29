@@ -3,15 +3,15 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cCircle : cEllipse
+    public class MyCircle : MyEllipse
     {
         #region Fields
         private static int index = 0;
         #endregion
 
         #region Constructor
-        public cCircle() : base() { }
-        public cCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
+        public MyCircle() : base() { }
+        public MyCircle(PointF begin, float lineWeight, Color color, DashStyle dashStyle) : base(begin, lineWeight, color, dashStyle)
         {
             this.Name = "Circle " + (index++).ToString();
         }
@@ -36,7 +36,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            return new cCircle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
+            return new MyCircle(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,

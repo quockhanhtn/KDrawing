@@ -8,8 +8,8 @@ namespace KDrawing.MyUserControls
     public partial class ShapeLayer : UserControl
     {
         public fMain FormMain { get => this.FindForm() as fMain; }
-        public cShape ShapeShow { get; set; }
-        public ShapeLayer(cShape shape)
+        public MyShape ShapeShow { get; set; }
+        public ShapeLayer(MyShape shape)
         {
             InitializeComponent();
             ShapeShow = shape;

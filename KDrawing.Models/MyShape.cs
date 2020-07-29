@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace KDrawing.Models
 {
-    public abstract class cShape
+    public abstract class MyShape
     {
         [XmlElement(Type = typeof(XmlColor))]
         public Color Color { get; set; }

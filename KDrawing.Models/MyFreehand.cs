@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cFreehand : cMultiPointShape
+    public class MyFreehand : MultiPointShape
     {
         #region Fields and Properties
         private static int index = 0;
@@ -23,8 +23,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cFreehand() { }
-        public cFreehand(float lineWeight, Color color, DashStyle dashStyle)
+        public MyFreehand() { }
+        public MyFreehand(float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Free hand " + (index++).ToString();
             this.LineWeight = lineWeight;
@@ -37,7 +37,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            cFreehand freehand = new cFreehand()
+            MyFreehand freehand = new MyFreehand()
             {
                 Name = this.Name,
                 Begin = this.Begin,

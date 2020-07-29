@@ -9,17 +9,17 @@ namespace KDrawing.Models
 {
     public class ShapeData
     {
-        [XmlElement(typeof(cCircle))]
-        [XmlElement(typeof(cCurve))]
-        [XmlElement(typeof(cEllipse))]
-        [XmlElement(typeof(cFreehand))]
-        [XmlElement(typeof(cGroup))]
-        [XmlElement(typeof(cLine))]
-        [XmlElement(typeof(cPolygon))]
-        [XmlElement(typeof(cRectangle))]
-        [XmlElement(typeof(cSquare))]
-        [XmlElement(typeof(cText))]
-        public List<cShape> ListShapes;
+        [XmlElement(typeof(MyCircle))]
+        [XmlElement(typeof(MyCurve))]
+        [XmlElement(typeof(MyEllipse))]
+        [XmlElement(typeof(MyFreehand))]
+        [XmlElement(typeof(MyGroup))]
+        [XmlElement(typeof(MyLine))]
+        [XmlElement(typeof(MyPolygon))]
+        [XmlElement(typeof(MyRectangle))]
+        [XmlElement(typeof(MySquare))]
+        [XmlElement(typeof(MyText))]
+        public List<MyShape> ListShapes;
 
         [XmlElement(Type = typeof(XmlColor))]
         public Color BackColor { get; set; }

@@ -3,7 +3,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cLine : cShape
+    public class MyLine : MyShape
     {
         #region Fields
         private static int index = 0;
@@ -24,8 +24,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cLine() { }
-        public cLine(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
+        public MyLine() { }
+        public MyLine(PointF begin, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = "Line " + (index++).ToString();
             this.Begin = begin;
@@ -38,7 +38,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            return new cLine(this.Begin, this.LineWeight, this.Color, this.DashStyle)
+            return new MyLine(this.Begin, this.LineWeight, this.Color, this.DashStyle)
             {
                 End = this.End,
                 IsSelected = this.IsSelected,

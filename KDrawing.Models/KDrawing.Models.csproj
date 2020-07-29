@@ -43,18 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cCircle.cs" />
-    <Compile Include="cCurve.cs" />
-    <Compile Include="cEllipse.cs" />
-    <Compile Include="cFreehand.cs" />
-    <Compile Include="cGroup.cs" />
-    <Compile Include="cLine.cs" />
-    <Compile Include="cMultiPointShape.cs" />
-    <Compile Include="cPolygon.cs" />
-    <Compile Include="cRectangle.cs" />
-    <Compile Include="cShape.cs" />
-    <Compile Include="cSquare.cs" />
-    <Compile Include="cText.cs" />
+    <Compile Include="MyCircle.cs" />
+    <Compile Include="MyCurve.cs" />
+    <Compile Include="MyEllipse.cs" />
+    <Compile Include="MyFreehand.cs" />
+    <Compile Include="MyGroup.cs" />
+    <Compile Include="MyLine.cs" />
+    <Compile Include="MultiPointShape.cs" />
+    <Compile Include="MyPolygon.cs" />
+    <Compile Include="MyRectangle.cs" />
+    <Compile Include="MyShape.cs" />
+    <Compile Include="MySquare.cs" />
+    <Compile Include="MyText.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\DrawingMode.cs" />
     <Compile Include="Enums\DrawingStage.cs" />

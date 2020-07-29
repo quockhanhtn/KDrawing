@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace KDrawing.Models
 {
-    public class cCurve : cMultiPointShape
+    public class MyCurve : MultiPointShape
     {
         #region Fields and Properties
         private static int index = 0;
@@ -22,8 +22,8 @@ namespace KDrawing.Models
         #endregion
 
         #region Constructor
-        public cCurve() { }
-        public cCurve(bool isBezier, float lineWeight, Color color, DashStyle dashStyle)
+        public MyCurve() { }
+        public MyCurve(bool isBezier, float lineWeight, Color color, DashStyle dashStyle)
         {
             this.Name = isBezier ? "Bezier " + (indexBezier++).ToString() : "Curve " + (index++).ToString();
             this.LineWeight = lineWeight;
@@ -35,7 +35,7 @@ namespace KDrawing.Models
         #region Methods
         public override object Clone()
         {
-            cCurve curve = new cCurve(true, this.LineWeight, this.Color, this.DashStyle)
+            MyCurve curve = new MyCurve(true, this.LineWeight, this.Color, this.DashStyle)
             {
                 Begin = this.Begin,
                 End = this.End,

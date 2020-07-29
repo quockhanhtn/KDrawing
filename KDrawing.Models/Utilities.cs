@@ -64,7 +64,7 @@ namespace KDrawing.Models
         /// <param name="backColor">màu nền</param>
         /// <param name="listShapes">các hình vẽ co1 IsHidden = false</param>
         /// <returns></returns>
-        public static Bitmap CreateBimap(int width, int heigth, Color backColor, List<cShape> listShapes)
+        public static Bitmap CreateBimap(int width, int heigth, Color backColor, List<MyShape> listShapes)
         {
             Bitmap bitmap = new Bitmap(width, heigth, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(bitmap);
