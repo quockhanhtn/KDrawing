@@ -2,6 +2,7 @@
 Mid project of Windows Programming course at HCMUTE                                                   <br>
     • Programming language : C#                                                                       <br>
     • UI framework : Winform, Graphics Device Interface + (GDI+)                                      <br>
+    • Integrated development environment (IDE) : Visual Studio                                        <br>
     • Author : Khanh Lam Quoc                                                                         <br>
                                                                                                       <br>
 Release version : https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing  <br>
