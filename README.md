@@ -7,12 +7,10 @@
 <br><br>
 
 
-#### Release version : 
-https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing
+#### Release version : https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing
 <br><br>
 
-#### Video demo : 
-https://youtu.be/6vpmf8skbA8
+#### Video demo : https://youtu.be/6vpmf8skbA8
 <br><br>
 
 ### CONTACT ME: 
