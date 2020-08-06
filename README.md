@@ -4,8 +4,7 @@
 - UI framework : Winform, Graphics Device Interface + (GDI+)
 - Integrated development environment (IDE) : Visual Studio
 - Author : Khanh Lam Quoc 
-<br><br>
-
+<br>
 
 #### Release version : https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing
 
