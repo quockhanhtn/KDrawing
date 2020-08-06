@@ -3,11 +3,9 @@
 - Programming language : C# 
 - UI framework : Winform, Graphics Device Interface + (GDI+)
 - Integrated development environment (IDE) : Visual Studio
-- Author : Khanh Lam Quoc 
-<br>
+- Author : <b>Khanh Lam Quoc</b> ([@quockhanhtn](https://github.com/quockhanhtn))
 
 #### Release version : https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing
-
 #### Video demo : https://youtu.be/6vpmf8skbA8
 
 ### CONTACT ME: 
