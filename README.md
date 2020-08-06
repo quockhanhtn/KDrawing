@@ -7,11 +7,11 @@
 <br><br>
 
 
-### Release version : 
+#### Release version : 
 https://drive.google.com/file/d/1UpFzFSjmkvW_jiXP8VeaTj-tyWLDO7gd/view?usp=sharing
 <br><br>
 
-### VIDEO DEMO : 
+#### Video demo : 
 https://youtu.be/6vpmf8skbA8
 <br><br>
 
